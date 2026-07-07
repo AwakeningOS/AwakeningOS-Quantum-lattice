@@ -10,5 +10,5 @@
   "matched_replay_max_abs_diff_overall": 0.0,
   "diagonal_control_max_abs_diff_overall": 71.308358583029,
   "safe_interpretation": "When CHSH/entanglement/negativity are excluded from output definitions and reactor dynamics use only natural local one-body boundary observables, the quantum Arm3 is exactly reproduced by a separable product of its reduced local states across all tested contexts and gamma values. This supports the auditor critique: previous measurement-boundary positives were constructed CHSH-switch studies, not evidence of naturally irreducible quantum microreactor dynamics.",
-  "summary": []
+  "summary_note": "Full row-level summary is in data/quantum_microreactor/chsh_free_natural_observable_probe_seed20260707_summary.csv."
 }
