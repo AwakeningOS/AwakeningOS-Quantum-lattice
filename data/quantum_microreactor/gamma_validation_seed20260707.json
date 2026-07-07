@@ -1,0 +1,82 @@
+{
+  "experiment": "quantum_microreactor_gamma_validation",
+  "date": "2026-07-08",
+  "layer": "quantum-audit validation gate",
+  "seed": 20260707,
+  "question": "Does the gamma=max fully-dephased diagonal embedding reproduce the existing classical-effective information_microreactor_sandbox summary?",
+  "validation_target": "data/microreactor/information_microreactor_sandbox_seed20260707_summary.csv",
+  "generator_script": "scripts/audit/quantum_microreactor_gamma_validation.py",
+  "tolerance": {
+    "abs": 1e-09,
+    "rel": 1e-09
+  },
+  "summary": [
+    {
+      "scenario": "normal",
+      "num_metrics": 24,
+      "max_abs_error": 0,
+      "max_error_metric": "",
+      "failed_metrics": 0,
+      "pass": "TRUE"
+    },
+    {
+      "scenario": "high_load",
+      "num_metrics": 24,
+      "max_abs_error": 0,
+      "max_error_metric": "",
+      "failed_metrics": 0,
+      "pass": "TRUE"
+    },
+    {
+      "scenario": "stress",
+      "num_metrics": 24,
+      "max_abs_error": 0,
+      "max_error_metric": "",
+      "failed_metrics": 0,
+      "pass": "TRUE"
+    },
+    {
+      "scenario": "stabilizer",
+      "num_metrics": 24,
+      "max_abs_error": 0,
+      "max_error_metric": "",
+      "failed_metrics": 0,
+      "pass": "TRUE"
+    },
+    {
+      "scenario": "leaky_membrane",
+      "num_metrics": 24,
+      "max_abs_error": 0,
+      "max_error_metric": "",
+      "failed_metrics": 0,
+      "pass": "TRUE"
+    },
+    {
+      "scenario": "road_fed",
+      "num_metrics": 24,
+      "max_abs_error": 0,
+      "max_error_metric": "",
+      "failed_metrics": 0,
+      "pass": "TRUE"
+    },
+    {
+      "scenario": "storage_heavy",
+      "num_metrics": 24,
+      "max_abs_error": 0,
+      "max_error_metric": "",
+      "failed_metrics": 0,
+      "pass": "TRUE"
+    }
+  ],
+  "verdict": "PASS",
+  "max_abs_error_overall": 0,
+  "failed_scenarios": [],
+  "comparison_rows": 168,
+  "safe_interpretation": "The gamma=max diagonal/population limit reproduces the existing scalar sandbox exactly within tolerance. This validates only the classical-limit embedding and does not establish quantum-specific behavior.",
+  "limitations": [
+    "This is a validation gate, not a quantum-specific positive result.",
+    "The diagonal model intentionally has no active off-diagonal coherence.",
+    "A later gamma sweep and Arm2 classical complex-wave control are required before any quantum-specific claim.",
+    "Negativity, purity, or basis dependence must be tied to measured observables before promotion."
+  ]
+}
