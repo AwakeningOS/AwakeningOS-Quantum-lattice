@@ -17,27 +17,27 @@ QUARANTINED_CLAIM: Previously stated or implied as a result that failed audit or
 ## Current latest session
 
 ```text
-quantum_microreactor_chsh_readout_transport_probe
+quantum_measurement_terrain_feedback_probe
 ```
 
 Backed by:
 
 ```text
-scripts/audit/quantum_microreactor_chsh_readout_transport_probe.py
-data/quantum_microreactor/chsh_readout_transport_probe_seed20260707_summary.csv
-results/quantum_microreactor_chsh_readout_transport_probe_2026-07-08.md
+scripts/audit/quantum_measurement_terrain_feedback_probe.py
+data/quantum_microreactor/measurement_terrain_feedback_probe_seed20260707_summary.csv
+results/quantum_measurement_terrain_feedback_probe_2026-07-08.md
 ```
 
 Safe status:
 
 ```text
-POSITIVE_FOR_MODEL_LEVEL_CHSH_READOUT_TRANSPORT
+POSITIVE_FOR_MODEL_LEVEL_MEASUREMENT_TERRAIN_FEEDBACK
 ```
 
 Scope:
 
 ```text
-positive for a deliberately added joint / noncommutative readout component
+positive for a deliberately added CHSH/noncommutative measurement-boundary terrain feedback component
 not positive for ordinary local population plumbing
 not a hardware result
 ```
@@ -46,7 +46,8 @@ not a hardware result
 
 | file | status | action |
 |---|---|---|
-| `quantum_microreactor_chsh_readout_transport_probe_2026-07-08.md` | RAW_LOG_BACKED | Latest readout-component probe. `gamma=1` has zero violations; stress at `gamma=0` reaches max CHSH 2.828427 and exceeds the classical release ceiling by +29.429224%. Model-level positive for CHSH readout transport only. |
+| `quantum_measurement_terrain_feedback_probe_2026-07-08.md` | RAW_LOG_BACKED | Latest terrain-feedback probe. CHSH excess is written into terrain only when `S_CHSH > 2`; stress at `gamma=0` writes terrain delta +2.646051 and changes next-phase P_release by +21.389922% vs Bell-bound Arm2. |
+| `quantum_microreactor_chsh_readout_transport_probe_2026-07-08.md` | RAW_LOG_BACKED | Readout-component probe. `gamma=1` has zero violations; stress at `gamma=0` reaches max CHSH 2.828427 and exceeds the classical release ceiling by +29.429224%. |
 | `quantum_microreactor_transported_branching_arm2_kill_2026-07-08.md` | RAW_LOG_BACKED | Transported branching probe. `P_release` moves strongly, but correct zero-entanglement reduced Arm2 reproduces the transported observable exactly; negative for quantum-specific local-population transport. |
 | `quantum_microreactor_branching_converter_probe_2026-07-08.md` | RAW_LOG_BACKED | Branch-only converter probe. Finds phase-sensitive product composition and Arm3 negativity, but branch-only observables are Arm2-reproducible. |
 | `quantum_microreactor_gamma_sweep_quality_probe_2026-07-08.md` | RAW_LOG_BACKED | Quality/coherence gamma sweep. Coherence proxy is gamma-sensitive but Arm2-reproducible and does not change existing observables. |
@@ -55,12 +56,6 @@ not a hardware result
 | `information_microreactor_backpressure_contamination_2026-07-08.md` | RAW_LOG_BACKED | Classical-effective observation sandbox with summary/events/timeseries logs. |
 | `information_microreactor_sandbox_2026-07-07.md` | RAW_LOG_BACKED | Classical-effective assembled sandbox; not quantum-specific. |
 | `quantum_coupled_microreactor_step6_explicit_component_chain_2026-07-07.md` | RAW_LOG_BACKED | Explicit component-chain audit; classical-effective, not a quantum-specific witness. |
-| `quantum_coupled_microreactor_step5_reactor_like_population_synergy_2026-07-07.md` | RAW_LOG_BACKED | Minimal reactor-like P111 product-population synergy audit only. |
-| `quantum_coupled_microreactor_step4_population_synergy_2026-07-07.md` | RAW_LOG_BACKED | Population-order synergy audit only. |
-| `quantum_coupled_microreactor_step3_svetlichny_2026-07-07.md` | RAW_LOG_BACKED | Three-module Svetlichny audit only. |
-| `quantum_coupled_microreactor_step2_v2_unitary_population_2026-07-07.md` | RAW_LOG_BACKED | Corrected Step 2 with unitary dynamics and diagonal population readout. |
-| `quantum_coupled_microreactor_step2_backpressure_2026-07-07.md` | QUARANTINED_CLAIM | Its `conversion_effect` was a Bell-bond projector in disguise; independent functional claim invalid. |
-| `quantum_coupled_microreactor_step1_2026-07-07.md` | RAW_LOG_BACKED | Designed C-R bond witness only. |
 | `converter_core_2026-07-07.md` | RAW_LOG_BACKED | Classical stochastic phenomenology. |
 | `negativity_causality_test_2026-07-07.md` | RAW_LOG_BACKED | Audit inventory only. |
 | `gpt_key_findings.md` | META | Summary metadata. |
@@ -69,6 +64,7 @@ not a hardware result
 ## Current code-backed experiment sources
 
 ```text
+scripts/audit/quantum_measurement_terrain_feedback_probe.py
 scripts/audit/quantum_microreactor_chsh_readout_transport_probe.py
 scripts/audit/quantum_microreactor_transported_branching_arm2_kill.py
 scripts/audit/quantum_branch_converter.py
@@ -84,7 +80,7 @@ scripts/phenomenology/information_microreactor_quantumized_comparison.py
 ## Latest safe finding
 
 ```text
-A deliberately added CHSH readout component can make Bell-violating joint correlations exceed the classical release ceiling and reach transported P_release. This is a model-level quantum-audit positive for the measurement/readout component, not for ordinary local population plumbing.
+A deliberately added CHSH measurement-boundary signal can be written into terrain and later modulate classical-effective reactor dynamics. This is a model-level positive for measurement-boundary terrain feedback, not for ordinary local population plumbing.
 ```
 
 ## Promotion rule
