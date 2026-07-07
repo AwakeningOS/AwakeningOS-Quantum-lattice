@@ -28,6 +28,7 @@ data/quantum_microreactor/gamma_sweep_quality_probe_seed20260707_summary.csv
 data/quantum_microreactor/gamma_sweep_quality_probe_seed20260707_detail.csv
 data/quantum_microreactor/branching_converter_probe_seed20260707_summary.csv
 data/quantum_microreactor/transported_branching_arm2_kill_seed20260707_summary.csv
+data/quantum_microreactor/chsh_readout_transport_probe_seed20260707_summary.csv
 data/quantum_microreactor/step1_cr_coupling_seed0_summary.csv
 data/quantum_microreactor/step2_backpressure_seed0_summary.csv
 data/quantum_microreactor/step2_v2_unitary_population_seed0_summary.csv
@@ -37,134 +38,50 @@ data/quantum_microreactor/step5_reactor_like_population_synergy_seed0_summary.cs
 data/quantum_microreactor/step6_explicit_component_chain_seed0_summary.csv
 ```
 
-## Latest transported branching Arm2-kill probe
+## Latest readout probe
 
-The latest quantum-audit probe is:
+```text
+quantum_microreactor_chsh_readout_transport_probe
+```
+
+Canonical raw log:
+
+```text
+data/quantum_microreactor/chsh_readout_transport_probe_seed20260707_summary.csv
+```
+
+Meaning:
+
+```text
+A joint/noncommutative readout component is coupled to transported P_release.
+This is a model-level positive for the readout component, not for ordinary local population plumbing.
+```
+
+## Previous transported branch probe
 
 ```text
 quantum_microreactor_transported_branching_arm2_kill
 ```
 
-It adds one canonical raw CSV log:
+Canonical raw log:
 
 ```text
 data/quantum_microreactor/transported_branching_arm2_kill_seed20260707_summary.csv
 ```
 
-This probe checks whether a phase-dependent branching converter can move a quantum-specific effect into transported `P_release`. It finds that transported release changes strongly, but the correct zero-entanglement reduced Arm2 channel reproduces it to numerical precision.
-
-## Previous branching converter probe
-
-The previous quantum-audit probe is:
+Meaning:
 
 ```text
-quantum_microreactor_branching_converter_probe
+Transported local-population release moves strongly but is reproduced by the reduced Arm2 channel.
 ```
-
-It adds one canonical raw CSV log:
-
-```text
-data/quantum_microreactor/branching_converter_probe_seed20260707_summary.csv
-```
-
-This probe checks whether a phase-dependent branching converter with an entangled control qubit produces a branch observable that Arm2 classical complex-wave control cannot reproduce.
-
-## Previous gamma sweep log
-
-The previous gamma sweep probe is:
-
-```text
-quantum_microreactor_gamma_sweep_quality_probe
-```
-
-It adds two canonical raw CSV logs:
-
-```text
-data/quantum_microreactor/gamma_sweep_quality_probe_seed20260707_summary.csv
-data/quantum_microreactor/gamma_sweep_quality_probe_seed20260707_detail.csv
-```
-
-This probe checks whether a gamma-sensitive quality/coherence auxiliary variable produces quantum-specific observable usefulness after Arm2 classical complex-wave control.
-
-## Previous validation log
-
-The previous validation experiment is:
-
-```text
-quantum_microreactor_gamma_validation
-```
-
-It adds two canonical raw CSV logs:
-
-```text
-data/quantum_microreactor/gamma_validation_seed20260707_summary.csv
-data/quantum_microreactor/gamma_validation_seed20260707_comparison.csv
-```
-
-This gate checks whether the gamma=max fully dephased diagonal/population embedding reproduces the existing scalar sandbox summaries exactly.
-
-## Previous comparison log
-
-The previous comparison is:
-
-```text
-information_microreactor_quantumized_comparison
-```
-
-It adds one summary raw CSV log:
-
-```text
-data/microreactor/information_microreactor_quantumized_comparison_seed20260707_summary.csv
-```
-
-This log compares:
-
-```text
-classical_probability_core
-quantum_dephased_core
-quantum_coherent_core
-```
-
-for the finite M/C/R pass-convert-store core embedded in the classical sandbox environment.
-
-## Latest observation logs
-
-The latest time-resolved observation experiment is:
-
-```text
-information_microreactor_backpressure_contamination
-```
-
-It adds three first-class raw CSV logs:
-
-```text
-summary.csv:
-  phase-level totals and means
-
-events.csv:
-  threshold crossing times for quality, fill, backpressure, integrity, and rescue
-
-timeseries.csv:
-  deterministic 50-step checkpoints plus final row
-```
-
-These logs are required because the result depends on temporal ordering, not only phase averages. Exact threshold times live in events.csv; timeseries.csv keeps compact trajectory checkpoints.
 
 ## Comparison policy
 
 The gate uses normalized content comparison, not byte comparison.
 
 ```text
-JSON:
-  parse with json.load
-  compare structure recursively
-  compare numeric leaves with tolerance
-
-CSV:
-  parse with csv.DictReader
-  compare headers and row count exactly
-  compare numeric cells with tolerance
-  compare nonnumeric cells exactly
+JSON: parse and compare structure/numeric leaves with tolerance.
+CSV: compare headers, row counts, numeric cells, and nonnumeric cells.
 ```
 
 Default tolerance:
@@ -172,37 +89,6 @@ Default tolerance:
 ```text
 rtol = 1e-9
 atol = 1e-9
-```
-
-Rationale:
-
-```text
-Byte comparison catches stale logs but also false-alarms on harmless JSON
-formatting, CSV float spelling, newline, or environment-level float representation
-differences. The goal is to catch scientific/content skew, not formatting skew.
-```
-
-## Local pre-commit options
-
-Option A: use pre-commit.
-
-```bash
-pip install pre-commit
-pre-commit install
-```
-
-This uses `.pre-commit-config.yaml`.
-
-Option B: install a plain git hook.
-
-```bash
-bash scripts/install_pre_commit_hook.sh
-```
-
-This writes `.git/hooks/pre-commit` to run:
-
-```bash
-python scripts/check_raw_logs.py
 ```
 
 ## Rule
