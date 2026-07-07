@@ -4,6 +4,8 @@ Small quantum-lattice and information-matter exploration repository.
 
 This repository separates **code-backed quantum/core simulations** from **classical phenomenological information-matter notes**. The distinction is intentional and is part of the research record.
 
+Agents working in this repository must read `SKILLS.md` before creating experiments, reports, or raw logs.
+
 ## Audit status as of 2026-07-07
 
 A reproducibility audit found a clear split:
