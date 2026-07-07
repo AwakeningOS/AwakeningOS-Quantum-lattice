@@ -29,6 +29,7 @@ data/quantum_microreactor/gamma_sweep_quality_probe_seed20260707_detail.csv
 data/quantum_microreactor/branching_converter_probe_seed20260707_summary.csv
 data/quantum_microreactor/transported_branching_arm2_kill_seed20260707_summary.csv
 data/quantum_microreactor/chsh_readout_transport_probe_seed20260707_summary.csv
+data/quantum_microreactor/measurement_terrain_feedback_probe_seed20260707_summary.csv
 data/quantum_microreactor/step1_cr_coupling_seed0_summary.csv
 data/quantum_microreactor/step2_backpressure_seed0_summary.csv
 data/quantum_microreactor/step2_v2_unitary_population_seed0_summary.csv
@@ -38,7 +39,25 @@ data/quantum_microreactor/step5_reactor_like_population_synergy_seed0_summary.cs
 data/quantum_microreactor/step6_explicit_component_chain_seed0_summary.csv
 ```
 
-## Latest readout probe
+## Latest terrain feedback probe
+
+```text
+quantum_measurement_terrain_feedback_probe
+```
+
+Canonical raw log:
+
+```text
+data/quantum_microreactor/measurement_terrain_feedback_probe_seed20260707_summary.csv
+```
+
+Meaning:
+
+```text
+A CHSH measurement-boundary signal is written into terrain and later modulates classical-effective reactor dynamics. This is a model-level positive for measurement-boundary terrain feedback, not for ordinary local population plumbing.
+```
+
+## Previous readout probe
 
 ```text
 quantum_microreactor_chsh_readout_transport_probe
