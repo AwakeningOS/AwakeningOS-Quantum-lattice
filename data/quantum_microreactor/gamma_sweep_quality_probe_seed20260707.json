@@ -1,0 +1,121 @@
+{
+  "experiment": "quantum_microreactor_gamma_sweep_quality_probe",
+  "date": "2026-07-08",
+  "layer": "quantum-audit probe",
+  "seed": 20260707,
+  "gamma_values": [
+    1.0,
+    0.75,
+    0.5,
+    0.25,
+    0.0
+  ],
+  "arms": [
+    "arm1_scalar",
+    "arm2_complex_wave",
+    "arm3_quantum_dm"
+  ],
+  "validation_anchor": "gamma=1.0 preserves existing scalar P_release and mean_quality_z",
+  "summary": [
+    {
+      "scenario": "normal",
+      "gamma_values": "1.0;0.75;0.5;0.25;0.0",
+      "max_abs_diff_P_release_vs_gamma_max": 0.0,
+      "max_abs_diff_quality_z_vs_gamma_max": 0.0,
+      "max_arm2_coherence_proxy": 0.278161032188,
+      "max_arm3_coherence_proxy": 0.278161032188,
+      "max_arm3_negativity": 0.278161032188,
+      "arm2_matches_arm3_coherence": "TRUE",
+      "negativity_changes_observable": "FALSE",
+      "quantum_specific_effect": "FALSE",
+      "classification": "gamma-sensitive coherence proxy but no quantum-specific observable advantage"
+    },
+    {
+      "scenario": "high_load",
+      "gamma_values": "1.0;0.75;0.5;0.25;0.0",
+      "max_abs_diff_P_release_vs_gamma_max": 0.0,
+      "max_abs_diff_quality_z_vs_gamma_max": 0.0,
+      "max_arm2_coherence_proxy": 0.278161032188,
+      "max_arm3_coherence_proxy": 0.278161032188,
+      "max_arm3_negativity": 0.278161032188,
+      "arm2_matches_arm3_coherence": "TRUE",
+      "negativity_changes_observable": "FALSE",
+      "quantum_specific_effect": "FALSE",
+      "classification": "gamma-sensitive coherence proxy but no quantum-specific observable advantage"
+    },
+    {
+      "scenario": "stress",
+      "gamma_values": "1.0;0.75;0.5;0.25;0.0",
+      "max_abs_diff_P_release_vs_gamma_max": 0.0,
+      "max_abs_diff_quality_z_vs_gamma_max": 0.0,
+      "max_arm2_coherence_proxy": 0.042083155678,
+      "max_arm3_coherence_proxy": 0.042083155678,
+      "max_arm3_negativity": 0.042083155678,
+      "arm2_matches_arm3_coherence": "TRUE",
+      "negativity_changes_observable": "FALSE",
+      "quantum_specific_effect": "FALSE",
+      "classification": "gamma-sensitive coherence proxy but no quantum-specific observable advantage"
+    },
+    {
+      "scenario": "stabilizer",
+      "gamma_values": "1.0;0.75;0.5;0.25;0.0",
+      "max_abs_diff_P_release_vs_gamma_max": 0.0,
+      "max_abs_diff_quality_z_vs_gamma_max": 0.0,
+      "max_arm2_coherence_proxy": 0.266888702766,
+      "max_arm3_coherence_proxy": 0.266888702766,
+      "max_arm3_negativity": 0.266888702766,
+      "arm2_matches_arm3_coherence": "TRUE",
+      "negativity_changes_observable": "FALSE",
+      "quantum_specific_effect": "FALSE",
+      "classification": "gamma-sensitive coherence proxy but no quantum-specific observable advantage"
+    },
+    {
+      "scenario": "leaky_membrane",
+      "gamma_values": "1.0;0.75;0.5;0.25;0.0",
+      "max_abs_diff_P_release_vs_gamma_max": 0.0,
+      "max_abs_diff_quality_z_vs_gamma_max": 0.0,
+      "max_arm2_coherence_proxy": 0.453276246839,
+      "max_arm3_coherence_proxy": 0.453276246839,
+      "max_arm3_negativity": 0.453276246839,
+      "arm2_matches_arm3_coherence": "TRUE",
+      "negativity_changes_observable": "FALSE",
+      "quantum_specific_effect": "FALSE",
+      "classification": "gamma-sensitive coherence proxy but no quantum-specific observable advantage"
+    },
+    {
+      "scenario": "road_fed",
+      "gamma_values": "1.0;0.75;0.5;0.25;0.0",
+      "max_abs_diff_P_release_vs_gamma_max": 0.0,
+      "max_abs_diff_quality_z_vs_gamma_max": 0.0,
+      "max_arm2_coherence_proxy": 0.278161032188,
+      "max_arm3_coherence_proxy": 0.278161032188,
+      "max_arm3_negativity": 0.278161032188,
+      "arm2_matches_arm3_coherence": "TRUE",
+      "negativity_changes_observable": "FALSE",
+      "quantum_specific_effect": "FALSE",
+      "classification": "gamma-sensitive coherence proxy but no quantum-specific observable advantage"
+    },
+    {
+      "scenario": "storage_heavy",
+      "gamma_values": "1.0;0.75;0.5;0.25;0.0",
+      "max_abs_diff_P_release_vs_gamma_max": 0.0,
+      "max_abs_diff_quality_z_vs_gamma_max": 0.0,
+      "max_arm2_coherence_proxy": 0.278161032188,
+      "max_arm3_coherence_proxy": 0.278161032188,
+      "max_arm3_negativity": 0.278161032188,
+      "arm2_matches_arm3_coherence": "TRUE",
+      "negativity_changes_observable": "FALSE",
+      "quantum_specific_effect": "FALSE",
+      "classification": "gamma-sensitive coherence proxy but no quantum-specific observable advantage"
+    }
+  ],
+  "detail_rows": 105,
+  "verdict": "NEGATIVE_FOR_QUANTUM_SPECIFIC_EFFECT",
+  "safe_interpretation": "The probe creates gamma-sensitive coherence and Arm3 negativity proxies, but all existing observable sandbox outputs remain unchanged and the coherence proxy is reproduced by Arm2 classical complex-wave control. Therefore this is not quantum-specific efficacy.",
+  "limitations": [
+    "Quality is read as the original scalar Z/population observable to preserve gamma=max validation.",
+    "The coherence_quality_proxy is an auxiliary probe, not a replacement for scalar quality.",
+    "Arm3 negativity is not coupled back into release, backpressure, terrain, or conversion in this probe.",
+    "Because Arm2 reproduces the same coherence proxy, the effect is classified as classical-wave reproducible."
+  ]
+}
