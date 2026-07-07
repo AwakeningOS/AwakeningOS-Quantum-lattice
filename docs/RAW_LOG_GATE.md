@@ -23,6 +23,7 @@ data/quantum_microreactor/step2_v2_unitary_population_seed0_summary.csv
 data/quantum_microreactor/step3_svetlichny_seed0_summary.csv
 data/quantum_microreactor/step4_population_synergy_seed0_summary.csv
 data/quantum_microreactor/step5_reactor_like_population_synergy_seed0_summary.csv
+data/quantum_microreactor/step6_explicit_component_chain_seed0_summary.csv
 ```
 
 ## Comparison policy
