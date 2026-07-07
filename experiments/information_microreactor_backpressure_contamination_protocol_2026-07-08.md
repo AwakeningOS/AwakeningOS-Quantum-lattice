@@ -91,33 +91,7 @@ integrity_lt_0_1
 rescue_integrity_gt_0_5_after_800
 ```
 
-Timeseries metrics:
-
-```text
-t
-phase
-source_A
-road_boost
-A_in
-B_in
-P_generated
-P_accept
-release
-quality_weighted_release
-overflow
-reservoir
-capacity
-fill_frac
-integrity
-terrain
-terrain_write_effective
-quality
-poison
-backpressure
-damage
-repair
-phase parameters
-```
+Timeseries metrics are stored as deterministic 50-step checkpoints plus the final row. Exact threshold crossing times are stored in `events.csv`.
 
 ## Controls and comparisons
 
@@ -197,7 +171,8 @@ python scripts/phenomenology/information_microreactor_backpressure_contamination
   --out data/microreactor/information_microreactor_backpressure_contamination_seed20260707.json \
   --summary-csv data/microreactor/information_microreactor_backpressure_contamination_seed20260707_summary.csv \
   --events-csv data/microreactor/information_microreactor_backpressure_contamination_seed20260707_events.csv \
-  --timeseries-csv data/microreactor/information_microreactor_backpressure_contamination_seed20260707_timeseries.csv
+  --timeseries-csv data/microreactor/information_microreactor_backpressure_contamination_seed20260707_timeseries.csv \
+  --timeseries-stride 50
 ```
 
 ## Known limitations
@@ -208,7 +183,7 @@ Not a quantum-witness experiment.
 Not biological metabolism.
 Not autonomous self-repair.
 Not life-like behavior.
-Contamination is represented by scalar poison/quality variables.
+Contamination is represented by scalar quality variables.
 Stabilizer rescue is externally supplied, not self-generated.
 ```
 
