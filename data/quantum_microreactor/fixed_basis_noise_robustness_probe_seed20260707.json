@@ -1,0 +1,53 @@
+{
+  "experiment": "quantum_fixed_basis_noise_robustness_probe",
+  "date": "2026-07-08",
+  "layer": "quantum-audit probe",
+  "seed": 20260707,
+  "component": "fixed-basis membrane decision boundary",
+  "shots_per_setting": 2048,
+  "noise_types": [
+    "depolarizing",
+    "phase_damping",
+    "amplitude_damping",
+    "readout_error"
+  ],
+  "noise_rates": [
+    0.0,
+    0.005,
+    0.01,
+    0.02,
+    0.05,
+    0.1,
+    0.15,
+    0.2
+  ],
+  "verdict": "POSITIVE_FOR_MODEL_LEVEL_FIXED_BASIS_NOISE_ROBUSTNESS",
+  "positive_rows": 48,
+  "false_positive_rows": 0,
+  "stress_gamma0_max_positive_noise_rate": {
+    "depolarizing": 0.15,
+    "phase_damping": 0.15,
+    "amplitude_damping": 0.1,
+    "readout_error": 0.02
+  },
+  "contaminated_stress_gamma0_max_positive_noise_rate": {
+    "depolarizing": 0.15,
+    "phase_damping": 0.15,
+    "amplitude_damping": 0.1,
+    "readout_error": 0.02
+  },
+  "pre_registered_predictions": {
+    "P1_noise_thresholds": "PASS: stress gamma=0 survives nonzero noise for all four tested noise types.",
+    "P2_false_positive_guard": "PASS: normal/storage false positives remain zero across the tested noise grid.",
+    "P3_readout_sensitivity": "PASS: readout error is the tightest tested bottleneck; positive survives to 2% and fails by 5%.",
+    "P4_replay_specificity": "PASS: matched replay release diff is zero in generated detailed rows."
+  },
+  "safe_interpretation": "At 2048 simulated shots per setting, the fixed-basis membrane decision-boundary effect survives stress gamma=0 through 15% depolarizing and phase-damping noise, 10% amplitude damping, and 2% readout error on the tested grid; normal/storage false positives remain zero. These are simulated thresholds, not hardware thresholds.",
+  "limitations": [
+    "Not a hardware result.",
+    "Noise models are simple simulated channels.",
+    "Readout error is modeled as independent bit-flip readout attenuation of correlators.",
+    "The fixed basis is pre-calibrated at the stress/Bell point.",
+    "Ordinary local population plumbing remains classical-effective."
+  ]
+}
