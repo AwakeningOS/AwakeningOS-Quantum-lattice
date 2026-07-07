@@ -13,13 +13,14 @@ CODE-BACKED:
   scripts/quantum_lattice_core.py
   scripts/history_droplet_core.py
   scripts/negativity_causality_test.py
+  scripts/phenomenology/converter_core.py
 
 NOT YET CODE-BACKED:
-  most results/*.md files about information chemistry, membrane, reservoir,
+  most older results/*.md files about information chemistry, membrane, reservoir,
   source-sink, reaction-written terrain, and other phenomenological components
 ```
 
-The later information-matter files are useful design notes, but they are **not reproducible results yet** unless a corresponding script, seed, and raw log are committed.
+The older information-matter files are useful design notes, but they are **not reproducible results yet** unless a corresponding script, seed, and raw log are committed.
 
 ## Current valid claims
 
@@ -33,11 +34,18 @@ These claims are backed by committed Python scripts:
 4. The history-droplet core is a no-jump/postselective exploratory model, not a full Lindblad simulator.
 5. History/droplet behavior has classical controls and must be interpreted with those controls.
 6. A minimal two-qubit negativity causality test shows a load-bearing Bell-negativity/coherence pattern after one-particle marginals are exactly matched against N=0 controls.
+7. A classical stochastic converter component is now code-backed and raw-log-backed; it characterizes identity/meaning transformation through throughput, fidelity/promiscuity, gating, poisoning, and bistable hysteresis axes.
 
 Important limitation for claim 6:
 
 ```text
 This is a minimal channel-analyzer test, not yet a spatial lattice/droplet transport result.
+```
+
+Important limitation for claim 7:
+
+```text
+The converter core is classical phenomenology, not a quantum result.
 ```
 
 ### Quarantined or unverified claims
@@ -89,6 +97,9 @@ scripts/
     CODE_BACKED / RAW_LOG_BACKED. Minimal three-arm marginal-matched test for
     load-bearing Bell negativity in a contact-channel analyzer.
 
+  phenomenology/converter_core.py
+    CODE_BACKED / RAW_LOG_BACKED. Classical stochastic converter component.
+
 experiments/
   REPORT_2026-07-07.md
     Historical report. Read with audit notes.
@@ -100,6 +111,9 @@ results/
   negativity_causality_test_2026-07-07.md
     RAW_LOG_BACKED report for the minimal causality test.
 
+  converter_core_2026-07-07.md
+    RAW_LOG_BACKED report for the converter component.
+
   gpt_key_findings.md
     Updated finding list with unverified phase-dependent transport quarantined.
 
@@ -109,6 +123,9 @@ results/
 data/
   negativity_causality/negativity_causality_test_seed0.json
     Raw log for the minimal negativity causality test.
+
+  converter/converter_core_seed8128.json
+    Raw log for the converter component sweeps.
 ```
 
 ## Setup
@@ -125,6 +142,7 @@ Representative runnable commands:
 python scripts/quantum_lattice_core.py --all
 python scripts/history_droplet_core.py --all
 python scripts/negativity_causality_test.py --out data/negativity_causality/negativity_causality_test_seed0.json
+python scripts/phenomenology/converter_core.py --seed 8128 --out data/converter/converter_core_seed8128.json
 ```
 
 ## Experimental discipline
@@ -146,10 +164,10 @@ The clean path is now:
 
 ```text
 1. keep the small quantum-lattice core strict and reproducible
-2. test whether negativity is load-bearing, not merely present
-3. rebuild the phenomenological components with scripts and raw logs
+2. treat A/B/C quantum witness tests as audit-chapter inventory, not the current component front line
+3. rebuild phenomenological components with scripts and raw logs
 4. promote only code-backed components into the main result chain
-5. later reduce selected components back into 12-13 qubit quantum primitives
+5. compose code-backed classical components before reducing selected substructures back into 12-13 qubit quantum primitives
 ```
 
 ## Not a current claim
@@ -169,4 +187,4 @@ The current strongest code-backed quantum witness is adjacent negativity in the 
 
 The current first code-backed load-bearing test is the minimal marginal-matched negativity causality test. It must next be embedded into a spatial lattice/droplet setting before supporting claims about transport or information-matter behavior.
 
-The current phenomenological direction is information-material component design, but those component tables must be regenerated from committed code before being treated as results.
+The current code-backed phenomenology front line is the converter component, which changes identity/meaning in a classical stochastic model.
