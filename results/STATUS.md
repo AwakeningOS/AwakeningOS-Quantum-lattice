@@ -27,6 +27,7 @@ QUARANTINED_CLAIM:
 
 | file | status | action |
 |---|---|---|
+| `information_microreactor_sandbox_2026-07-07.md` | RAW_LOG_BACKED | Backed by `scripts/phenomenology/information_microreactor_sandbox.py` and `data/microreactor/information_microreactor_sandbox_seed20260707_summary.csv`. Classical-effective assembled sandbox; not quantum-specific. |
 | `quantum_coupled_microreactor_step6_explicit_component_chain_2026-07-07.md` | RAW_LOG_BACKED | Backed by `scripts/audit/quantum_coupled_microreactor_step6_explicit_component_chain.py` and `data/quantum_microreactor/step6_explicit_component_chain_seed0_summary.csv`. Explicit component-chain audit; result is classical-effective, not a quantum-specific witness. |
 | `quantum_coupled_microreactor_step5_reactor_like_population_synergy_2026-07-07.md` | RAW_LOG_BACKED | Backed by `scripts/audit/quantum_coupled_microreactor_step5_reactor_like_population_synergy.py` and `data/quantum_microreactor/step5_reactor_like_population_synergy_seed0_summary.csv`. Minimal reactor-like P111 product-population synergy audit only; not full microreactor. |
 | `quantum_coupled_microreactor_step4_population_synergy_2026-07-07.md` | RAW_LOG_BACKED | Backed by `scripts/audit/quantum_coupled_microreactor_step4_population_synergy.py` and `data/quantum_microreactor/step4_population_synergy_seed0_summary.csv`. Population-order synergy audit only; not full microreactor. |
@@ -62,6 +63,7 @@ scripts/quantum_lattice_core.py
 scripts/history_droplet_core.py
 scripts/negativity_causality_test.py
 scripts/phenomenology/converter_core.py
+scripts/phenomenology/information_microreactor_sandbox.py
 scripts/audit/quantum_coupled_microreactor_step1.py
 scripts/audit/quantum_coupled_microreactor_step2_backpressure.py
 scripts/audit/quantum_coupled_microreactor_step2_v2_unitary_population.py
@@ -92,6 +94,21 @@ A phenomenology note can be promoted only when all are present:
 `quantum_coupled_microreactor_step2_backpressure_2026-07-07.md` is also quarantined as a functional claim: its conversion effect was equivalent to a Bell-bond projector and therefore did not provide an independent device observable.
 
 ## New audit-safe findings
+
+`information_microreactor_sandbox_2026-07-07.md` establishes a classical-effective assembled sandbox:
+
+```text
+source + road/channel + selective membrane + converter + reservoir + sink/release
+B contaminant + C stabilizer + D stress
+stable conversion/release in normal mode
+stress failure without C
+stabilizer rescue under stress
+contaminant poisoning under leaky membrane
+road-fed amplification
+storage-induced backpressure
+```
+
+This is not quantum-specific and not a full biological/autopoietic system.
 
 `quantum_coupled_microreactor_step6_explicit_component_chain_2026-07-07.md` establishes an explicit component-chain audit:
 
