@@ -20,6 +20,7 @@ CODE-BACKED:
   scripts/audit/quantum_coupled_microreactor_step2_v2_unitary_population.py
   scripts/audit/quantum_coupled_microreactor_step3_svetlichny.py
   scripts/audit/quantum_coupled_microreactor_step4_population_synergy.py
+  scripts/audit/quantum_coupled_microreactor_step5_reactor_like_population_synergy.py
 
 QUARANTINED BUT REPRODUCIBLE:
   scripts/audit/quantum_coupled_microreactor_step2_backpressure.py
@@ -48,6 +49,7 @@ These claims are backed by committed Python scripts:
 9. A corrected 6-qubit Step 2-v2 audit shows coherent C-R conversion dynamics can convert C-R entanglement/coherence into a diagonal product-population response under exact module-marginal matching.
 10. A 3-qubit M-C-R Svetlichny audit shows a three-module correlation exceeding the biseparable bound under diagonal parity readout after local basis rotations.
 11. A 3-qubit M-C-R population-order audit shows the tested pairwise-product dynamics has zero odd-parity residual while genuine three-body dynamics gives a nonzero residual under pairwise-control subtraction.
+12. A 3-qubit minimal reactor-like audit shows P_product_population = P(M=1,C=1,R=1) has zero residual under tested pairwise-product dynamics and nonzero residual under genuine three-body dynamics; computational-basis dephase removes the residual.
 
 Important limitation for claim 6:
 
@@ -93,6 +95,14 @@ Important limitation for claim 11:
 This is a population-order synergy audit only.
 It is not natural device throughput and not a full microreactor.
 It is not a hardware result.
+```
+
+Important limitation for claim 12:
+
+```text
+This is a minimal reactor-like population audit only.
+It still uses a designed phase-interaction model and local H readout.
+It is not explicit source/sink integration, natural device throughput, or full microreactor behavior.
 ```
 
 ### Quarantined or unverified claims
@@ -143,6 +153,7 @@ scripts/
   audit/quantum_coupled_microreactor_step2_v2_unitary_population.py
   audit/quantum_coupled_microreactor_step3_svetlichny.py
   audit/quantum_coupled_microreactor_step4_population_synergy.py
+  audit/quantum_coupled_microreactor_step5_reactor_like_population_synergy.py
 
 experiments/
   quantum_coupled_microreactor_step1_protocol_2026-07-07.md
@@ -150,6 +161,7 @@ experiments/
   quantum_coupled_microreactor_step2_v2_unitary_population_protocol_2026-07-07.md
   quantum_coupled_microreactor_step3_svetlichny_protocol_2026-07-07.md
   quantum_coupled_microreactor_step4_population_synergy_protocol_2026-07-07.md
+  quantum_coupled_microreactor_step5_reactor_like_population_synergy_protocol_2026-07-07.md
 
 results/
   STATUS.md
@@ -160,6 +172,7 @@ results/
   quantum_coupled_microreactor_step2_v2_unitary_population_2026-07-07.md
   quantum_coupled_microreactor_step3_svetlichny_2026-07-07.md
   quantum_coupled_microreactor_step4_population_synergy_2026-07-07.md
+  quantum_coupled_microreactor_step5_reactor_like_population_synergy_2026-07-07.md
 
 data/
   negativity_causality/negativity_causality_test_seed0.json
@@ -169,6 +182,7 @@ data/
   quantum_microreactor/step2_v2_unitary_population_seed0_summary.csv
   quantum_microreactor/step3_svetlichny_seed0_summary.csv
   quantum_microreactor/step4_population_synergy_seed0_summary.csv
+  quantum_microreactor/step5_reactor_like_population_synergy_seed0_summary.csv
 ```
 
 ## Setup
@@ -190,6 +204,7 @@ python scripts/audit/quantum_coupled_microreactor_step1.py --seed 0 --csv data/q
 python scripts/audit/quantum_coupled_microreactor_step2_v2_unitary_population.py --seed 0 --csv data/quantum_microreactor/step2_v2_unitary_population_seed0_summary.csv
 python scripts/audit/quantum_coupled_microreactor_step3_svetlichny.py --seed 0 --csv data/quantum_microreactor/step3_svetlichny_seed0_summary.csv
 python scripts/audit/quantum_coupled_microreactor_step4_population_synergy.py --seed 0 --csv data/quantum_microreactor/step4_population_synergy_seed0_summary.csv
+python scripts/audit/quantum_coupled_microreactor_step5_reactor_like_population_synergy.py --seed 0 --csv data/quantum_microreactor/step5_reactor_like_population_synergy_seed0_summary.csv
 python scripts/check_raw_logs.py
 ```
 
@@ -214,7 +229,7 @@ The clean path is now:
 1. keep the small quantum-lattice core strict and reproducible
 2. keep classical-effective component work code-backed and raw-log-backed
 3. use quantum/audit tests only when testing witness-bearing substructures
-4. grow the microreactor in stages: C-R bond -> population-dynamics Step 2 -> M-C-R Svetlichny -> population synergy -> reactor-like full chain
+4. grow the microreactor in stages: C-R bond -> population-dynamics Step 2 -> M-C-R Svetlichny -> population synergy -> reactor-like population synergy -> explicit component chain
 5. promote only code-backed results into the main claim chain
 ```
 
@@ -237,4 +252,4 @@ The current strongest code-backed quantum witness is adjacent negativity in the 
 
 The current code-backed phenomenology front line is the converter component, which changes identity/meaning in a classical stochastic model.
 
-The current quantum-audit front line is Step 4 of the quantum-coupled microreactor: a 3-qubit M-C-R population-order synergy audit, not yet the full device.
+The current quantum-audit front line is Step 5 of the quantum-coupled microreactor: a 3-qubit M-C-R reactor-like product-population synergy audit, not yet the full device.
