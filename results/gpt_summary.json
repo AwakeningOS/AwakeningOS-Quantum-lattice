@@ -1,0 +1,18 @@
+{
+  "status": "exploratory",
+  "latest_core": "history terrain quantum droplet",
+  "key_findings": [
+    "M2 half-turn rule falsified; multi-island tempo structure is the better interpretation.",
+    "v1.5 spatial nucleation/domain phenomena were largely eaten by a classical CA ablation.",
+    "In v2, anti-phase domain wall is a phase-field effect, not quantum evidence; classical wave reproduces it.",
+    "Adjacent-pair negativity remains the strongest quantum witness in the lattice core.",
+    "ZZ attraction preserves already-adjacent clusters but does not reliably merge separated excitations in a closed unitary system.",
+    "Surface-selective dissipation selects droplet-like clusters.",
+    "History attraction follows old terrain but tends to delocalize the droplet.",
+    "History repulsion avoids old terrain and tends to compact the droplet.",
+    "Repel compaction is largely classical self-avoidance, but transport/path selection depends on quantum phase.",
+    "Edge memory is more active than bulk memory in the current core."
+  ],
+  "current_hypothesis": "self-avoiding edge-memory terrain plus quantum phase routing is the next nontrivial target",
+  "next_experiment": "2D phase-routed self-avoiding quantum droplet with classical probability ablation"
+}
