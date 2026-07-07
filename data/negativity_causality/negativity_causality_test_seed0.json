@@ -53,10 +53,10 @@
     "coherent_minus_product_p_same": 0.5,
     "dephased_minus_product_p_same": 0.0
   },
-  "verdict": "PASS_MINIMAL_LOAD_BEARING_NEGATIVITY: identical one-particle marginals; N>0 arm changes channel outcome while N=0 controls match.",
+  "verdict": "PASS_MINIMAL_LOAD_BEARING_COHERENCE_BASIS_RELATIVE_CLASSICAL_EFFECTIVE: identical one-particle marginals; coherent arm changes channel outcome while N=0 controls match.",
   "limitations": [
-    "Minimal two-qubit channel test, not yet a spatial droplet/lattice transport test.",
-    "Product control is mixed separable rho1 tensor rho2; exact marginal matching with a pure product state is impossible for maximally mixed Bell marginals.",
-    "Shows load-bearing Bell coherence/negativity for a designed contact analyzer; next step is embedding the same control discipline into a lattice contact experiment."
+    "Minimal two-qubit channel test, not a spatial droplet/lattice transport test.",
+    "This is audit-chapter inventory, not a component-development claim.",
+    "The channel effect is basis-relative and should not be promoted to a quantum-specific claim without stronger controls."
   ]
 }
