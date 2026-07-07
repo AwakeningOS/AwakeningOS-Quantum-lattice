@@ -1,0 +1,27 @@
+{
+  "experiment": "quantum_fixed_basis_shot_budget_probe",
+  "date": "2026-07-08",
+  "layer": "quantum-audit probe",
+  "seed": 20260707,
+  "shot_grid": [32768, 8192, 4096, 2048, 1024, 512],
+  "alpha": 0.001,
+  "verdict": "POSITIVE_FOR_MODEL_LEVEL_FIXED_BASIS_SHOT_BUDGET",
+  "positive_rows": 14,
+  "false_positive_rows": 0,
+  "minimum_positive_shots_stress_gamma0": 512,
+  "pre_registered_predictions": {
+    "P1_gamma1_null": "PASS: gamma=1 has no membrane signal and no pass/block change for all tested shot budgets.",
+    "P2_stress_gamma0_budget": "PASS: stress gamma=0 remains positive from 32768 down to 512 shots per setting.",
+    "P3_false_positive_guard": "PASS: normal/storage false positives are zero across the tested grid.",
+    "P4_weak_threshold": "PASS: stress gamma=0.25 survives only at 32768 shots and disappears at 8192 and below.",
+    "P5_replay_specificity": "PASS: matched replay release diff is zero across rows."
+  },
+  "safe_interpretation": "The fixed-basis membrane decision-boundary effect survives down to 512 shots per setting in stress gamma=0, while normal/storage false positives remain zero on the tested grid. The weaker stress gamma=0.25 effect survives only at 32768 shots.",
+  "limitations": [
+    "Not a hardware result.",
+    "Shot sampling is simulated.",
+    "The fixed basis is pre-calibrated at the stress/Bell point.",
+    "512 shots remains a model-level simulated threshold, not an actual QPU threshold.",
+    "Ordinary local population plumbing remains classical-effective."
+  ]
+}
