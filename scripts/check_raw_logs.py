@@ -171,6 +171,11 @@ def main() -> int:
         run([sys.executable, "scripts/audit/quantum_measurement_terrain_feedback_probe.py", "--seed", "20260707", "--out", str(terrain_tmp_json), "--summary-csv", str(terrain_tmp_summary)])
         compare_csv(ROOT / "data/quantum_microreactor/measurement_terrain_feedback_probe_seed20260707_summary.csv", terrain_tmp_summary, rtol=args.rtol, atol=args.atol)
 
+        sampled_tmp_json = tmp / "sampled_chsh_terrain_feedback_probe_seed20260707.json"
+        sampled_tmp_summary = tmp / "sampled_chsh_terrain_feedback_probe_seed20260707_summary.csv"
+        run([sys.executable, "scripts/audit/quantum_sampled_chsh_terrain_feedback_probe.py", "--seed", "20260707", "--out", str(sampled_tmp_json), "--summary-csv", str(sampled_tmp_summary)])
+        compare_csv(ROOT / "data/quantum_microreactor/sampled_chsh_terrain_feedback_probe_seed20260707_summary.csv", sampled_tmp_summary, rtol=args.rtol, atol=args.atol)
+
         audit_specs = [
             ("scripts/audit/quantum_coupled_microreactor_step1.py", "step1_cr_coupling_seed0", "data/quantum_microreactor/step1_cr_coupling_seed0_summary.csv"),
             ("scripts/audit/quantum_coupled_microreactor_step2_backpressure.py", "step2_backpressure_seed0", "data/quantum_microreactor/step2_backpressure_seed0_summary.csv"),
