@@ -24,6 +24,8 @@ data/microreactor/information_microreactor_backpressure_contamination_seed202607
 data/microreactor/information_microreactor_backpressure_contamination_seed20260707_timeseries.csv
 data/quantum_microreactor/gamma_validation_seed20260707_summary.csv
 data/quantum_microreactor/gamma_validation_seed20260707_comparison.csv
+data/quantum_microreactor/gamma_sweep_quality_probe_seed20260707_summary.csv
+data/quantum_microreactor/gamma_sweep_quality_probe_seed20260707_detail.csv
 data/quantum_microreactor/step1_cr_coupling_seed0_summary.csv
 data/quantum_microreactor/step2_backpressure_seed0_summary.csv
 data/quantum_microreactor/step2_v2_unitary_population_seed0_summary.csv
@@ -33,9 +35,26 @@ data/quantum_microreactor/step5_reactor_like_population_synergy_seed0_summary.cs
 data/quantum_microreactor/step6_explicit_component_chain_seed0_summary.csv
 ```
 
-## Latest validation log
+## Latest gamma sweep log
 
-The latest validation experiment is:
+The latest gamma sweep probe is:
+
+```text
+quantum_microreactor_gamma_sweep_quality_probe
+```
+
+It adds two canonical raw CSV logs:
+
+```text
+data/quantum_microreactor/gamma_sweep_quality_probe_seed20260707_summary.csv
+data/quantum_microreactor/gamma_sweep_quality_probe_seed20260707_detail.csv
+```
+
+This probe checks whether a gamma-sensitive quality/coherence auxiliary variable produces quantum-specific observable usefulness after Arm2 classical complex-wave control.
+
+## Previous validation log
+
+The previous validation experiment is:
 
 ```text
 quantum_microreactor_gamma_validation
