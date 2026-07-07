@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 """
-Minimal negativity causality test.
+Minimal basis-relative causality test.
 
 Question:
-    Can a nonzero two-qubit negativity be load-bearing for a channel outcome
-    after single-particle marginals are exactly matched?
+    Can a coherent two-qubit arm change a channel outcome after
+    single-particle marginals are exactly matched?
 
 Design:
     arm1 coherent:
-        Bell state (|00> + |11>) / sqrt(2), N > 0
+        Bell-origin state (|00> + |11>) / sqrt(2)
 
     arm2 dephased:
         configuration-basis dephase of arm1, same rho1/rho2, N = 0
@@ -24,10 +24,9 @@ Pass pattern:
     with rho1/rho2 identical across arms.
 
 Important limitation:
-    This is a minimal two-qubit channel analyzer, not yet a spatial droplet
-    or lattice transport experiment. It proves that the negativity/Bell
-    coherence can be load-bearing in a controlled channel, not that the
-    previous droplet/material phenomenology needed negativity.
+    This is audit-chapter inventory. It is not a component-development claim,
+    not a spatial droplet/lattice transport experiment, and not by itself a
+    quantum-specific claim.
 """
 from __future__ import annotations
 
@@ -55,12 +54,7 @@ def kron(a: np.ndarray, b: np.ndarray) -> np.ndarray:
 
 
 def partial_trace_2q(rho: np.ndarray, keep: int) -> np.ndarray:
-    """Partial trace of a two-qubit density matrix.
-
-    Basis order: |00>, |01>, |10>, |11>.
-    keep=0 returns rho_1; keep=1 returns rho_2.
-    """
-    r = rho.reshape(2, 2, 2, 2)  # row i,j ; col k,l
+    r = rho.reshape(2, 2, 2, 2)
     if keep == 0:
         return np.einsum("ijkj->ik", r)
     if keep == 1:
@@ -69,7 +63,6 @@ def partial_trace_2q(rho: np.ndarray, keep: int) -> np.ndarray:
 
 
 def partial_transpose_second(rho: np.ndarray) -> np.ndarray:
-    """Partial transpose on the second qubit."""
     return rho.reshape(2, 2, 2, 2).transpose(0, 3, 2, 1).reshape(4, 4)
 
 
@@ -132,7 +125,7 @@ def run_experiment() -> Dict[str, Any]:
         "product_marginals": arm_summary(product_marginals),
     }
 
-    result: Dict[str, Any] = {
+    return {
         "experiment": "negativity_causality_test",
         "date": "2026-07-07",
         "model": "two-qubit contact-channel analyzer",
@@ -151,27 +144,17 @@ def run_experiment() -> Dict[str, Any]:
             "coherent_vs_product_marginals": marginal_diff(coherent, product_marginals),
         },
         "contrast": {
-            "coherent_minus_dephased_p_same": round(
-                arms["coherent"]["p_same_channel"] - arms["dephased"]["p_same_channel"], 12
-            ),
-            "coherent_minus_product_p_same": round(
-                arms["coherent"]["p_same_channel"] - arms["product_marginals"]["p_same_channel"], 12
-            ),
-            "dephased_minus_product_p_same": round(
-                arms["dephased"]["p_same_channel"] - arms["product_marginals"]["p_same_channel"], 12
-            ),
+            "coherent_minus_dephased_p_same": round(arms["coherent"]["p_same_channel"] - arms["dephased"]["p_same_channel"], 12),
+            "coherent_minus_product_p_same": round(arms["coherent"]["p_same_channel"] - arms["product_marginals"]["p_same_channel"], 12),
+            "dephased_minus_product_p_same": round(arms["dephased"]["p_same_channel"] - arms["product_marginals"]["p_same_channel"], 12),
         },
-        "verdict": (
-            "PASS_MINIMAL_LOAD_BEARING_NEGATIVITY: identical one-particle marginals; "
-            "N>0 arm changes channel outcome while N=0 controls match."
-        ),
+        "verdict": "PASS_MINIMAL_LOAD_BEARING_COHERENCE_BASIS_RELATIVE_CLASSICAL_EFFECTIVE: identical one-particle marginals; coherent arm changes channel outcome while N=0 controls match.",
         "limitations": [
-            "Minimal two-qubit channel test, not yet a spatial droplet/lattice transport test.",
-            "Product control is mixed separable rho1 tensor rho2; exact marginal matching with a pure product state is impossible for maximally mixed Bell marginals.",
-            "Shows load-bearing Bell coherence/negativity for a designed contact analyzer; next step is embedding the same control discipline into a lattice contact experiment.",
+            "Minimal two-qubit channel test, not a spatial droplet/lattice transport test.",
+            "This is audit-chapter inventory, not a component-development claim.",
+            "The channel effect is basis-relative and should not be promoted to a quantum-specific claim without stronger controls.",
         ],
     }
-    return result
 
 
 def main() -> None:
