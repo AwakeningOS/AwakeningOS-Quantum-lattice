@@ -8,10 +8,7 @@ byte-compares them against the committed canonical raw logs.
 Current canonical logs:
   - data/negativity_causality/negativity_causality_test_seed0.json
   - data/converter/converter_core_seed8128_summary.csv
-
-The converter canonical raw log is the CSV summary. The generator can also
-write JSON, but the committed RAW_LOG_BACKED report currently points to the
-CSV summary as the auditable raw artifact.
+  - data/quantum_microreactor/step1_cr_coupling_seed0_summary.csv
 """
 from __future__ import annotations
 
@@ -48,16 +45,8 @@ def main() -> int:
 
     try:
         neg_tmp = tmp / "negativity_causality_test_seed0.json"
-        run([
-            sys.executable,
-            "scripts/negativity_causality_test.py",
-            "--out",
-            str(neg_tmp),
-        ])
-        require_equal(
-            ROOT / "data/negativity_causality/negativity_causality_test_seed0.json",
-            neg_tmp,
-        )
+        run([sys.executable, "scripts/negativity_causality_test.py", "--out", str(neg_tmp)])
+        require_equal(ROOT / "data/negativity_causality/negativity_causality_test_seed0.json", neg_tmp)
 
         conv_tmp_json = tmp / "converter_core_seed8128.json"
         conv_tmp_csv = tmp / "converter_core_seed8128_summary.csv"
@@ -71,10 +60,21 @@ def main() -> int:
             "--csv",
             str(conv_tmp_csv),
         ])
-        require_equal(
-            ROOT / "data/converter/converter_core_seed8128_summary.csv",
-            conv_tmp_csv,
-        )
+        require_equal(ROOT / "data/converter/converter_core_seed8128_summary.csv", conv_tmp_csv)
+
+        micro_tmp_json = tmp / "step1_cr_coupling_seed0.json"
+        micro_tmp_csv = tmp / "step1_cr_coupling_seed0_summary.csv"
+        run([
+            sys.executable,
+            "scripts/audit/quantum_coupled_microreactor_step1.py",
+            "--seed",
+            "0",
+            "--out",
+            str(micro_tmp_json),
+            "--csv",
+            str(micro_tmp_csv),
+        ])
+        require_equal(ROOT / "data/quantum_microreactor/step1_cr_coupling_seed0_summary.csv", micro_tmp_csv)
 
         print("RAW_LOG check PASS")
         return 0
