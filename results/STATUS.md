@@ -27,8 +27,8 @@ QUARANTINED_CLAIM:
 
 | file | status | action |
 |---|---|---|
-| `converter_core_2026-07-07.md` | RAW_LOG_BACKED | Backed by `scripts/phenomenology/converter_core.py` and `data/converter/converter_core_seed8128.json`. Classical stochastic phenomenology, not quantum. |
-| `negativity_causality_test_2026-07-07.md` | RAW_LOG_BACKED | Backed by `scripts/negativity_causality_test.py` and `data/negativity_causality/negativity_causality_test_seed0.json`. Minimal channel test only; not yet lattice/droplet transport. |
+| `converter_core_2026-07-07.md` | RAW_LOG_BACKED | Backed by `scripts/phenomenology/converter_core.py` and `data/converter/converter_core_seed8128_summary.csv`. Classical stochastic phenomenology. |
+| `negativity_causality_test_2026-07-07.md` | RAW_LOG_BACKED | Backed by `scripts/negativity_causality_test.py` and `data/negativity_causality/negativity_causality_test_seed0.json`. Audit inventory only; not component evidence. |
 | `gpt_key_findings.md` | META | Updated to move unverified phase-dependent transport to `QUARANTINED_CLAIM`. |
 | `gpt_summary.json` | META | Treat as GPT summary metadata, not experiment data. |
 | `phase_channel_controls_2026-07-07.md` | PHENOMENOLOGY_NOTE | Add generator script and raw logs before promoting. |
@@ -77,13 +77,13 @@ A phenomenology note can be promoted only when all are present:
 
 ## New audit-safe findings
 
-`negativity_causality_test_2026-07-07.md` establishes a minimal marginal-matched load-bearing negativity pattern:
+`negativity_causality_test_2026-07-07.md` establishes a minimal basis-relative matched-control pattern:
 
 ```text
-outcome(coherent, N>0) != outcome(dephased, N=0) == outcome(product_marginals, N=0)
+outcome(coherent) != outcome(dephased, N=0) == outcome(product_marginals, N=0)
 ```
 
-with exact one-particle marginal matching. This is not yet evidence for negativity-driven lattice transport or information-matter behavior.
+with exact one-particle marginal matching. This is audit-chapter inventory, not evidence for component behavior.
 
 `converter_core_2026-07-07.md` establishes the first code-backed phenomenology component:
 
@@ -93,4 +93,4 @@ converter:
   gating, poisoning, and bistable hysteresis axes
 ```
 
-It is classical phenomenology, not a quantum result.
+It is classical phenomenology.
