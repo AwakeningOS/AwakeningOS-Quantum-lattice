@@ -1,0 +1,62 @@
+{
+  "experiment": "negativity_causality_test",
+  "date": "2026-07-07",
+  "model": "two-qubit contact-channel analyzer",
+  "config": {
+    "basis": "|00>, |01>, |10>, |11>",
+    "coherent_state": "(|00> + |11>) / sqrt(2)",
+    "dephased_state": "configuration-basis dephase of coherent_state",
+    "product_marginals_state": "rho1(coherent) tensor rho2(coherent); mixed separable state",
+    "analyzer": "H tensor H",
+    "same_channel_projector": "|00><00| + |11><11|",
+    "anti_channel_projector": "|01><01| + |10><10|"
+  },
+  "arms": {
+    "coherent": {
+      "negativity": 0.5,
+      "p_same_channel": 1.0,
+      "p_anti_channel": 0.0,
+      "rho1": [[0.5, 0.0], [0.0, 0.5]],
+      "rho2": [[0.5, 0.0], [0.0, 0.5]]
+    },
+    "dephased": {
+      "negativity": 0.0,
+      "p_same_channel": 0.5,
+      "p_anti_channel": 0.5,
+      "rho1": [[0.5, 0.0], [0.0, 0.5]],
+      "rho2": [[0.5, 0.0], [0.0, 0.5]]
+    },
+    "product_marginals": {
+      "negativity": 0.0,
+      "p_same_channel": 0.5,
+      "p_anti_channel": 0.5,
+      "rho1": [[0.5, 0.0], [0.0, 0.5]],
+      "rho2": [[0.5, 0.0], [0.0, 0.5]]
+    }
+  },
+  "marginal_audit": {
+    "coherent_vs_dephased": {
+      "rho1_frobenius": 0.0,
+      "rho2_frobenius": 0.0,
+      "rho1_max_abs": 0.0,
+      "rho2_max_abs": 0.0
+    },
+    "coherent_vs_product_marginals": {
+      "rho1_frobenius": 0.0,
+      "rho2_frobenius": 0.0,
+      "rho1_max_abs": 0.0,
+      "rho2_max_abs": 0.0
+    }
+  },
+  "contrast": {
+    "coherent_minus_dephased_p_same": 0.5,
+    "coherent_minus_product_p_same": 0.5,
+    "dephased_minus_product_p_same": 0.0
+  },
+  "verdict": "PASS_MINIMAL_LOAD_BEARING_NEGATIVITY: identical one-particle marginals; N>0 arm changes channel outcome while N=0 controls match.",
+  "limitations": [
+    "Minimal two-qubit channel test, not yet a spatial droplet/lattice transport test.",
+    "Product control is mixed separable rho1 tensor rho2; exact marginal matching with a pure product state is impossible for maximally mixed Bell marginals.",
+    "Shows load-bearing Bell coherence/negativity for a designed contact analyzer; next step is embedding the same control discipline into a lattice contact experiment."
+  ]
+}
