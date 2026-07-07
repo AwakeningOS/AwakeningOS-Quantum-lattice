@@ -18,6 +18,7 @@ CODE-BACKED:
   scripts/phenomenology/converter_core.py
   scripts/audit/quantum_coupled_microreactor_step1.py
   scripts/audit/quantum_coupled_microreactor_step2_v2_unitary_population.py
+  scripts/audit/quantum_coupled_microreactor_step3_svetlichny.py
 
 QUARANTINED BUT REPRODUCIBLE:
   scripts/audit/quantum_coupled_microreactor_step2_backpressure.py
@@ -44,6 +45,7 @@ These claims are backed by committed Python scripts:
 7. A classical stochastic converter component is code-backed and raw-log-backed; it characterizes identity/meaning transformation through throughput, fidelity/promiscuity, gating, poisoning, and bistable hysteresis axes.
 8. A 6-qubit C-R module-bond audit shows a designed joint analyzer distinguishes an entangled C-R bond from N=0 controls under exact module-marginal matching.
 9. A corrected 6-qubit Step 2-v2 audit shows coherent C-R conversion dynamics can convert C-R entanglement/coherence into a diagonal product-population response under exact module-marginal matching.
+10. A 3-qubit M-C-R Svetlichny audit shows a three-module correlation exceeding the biseparable bound under diagonal parity readout after local basis rotations.
 
 Important limitation for claim 6:
 
@@ -73,6 +75,14 @@ This is Step 2-v2 for the converter-reservoir bond only.
 It uses designed coherent conversion dynamics and diagonal population readout.
 It is not a full microreactor or hardware result.
 It is not a nonlocal signaling claim.
+```
+
+Important limitation for claim 10:
+
+```text
+This is a three-module audit witness only.
+It is not natural device throughput and not a full microreactor.
+It is not a hardware result.
 ```
 
 ### Quarantined or unverified claims
@@ -121,11 +131,13 @@ scripts/
   audit/quantum_coupled_microreactor_step1.py
   audit/quantum_coupled_microreactor_step2_backpressure.py
   audit/quantum_coupled_microreactor_step2_v2_unitary_population.py
+  audit/quantum_coupled_microreactor_step3_svetlichny.py
 
 experiments/
   quantum_coupled_microreactor_step1_protocol_2026-07-07.md
   quantum_coupled_microreactor_step2_backpressure_protocol_2026-07-07.md
   quantum_coupled_microreactor_step2_v2_unitary_population_protocol_2026-07-07.md
+  quantum_coupled_microreactor_step3_svetlichny_protocol_2026-07-07.md
 
 results/
   STATUS.md
@@ -134,6 +146,7 @@ results/
   quantum_coupled_microreactor_step1_2026-07-07.md
   quantum_coupled_microreactor_step2_backpressure_2026-07-07.md
   quantum_coupled_microreactor_step2_v2_unitary_population_2026-07-07.md
+  quantum_coupled_microreactor_step3_svetlichny_2026-07-07.md
 
 data/
   negativity_causality/negativity_causality_test_seed0.json
@@ -141,6 +154,7 @@ data/
   quantum_microreactor/step1_cr_coupling_seed0_summary.csv
   quantum_microreactor/step2_backpressure_seed0_summary.csv
   quantum_microreactor/step2_v2_unitary_population_seed0_summary.csv
+  quantum_microreactor/step3_svetlichny_seed0_summary.csv
 ```
 
 ## Setup
@@ -160,6 +174,7 @@ python scripts/negativity_causality_test.py --out data/negativity_causality/nega
 python scripts/phenomenology/converter_core.py --seed 8128 --csv data/converter/converter_core_seed8128_summary.csv
 python scripts/audit/quantum_coupled_microreactor_step1.py --seed 0 --csv data/quantum_microreactor/step1_cr_coupling_seed0_summary.csv
 python scripts/audit/quantum_coupled_microreactor_step2_v2_unitary_population.py --seed 0 --csv data/quantum_microreactor/step2_v2_unitary_population_seed0_summary.csv
+python scripts/audit/quantum_coupled_microreactor_step3_svetlichny.py --seed 0 --csv data/quantum_microreactor/step3_svetlichny_seed0_summary.csv
 python scripts/check_raw_logs.py
 ```
 
@@ -184,7 +199,7 @@ The clean path is now:
 1. keep the small quantum-lattice core strict and reproducible
 2. keep classical-effective component work code-backed and raw-log-backed
 3. use quantum/audit tests only when testing witness-bearing substructures
-4. grow the microreactor in stages: C-R bond -> population-dynamics Step 2 -> M-C-R -> full chain
+4. grow the microreactor in stages: C-R bond -> population-dynamics Step 2 -> M-C-R Svetlichny -> population synergy -> full chain
 5. promote only code-backed results into the main claim chain
 ```
 
@@ -200,10 +215,11 @@ self-regulation
 quantum advantage
 large-scale quantum information matter
 full quantum-coupled information microreactor
+natural quantum device throughput
 ```
 
 The current strongest code-backed quantum witness is adjacent negativity in the small EXCH/ZZ lattice core.
 
 The current code-backed phenomenology front line is the converter component, which changes identity/meaning in a classical stochastic model.
 
-The current quantum-audit front line is Step 2-v2 of the quantum-coupled microreactor: a 6-qubit C-R unitary conversion dynamics with diagonal product-population readout, not yet the full device.
+The current quantum-audit front line is Step 3 of the quantum-coupled microreactor: a 3-qubit M-C-R Svetlichny audit, not yet the full device.
