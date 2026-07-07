@@ -17,6 +17,7 @@ CODE-BACKED:
   scripts/negativity_causality_test.py
   scripts/phenomenology/converter_core.py
   scripts/audit/quantum_coupled_microreactor_step1.py
+  scripts/audit/quantum_coupled_microreactor_step2_backpressure.py
 
 NOT YET CODE-BACKED:
   most older results/*.md files about information chemistry, membrane, reservoir,
@@ -38,7 +39,8 @@ These claims are backed by committed Python scripts:
 5. History/droplet behavior has classical controls and must be interpreted with those controls.
 6. A minimal two-qubit causality test shows a basis-relative coherence pattern after one-particle marginals are exactly matched against controls.
 7. A classical stochastic converter component is code-backed and raw-log-backed; it characterizes identity/meaning transformation through throughput, fidelity/promiscuity, gating, poisoning, and bistable hysteresis axes.
-8. A 6-qubit C-R module-bond audit shows an entanglement-dependent joint response under exact module-marginal matching against a dephased N=0 correlated control.
+8. A 6-qubit C-R module-bond audit shows a designed joint analyzer distinguishes an entangled C-R bond from N=0 controls under exact module-marginal matching.
+9. A 6-qubit dynamic C-R backpressure audit shows a capacity-dependent conversion/release response differs between an entangled C-R bond and N=0 correlated controls under module-marginal matching.
 
 Important limitation for claim 6:
 
@@ -58,6 +60,14 @@ Important limitation for claim 8:
 ```text
 This is Step 1 for the converter-reservoir bond only.
 It is not a full source -> membrane -> converter -> reservoir -> sink microreactor.
+It is not a nonlocal signaling claim.
+```
+
+Important limitation for claim 9:
+
+```text
+This is Step 2 for the converter-reservoir bond only.
+It is a designed capacity-dependent effect model, not a full microreactor or hardware result.
 It is not a nonlocal signaling claim.
 ```
 
@@ -104,20 +114,24 @@ scripts/
   negativity_causality_test.py
   phenomenology/converter_core.py
   audit/quantum_coupled_microreactor_step1.py
+  audit/quantum_coupled_microreactor_step2_backpressure.py
 
 experiments/
   quantum_coupled_microreactor_step1_protocol_2026-07-07.md
+  quantum_coupled_microreactor_step2_backpressure_protocol_2026-07-07.md
 
 results/
   STATUS.md
   negativity_causality_test_2026-07-07.md
   converter_core_2026-07-07.md
   quantum_coupled_microreactor_step1_2026-07-07.md
+  quantum_coupled_microreactor_step2_backpressure_2026-07-07.md
 
 data/
   negativity_causality/negativity_causality_test_seed0.json
   converter/converter_core_seed8128_summary.csv
   quantum_microreactor/step1_cr_coupling_seed0_summary.csv
+  quantum_microreactor/step2_backpressure_seed0_summary.csv
 ```
 
 ## Setup
@@ -136,6 +150,7 @@ python scripts/history_droplet_core.py --all
 python scripts/negativity_causality_test.py --out data/negativity_causality/negativity_causality_test_seed0.json
 python scripts/phenomenology/converter_core.py --seed 8128 --csv data/converter/converter_core_seed8128_summary.csv
 python scripts/audit/quantum_coupled_microreactor_step1.py --seed 0 --csv data/quantum_microreactor/step1_cr_coupling_seed0_summary.csv
+python scripts/audit/quantum_coupled_microreactor_step2_backpressure.py --seed 0 --csv data/quantum_microreactor/step2_backpressure_seed0_summary.csv
 python scripts/check_raw_logs.py
 ```
 
@@ -182,4 +197,4 @@ The current strongest code-backed quantum witness is adjacent negativity in the 
 
 The current code-backed phenomenology front line is the converter component, which changes identity/meaning in a classical stochastic model.
 
-The current quantum-audit front line is Step 1 of the quantum-coupled microreactor: a 6-qubit C-R module-bond witness, not yet the full device.
+The current quantum-audit front line is Step 2 of the quantum-coupled microreactor: a 6-qubit dynamic C-R backpressure audit, not yet the full device.
