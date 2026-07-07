@@ -32,65 +32,25 @@ data/quantum_microreactor/chsh_readout_transport_probe_seed20260707_summary.csv
 data/quantum_microreactor/measurement_terrain_feedback_probe_seed20260707_summary.csv
 data/quantum_microreactor/sampled_chsh_terrain_feedback_probe_seed20260707_summary.csv
 data/quantum_microreactor/measurement_terrain_memory_probe_seed20260707_summary.csv
-data/quantum_microreactor/step1_cr_coupling_seed0_summary.csv
-data/quantum_microreactor/step2_backpressure_seed0_summary.csv
-data/quantum_microreactor/step2_v2_unitary_population_seed0_summary.csv
-data/quantum_microreactor/step3_svetlichny_seed0_summary.csv
-data/quantum_microreactor/step4_population_synergy_seed0_summary.csv
-data/quantum_microreactor/step5_reactor_like_population_synergy_seed0_summary.csv
-data/quantum_microreactor/step6_explicit_component_chain_seed0_summary.csv
+data/quantum_microreactor/adaptive_measurement_feedback_probe_seed20260707_summary.csv
 ```
 
-## Latest terrain memory probe
+## Latest adaptive feedback probe
 
 ```text
-quantum_measurement_terrain_memory_probe
+quantum_adaptive_measurement_feedback_probe
 ```
 
 Canonical raw log:
 
 ```text
-data/quantum_microreactor/measurement_terrain_memory_probe_seed20260707_summary.csv
+data/quantum_microreactor/adaptive_measurement_feedback_probe_seed20260707_summary.csv
 ```
 
 Meaning:
 
 ```text
-Finite-shot sampled CHSH terrain inscription persists after measurement stops in stress context and weakly affects a later challenge phase. Matched classical replay shows post-write memory itself is classical-effective.
-```
-
-## Previous sampled terrain feedback probe
-
-```text
-quantum_sampled_chsh_terrain_feedback_probe
-```
-
-Canonical raw log:
-
-```text
-data/quantum_microreactor/sampled_chsh_terrain_feedback_probe_seed20260707_summary.csv
-```
-
-Meaning:
-
-```text
-Finite-shot sampled CHSH, after a conservative Bell-bound margin, writes terrain only in the high-violation stress context.
-```
-
-## Comparison policy
-
-The gate uses normalized content comparison, not byte comparison.
-
-```text
-JSON: parse and compare structure/numeric leaves with tolerance.
-CSV: compare headers, row counts, numeric cells, and nonnumeric cells.
-```
-
-Default tolerance:
-
-```text
-rtol = 1e-9
-atol = 1e-9
+Finite-shot sampled CHSH terrain memory shifts later adaptive measurement/readout gates in stress context. Normal/storage later adaptive activity is not counted positive without phase-1 Bell-excess terrain inscription.
 ```
 
 ## Rule
