@@ -20,7 +20,7 @@ import json
 import math
 import sys
 from pathlib import Path
-from typing import Any, Dict, List, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
 import numpy as np
 
@@ -211,16 +211,17 @@ def main() -> None:
     parser.add_argument("--seed", type=int, default=20260707)
     parser.add_argument("--out", type=Path, default=Path("data/quantum_microreactor/branching_converter_probe_seed20260707.json"))
     parser.add_argument("--summary-csv", type=Path, default=Path("data/quantum_microreactor/branching_converter_probe_seed20260707_summary.csv"))
-    parser.add_argument("--detail-csv", type=Path, default=Path("data/quantum_microreactor/branching_converter_probe_seed20260707_detail.csv"))
+    parser.add_argument("--detail-csv", type=Path, default=None, help="Optional compact branch detail CSV; not part of the canonical RAW_LOG gate by default.")
     args = parser.parse_args()
 
     result = run(seed=args.seed)
     args.out.parent.mkdir(parents=True, exist_ok=True)
     json_result = {k: v for k, v in result.items() if k != "detail"}
-    json_result["detail_rows"] = len(result["detail"])
+    json_result["detail_rows_available"] = len(result["detail"])
     args.out.write_text(json.dumps(json_result, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     write_csv(result["summary"], args.summary_csv)
-    write_csv(result["detail"], args.detail_csv)
+    if args.detail_csv is not None:
+        write_csv(result["detail"], args.detail_csv)
     print(json.dumps(json_result, indent=2, ensure_ascii=False))
 
 
