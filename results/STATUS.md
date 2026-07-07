@@ -17,27 +17,28 @@ QUARANTINED_CLAIM: Previously stated or implied as a result that failed audit or
 ## Current latest session
 
 ```text
-quantum_sampled_chsh_terrain_feedback_probe
+quantum_measurement_terrain_memory_probe
 ```
 
 Backed by:
 
 ```text
-scripts/audit/quantum_sampled_chsh_terrain_feedback_probe.py
-data/quantum_microreactor/sampled_chsh_terrain_feedback_probe_seed20260707_summary.csv
-results/quantum_sampled_chsh_terrain_feedback_probe_2026-07-08.md
+scripts/audit/quantum_measurement_terrain_memory_probe.py
+data/quantum_microreactor/measurement_terrain_memory_probe_seed20260707_summary.csv
+results/quantum_measurement_terrain_memory_probe_2026-07-08.md
 ```
 
 Safe status:
 
 ```text
-POSITIVE_FOR_MODEL_LEVEL_SAMPLED_CHSH_TERRAIN_FEEDBACK
+POSITIVE_FOR_MODEL_LEVEL_MEASUREMENT_TERRAIN_MEMORY
 ```
 
 Scope:
 
 ```text
-positive for finite-shot sampled CHSH measurement-boundary terrain feedback in stress context
+positive for finite-shot sampled CHSH measurement-boundary terrain memory in stress context
+post-write terrain memory dynamics are classical-effective
 not positive for ordinary local population plumbing
 not a hardware result
 ```
@@ -46,7 +47,8 @@ not a hardware result
 
 | file | status | action |
 |---|---|---|
-| `quantum_sampled_chsh_terrain_feedback_probe_2026-07-08.md` | RAW_LOG_BACKED | Latest sampled readout/terrain probe. Uses 32768 shots per CHSH setting per step and subtracts margin S=0.093683; stress at `gamma=0` remains positive with terrain delta +2.347412 and next-phase release +19.998558%; normal/storage are filtered to zero. |
+| `quantum_measurement_terrain_memory_probe_2026-07-08.md` | RAW_LOG_BACKED | Latest memory probe. Sampled CHSH terrain inscription persists after measurement stops in stress context; `gamma=0` has phase2 release +19.998558% and later challenge phase3 release +1.427578%. Matched classical replay reproduces post-write memory, so specificity is in write eligibility. |
+| `quantum_sampled_chsh_terrain_feedback_probe_2026-07-08.md` | RAW_LOG_BACKED | Sampled readout/terrain probe. Uses 32768 shots per CHSH setting per step and subtracts margin S=0.093683; stress at `gamma=0` remains positive with terrain delta +2.347412 and next-phase release +19.998558%; normal/storage are filtered to zero. |
 | `quantum_measurement_terrain_feedback_probe_2026-07-08.md` | RAW_LOG_BACKED | Exact-CHSH terrain-feedback probe. CHSH excess is written into terrain only when `S_CHSH > 2`; stress at `gamma=0` writes terrain delta +2.646051 and changes next-phase P_release by +21.389922% vs Bell-bound Arm2. |
 | `quantum_microreactor_chsh_readout_transport_probe_2026-07-08.md` | RAW_LOG_BACKED | Readout-component probe. `gamma=1` has zero violations; stress at `gamma=0` reaches max CHSH 2.828427 and exceeds the classical release ceiling by +29.429224%. |
 | `quantum_microreactor_transported_branching_arm2_kill_2026-07-08.md` | RAW_LOG_BACKED | Transported branching probe. `P_release` moves strongly, but correct zero-entanglement reduced Arm2 reproduces the transported observable exactly; negative for quantum-specific local-population transport. |
@@ -64,6 +66,7 @@ not a hardware result
 ## Current code-backed experiment sources
 
 ```text
+scripts/audit/quantum_measurement_terrain_memory_probe.py
 scripts/audit/quantum_sampled_chsh_terrain_feedback_probe.py
 scripts/audit/quantum_measurement_terrain_feedback_probe.py
 scripts/audit/quantum_microreactor_chsh_readout_transport_probe.py
@@ -81,7 +84,7 @@ scripts/phenomenology/information_microreactor_quantumized_comparison.py
 ## Latest safe finding
 
 ```text
-A finite-shot sampled CHSH measurement-boundary signal, after subtracting a conservative Bell-bound margin, can still be written into terrain and later modulate classical-effective dynamics in stress context. This is a model-level positive for sampled measurement-boundary terrain feedback, not for ordinary local population plumbing.
+A finite-shot sampled CHSH measurement-boundary signal can be written into terrain, persist after measurement stops, and weakly affect a later challenge phase in stress context. The post-write memory dynamics are classical terrain dynamics: a matched classical replay of the same write trajectory reproduces them. This is model-level positive for measurement-boundary terrain memory, not for quantum-specific post-write terrain physics or ordinary local population plumbing.
 ```
 
 ## Promotion rule
