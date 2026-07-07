@@ -1,0 +1,8 @@
+scenario,gamma_values,phi_values,total_P_release_validation_diff,max_abs_main_branch_shift_vs_gamma1,max_arm3_negativity,max_arm2_arm3_main_prob_abs_diff,phase_sensitive_branching_effect,arm2_reproduces_branch_observable,negativity_changes_observable_beyond_arm2,quantum_specific_effect,classification
+normal,1.0;0.75;0.5;0.25;0.0,0;pi/2;pi,0.0,20.366591458251,0.353553390593,0.0,TRUE,TRUE,FALSE,FALSE,phase-sensitive branching exists but branch observable is Arm2-reproducible
+high_load,1.0;0.75;0.5;0.25;0.0,0;pi/2;pi,0.0,49.396941839926,0.353553390593,0.0,TRUE,TRUE,FALSE,FALSE,phase-sensitive branching exists but branch observable is Arm2-reproducible
+stress,1.0;0.75;0.5;0.25;0.0,0;pi/2;pi,0.0,0.031221857307,0.353553390593,0.0,TRUE,TRUE,FALSE,FALSE,phase-sensitive branching exists but branch observable is Arm2-reproducible
+stabilizer,1.0;0.75;0.5;0.25;0.0,0;pi/2;pi,0.0,17.533594490665,0.353553390593,0.0,TRUE,TRUE,FALSE,FALSE,phase-sensitive branching exists but branch observable is Arm2-reproducible
+leaky_membrane,1.0;0.75;0.5;0.25;0.0,0;pi/2;pi,0.0,20.372647107667,0.353553390593,0.0,TRUE,TRUE,FALSE,FALSE,phase-sensitive branching exists but branch observable is Arm2-reproducible
+road_fed,1.0;0.75;0.5;0.25;0.0,0;pi/2;pi,0.0,42.919969725896,0.353553390593,0.0,TRUE,TRUE,FALSE,FALSE,phase-sensitive branching exists but branch observable is Arm2-reproducible
+storage_heavy,1.0;0.75;0.5;0.25;0.0,0;pi/2;pi,0.0,9.623717960721,0.353553390593,0.0,TRUE,TRUE,FALSE,FALSE,phase-sensitive branching exists but branch observable is Arm2-reproducible
