@@ -27,6 +27,7 @@ QUARANTINED_CLAIM:
 
 | file | status | action |
 |---|---|---|
+| `quantum_coupled_microreactor_step6_explicit_component_chain_2026-07-07.md` | RAW_LOG_BACKED | Backed by `scripts/audit/quantum_coupled_microreactor_step6_explicit_component_chain.py` and `data/quantum_microreactor/step6_explicit_component_chain_seed0_summary.csv`. Explicit component-chain audit; result is classical-effective, not a quantum-specific witness. |
 | `quantum_coupled_microreactor_step5_reactor_like_population_synergy_2026-07-07.md` | RAW_LOG_BACKED | Backed by `scripts/audit/quantum_coupled_microreactor_step5_reactor_like_population_synergy.py` and `data/quantum_microreactor/step5_reactor_like_population_synergy_seed0_summary.csv`. Minimal reactor-like P111 product-population synergy audit only; not full microreactor. |
 | `quantum_coupled_microreactor_step4_population_synergy_2026-07-07.md` | RAW_LOG_BACKED | Backed by `scripts/audit/quantum_coupled_microreactor_step4_population_synergy.py` and `data/quantum_microreactor/step4_population_synergy_seed0_summary.csv`. Population-order synergy audit only; not full microreactor. |
 | `quantum_coupled_microreactor_step3_svetlichny_2026-07-07.md` | RAW_LOG_BACKED | Backed by `scripts/audit/quantum_coupled_microreactor_step3_svetlichny.py` and `data/quantum_microreactor/step3_svetlichny_seed0_summary.csv`. Three-module Svetlichny audit only; not full microreactor. |
@@ -67,6 +68,7 @@ scripts/audit/quantum_coupled_microreactor_step2_v2_unitary_population.py
 scripts/audit/quantum_coupled_microreactor_step3_svetlichny.py
 scripts/audit/quantum_coupled_microreactor_step4_population_synergy.py
 scripts/audit/quantum_coupled_microreactor_step5_reactor_like_population_synergy.py
+scripts/audit/quantum_coupled_microreactor_step6_explicit_component_chain.py
 ```
 
 These should be treated as the current reproducible core until additional result generators are committed.
@@ -90,6 +92,17 @@ A phenomenology note can be promoted only when all are present:
 `quantum_coupled_microreactor_step2_backpressure_2026-07-07.md` is also quarantined as a functional claim: its conversion effect was equivalent to a Bell-bond projector and therefore did not provide an independent device observable.
 
 ## New audit-safe findings
+
+`quantum_coupled_microreactor_step6_explicit_component_chain_2026-07-07.md` establishes an explicit component-chain audit:
+
+```text
+source drive -> membrane/pass flag -> converter/product flag -> reservoir/storage flag
+pairwise M->C and C->R operations produce diagonal P111 product population
+explicit MC->R three-body boost increases product/storage/release population
+computational-basis dephase does not remove the boost
+```
+
+This is a classical-effective component-semantics result, not a quantum-specific witness.
 
 `quantum_coupled_microreactor_step5_reactor_like_population_synergy_2026-07-07.md` establishes a minimal reactor-like product-population synergy audit:
 
