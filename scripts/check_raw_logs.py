@@ -14,6 +14,7 @@ Why normalized comparison instead of byte comparison:
 Current canonical logs:
   - data/negativity_causality/negativity_causality_test_seed0.json
   - data/converter/converter_core_seed8128_summary.csv
+  - data/microreactor/information_microreactor_sandbox_seed20260707_summary.csv
   - data/quantum_microreactor/step1_cr_coupling_seed0_summary.csv
   - data/quantum_microreactor/step2_backpressure_seed0_summary.csv
   - data/quantum_microreactor/step2_v2_unitary_population_seed0_summary.csv
@@ -155,6 +156,20 @@ def main() -> int:
             str(conv_tmp_csv),
         ])
         compare_csv(ROOT / "data/converter/converter_core_seed8128_summary.csv", conv_tmp_csv, rtol=args.rtol, atol=args.atol)
+
+        sandbox_tmp_json = tmp / "information_microreactor_sandbox_seed20260707.json"
+        sandbox_tmp_csv = tmp / "information_microreactor_sandbox_seed20260707_summary.csv"
+        run([
+            sys.executable,
+            "scripts/phenomenology/information_microreactor_sandbox.py",
+            "--seed",
+            "20260707",
+            "--out",
+            str(sandbox_tmp_json),
+            "--csv",
+            str(sandbox_tmp_csv),
+        ])
+        compare_csv(ROOT / "data/microreactor/information_microreactor_sandbox_seed20260707_summary.csv", sandbox_tmp_csv, rtol=args.rtol, atol=args.atol)
 
         micro_tmp_json = tmp / "step1_cr_coupling_seed0.json"
         micro_tmp_csv = tmp / "step1_cr_coupling_seed0_summary.csv"
