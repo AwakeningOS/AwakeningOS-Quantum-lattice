@@ -1,0 +1,30 @@
+{
+  "experiment": "quantum_context_order_terrain_probe",
+  "date": "2026-07-08",
+  "layer": "quantum-audit probe",
+  "seed": 20260707,
+  "shots_per_order_probe": 4096,
+  "order_margin": 0.127276532414,
+  "context_axes": {
+    "context_A_C": [-0.889954451481, -0.439818340732, 0.120585660201],
+    "context_A_B": [-0.312001400127, 0.668036980272, -0.675560300275],
+    "context_B_C": [-0.739479927404, -0.661847467676, 0.122993359568],
+    "context_B_B": [0.33768917085, -0.799737672014, 0.49637252125]
+  },
+  "verdict": "POSITIVE_FOR_MODEL_LEVEL_CONTEXT_ORDER_TERRAIN",
+  "positive_rows": 1,
+  "pre_registered_predictions": {
+    "P1_order_positive": "PASS: stress gamma=0 has AB order signal, BA order signal remains zero, and release differs.",
+    "P2_gamma1_null": "PASS: gamma=1 rows have zero order signal and zero terrain/release difference.",
+    "P3_context_specificity": "PASS: normal/storage rows have zero order signal and zero terrain/release difference.",
+    "P4_replay_specificity": "PASS: matched replay reproduces downstream release once the AB order-signal trace is fixed."
+  },
+  "safe_interpretation": "With fixed noncommuting context probes and no direct outcome write beyond the conservative order signal, AB and BA read order diverge only in stress gamma=0. AB produces a conservative order signal, higher final terrain, and higher downstream release; BA remains at baseline. Gamma=1 and normal/storage are null. Matched replay reproduces downstream release once the order-signal trace is fixed, so specificity is at the context-order measurement boundary.",
+  "limitations": [
+    "Not a hardware result.",
+    "Context axes are fixed after preselection, but not derived from hardware calibration.",
+    "The order signal is a model-level sequential-measurement score.",
+    "Post-order terrain/release dynamics are classical-effective once the order-signal trace is fixed.",
+    "Does not prove consciousness or observer causation."
+  ]
+}
