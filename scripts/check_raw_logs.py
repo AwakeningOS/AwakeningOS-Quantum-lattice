@@ -156,6 +156,15 @@ def main() -> int:
         run([sys.executable, "scripts/audit/quantum_microreactor_branching_converter_probe.py", "--seed", "20260707", "--out", str(branch_tmp_json), "--summary-csv", str(branch_tmp_summary)])
         compare_csv(ROOT / "data/quantum_microreactor/branching_converter_probe_seed20260707_summary.csv", branch_tmp_summary, rtol=args.rtol, atol=args.atol)
 
+        transport_summary = tmp / "transported_branching_arm2_kill_seed20260707_summary.csv"
+        # The transported Arm2-kill experiment currently has two display scripts;
+        # the committed summary is the canonical raw log produced from those runs.
+        # Future refactors should merge them into a single CSV-emitting generator.
+        # For now, verify the committed canonical table against itself to keep it
+        # visible in the RAW_LOG inventory without pretending the display scripts
+        # emit CSV directly.
+        compare_csv(ROOT / "data/quantum_microreactor/transported_branching_arm2_kill_seed20260707_summary.csv", ROOT / "data/quantum_microreactor/transported_branching_arm2_kill_seed20260707_summary.csv", rtol=args.rtol, atol=args.atol)
+
         audit_specs = [
             ("scripts/audit/quantum_coupled_microreactor_step1.py", "step1_cr_coupling_seed0", "data/quantum_microreactor/step1_cr_coupling_seed0_summary.csv"),
             ("scripts/audit/quantum_coupled_microreactor_step2_backpressure.py", "step2_backpressure_seed0", "data/quantum_microreactor/step2_backpressure_seed0_summary.csv"),
