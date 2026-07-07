@@ -19,6 +19,7 @@ data/negativity_causality/negativity_causality_test_seed0.json
 data/converter/converter_core_seed8128_summary.csv
 data/quantum_microreactor/step1_cr_coupling_seed0_summary.csv
 data/quantum_microreactor/step2_backpressure_seed0_summary.csv
+data/quantum_microreactor/step2_v2_unitary_population_seed0_summary.csv
 ```
 
 ## Comparison policy
