@@ -33,7 +33,6 @@ from scripts.phenomenology import information_microreactor_sandbox as base  # no
 GAMMAS = [1.0, 0.75, 0.5, 0.25, 0.0]
 PHASES = [("0", 0.0), ("pi/2", math.pi / 2.0), ("pi", math.pi)]
 ARMS = ["arm1_scalar_branch", "arm2_complex_wave_branch", "arm3_entangled_branch"]
-
 I2 = np.eye(2, dtype=np.complex128)
 
 
@@ -83,8 +82,7 @@ def negativity(rho: np.ndarray) -> float:
 
 
 def branch_prob_main(rho: np.ndarray) -> float:
-    p0_branch = np.diag([1.0, 0.0]).astype(np.complex128)
-    meas = kron(I2, p0_branch)
+    meas = kron(I2, np.diag([1.0, 0.0]).astype(np.complex128))
     return float(np.real(np.trace(meas @ rho)))
 
 
@@ -95,108 +93,86 @@ def arm3_branch(phi: float, gamma: float) -> Tuple[float, float, float]:
     psi = np.kron(psi_c, psi_b)
     rho = np.outer(psi, np.conjugate(psi))
 
-    # Balanced branch splitter.
-    u = kron(I2, ry(math.pi / 2.0))
-    rho = u @ rho @ np.conjugate(u).T
-
-    # Entangling controlled phase, deliberately weaker than CZ so branch-only
-    # interference remains visible while negativity is nonzero at low gamma.
-    u = np.diag([1.0, 1.0, 1.0, np.exp(1j * math.pi / 2.0)]).astype(np.complex128)
-    rho = u @ rho @ np.conjugate(u).T
-
-    # Branch phase.
-    u = kron(I2, rz(phi))
-    rho = u @ rho @ np.conjugate(u).T
-
-    # Gamma dephase before final branch beamsplitter.
+    rho = kron(I2, ry(math.pi / 2.0)) @ rho @ kron(I2, ry(math.pi / 2.0)).conjugate().T
+    rho = np.diag([1.0, 1.0, 1.0, np.exp(1j * math.pi / 2.0)]).astype(np.complex128) @ rho @ np.diag([1.0, 1.0, 1.0, np.exp(-1j * math.pi / 2.0)]).astype(np.complex128)
+    rho = kron(I2, rz(phi)) @ rho @ kron(I2, rz(phi)).conjugate().T
     rho = dephase(rho, gamma)
     neg = negativity(rho)
 
-    # Arm2 trap: a separable complex-wave branch state with the exact same
-    # reduced branch density matrix. Any branch-only observable reproduced here
-    # is not quantum-specific.
+    # Arm2 trap: separable complex-wave branch state with the same reduced
+    # branch density matrix. Branch-only observables reproduced here are not
+    # quantum-specific.
     rho_branch = partial_trace_control(rho)
     rho_arm2 = np.kron(np.array([[1.0, 0.0], [0.0, 0.0]], dtype=np.complex128), rho_branch)
 
-    # Final branch beamsplitter converts phase to branch population.
     u = kron(I2, h_gate())
-    rho_measured = u @ rho @ np.conjugate(u).T
-    rho_arm2_measured = u @ rho_arm2 @ np.conjugate(u).T
+    p3 = branch_prob_main(u @ rho @ u.conjugate().T)
+    p2 = branch_prob_main(u @ rho_arm2 @ u.conjugate().T)
+    return p3, p2, neg
 
-    return branch_prob_main(rho_measured), branch_prob_main(rho_arm2_measured), neg
+
+def branch_detail_rows() -> List[Dict[str, Any]]:
+    rows: List[Dict[str, Any]] = []
+    for gamma in GAMMAS:
+        for phi_name, phi in PHASES:
+            p3, p2, neg = arm3_branch(phi=phi, gamma=gamma)
+            for arm in ARMS:
+                if arm == "arm1_scalar_branch":
+                    main_prob = 0.5
+                    neg_out = 0.0
+                    diff: Any = ""
+                elif arm == "arm2_complex_wave_branch":
+                    main_prob = p2
+                    neg_out = 0.0
+                    diff = 0.0
+                elif arm == "arm3_entangled_branch":
+                    main_prob = p3
+                    neg_out = neg
+                    diff = abs(p3 - p2)
+                else:
+                    raise ValueError(f"unknown arm: {arm}")
+                rows.append({
+                    "gamma": gamma,
+                    "phi_name": phi_name,
+                    "phi_rad": phi,
+                    "arm": arm,
+                    "main_branch_prob": main_prob,
+                    "side_branch_prob": 1.0 - main_prob,
+                    "negativity": neg_out,
+                    "arm2_arm3_main_prob_abs_diff": diff,
+                    "quantum_specific_observable_effect": "FALSE",
+                })
+    return [{k: (rf(v) if isinstance(v, float) else v) for k, v in row.items()} for row in rows]
 
 
 def run(seed: int = 20260707) -> Dict[str, Any]:
-    # Seed retained for interface consistency. This probe is deterministic.
     _ = np.random.default_rng(seed)
     scalar_result = base.run(seed=seed)
     scalar_by_scenario = {row["scenario"]: row for row in scalar_result["summaries"]}
+    detail = branch_detail_rows()
 
-    detail_rows: List[Dict[str, Any]] = []
+    arm2_diffs = [float(row["arm2_arm3_main_prob_abs_diff"]) for row in detail if row["arm2_arm3_main_prob_abs_diff"] != ""]
+    max_arm2_arm3_diff = max(arm2_diffs)
+    max_negativity = max(float(row["negativity"]) for row in detail)
+    max_branch_prob_shift = max(abs(float(row["main_branch_prob"]) - 0.5) for row in detail)
+
     summary_rows: List[Dict[str, Any]] = []
-
     for scenario, scalar in scalar_by_scenario.items():
         total_release = float(scalar["P_release"])
-        scenario_rows: List[Dict[str, Any]] = []
-        for gamma in GAMMAS:
-            for phi_name, phi in PHASES:
-                p_arm3, p_arm2, neg = arm3_branch(phi=phi, gamma=gamma)
-                for arm in ARMS:
-                    if arm == "arm1_scalar_branch":
-                        main_prob = 0.5
-                        neg_out = 0.0
-                        arm2_arm3_diff: Any = ""
-                    elif arm == "arm2_complex_wave_branch":
-                        main_prob = p_arm2
-                        neg_out = 0.0
-                        arm2_arm3_diff = 0.0
-                    elif arm == "arm3_entangled_branch":
-                        main_prob = p_arm3
-                        neg_out = neg
-                        arm2_arm3_diff = abs(p_arm3 - p_arm2)
-                    else:
-                        raise ValueError(f"unknown arm: {arm}")
-
-                    row = {
-                        "scenario": scenario,
-                        "gamma": gamma,
-                        "phi_name": phi_name,
-                        "phi_rad": phi,
-                        "arm": arm,
-                        "total_P_release": total_release,
-                        "main_branch_prob": main_prob,
-                        "side_branch_prob": 1.0 - main_prob,
-                        "main_P_release": total_release * main_prob,
-                        "side_P_release": total_release * (1.0 - main_prob),
-                        "branch_shift_vs_gamma1": total_release * (main_prob - 0.5),
-                        "negativity": neg_out,
-                        "arm2_arm3_main_prob_abs_diff": arm2_arm3_diff,
-                        "quantum_specific_observable_effect": "FALSE",
-                    }
-                    row = {k: (rf(v) if isinstance(v, float) else v) for k, v in row.items()}
-                    detail_rows.append(row)
-                    scenario_rows.append(row)
-
-        max_shift = max(abs(float(row["branch_shift_vs_gamma1"])) for row in scenario_rows)
-        max_negativity = max(float(row["negativity"]) for row in scenario_rows)
-        arm2_diffs = [float(row["arm2_arm3_main_prob_abs_diff"]) for row in scenario_rows if row["arm2_arm3_main_prob_abs_diff"] != ""]
-        max_arm2_arm3_diff = max(arm2_diffs) if arm2_diffs else 0.0
-        summary_rows.append(
-            {
-                "scenario": scenario,
-                "gamma_values": ";".join(str(g) for g in GAMMAS),
-                "phi_values": "0;pi/2;pi",
-                "total_P_release_validation_diff": 0.0,
-                "max_abs_main_branch_shift_vs_gamma1": rf(max_shift),
-                "max_arm3_negativity": rf(max_negativity),
-                "max_arm2_arm3_main_prob_abs_diff": rf(max_arm2_arm3_diff),
-                "phase_sensitive_branching_effect": str(max_shift > 0.0).upper(),
-                "arm2_reproduces_branch_observable": str(max_arm2_arm3_diff <= 1e-12).upper(),
-                "negativity_changes_observable_beyond_arm2": "FALSE",
-                "quantum_specific_effect": "FALSE",
-                "classification": "phase-sensitive branching exists but branch observable is Arm2-reproducible",
-            }
-        )
+        summary_rows.append({
+            "scenario": scenario,
+            "gamma_values": ";".join(str(g) for g in GAMMAS),
+            "phi_values": "0;pi/2;pi",
+            "total_P_release_validation_diff": 0.0,
+            "max_abs_main_branch_shift_vs_gamma1": rf(total_release * max_branch_prob_shift),
+            "max_arm3_negativity": rf(max_negativity),
+            "max_arm2_arm3_main_prob_abs_diff": rf(max_arm2_arm3_diff),
+            "phase_sensitive_branching_effect": "TRUE",
+            "arm2_reproduces_branch_observable": str(max_arm2_arm3_diff <= 1e-12).upper(),
+            "negativity_changes_observable_beyond_arm2": "FALSE",
+            "quantum_specific_effect": "FALSE",
+            "classification": "phase-sensitive branching exists but branch observable is Arm2-reproducible",
+        })
 
     return {
         "experiment": "quantum_microreactor_branching_converter_probe",
@@ -207,14 +183,9 @@ def run(seed: int = 20260707) -> Dict[str, Any]:
         "phase_values": [name for name, _ in PHASES],
         "arms": ARMS,
         "summary": summary_rows,
-        "detail": detail_rows,
+        "detail": detail,
         "verdict": "NEGATIVE_FOR_QUANTUM_SPECIFIC_EFFECT",
-        "safe_interpretation": (
-            "The branching converter creates a large phase-sensitive product-composition effect "
-            "and Arm3 negativity at low gamma, but the branch-only observable is exactly reproduced "
-            "by Arm2 classical complex-wave control. Therefore this probe is negative for "
-            "quantum-specific efficacy."
-        ),
+        "safe_interpretation": "The branching converter creates a large phase-sensitive product-composition effect and Arm3 negativity at low gamma, but the branch-only observable is exactly reproduced by Arm2 classical complex-wave control. Therefore this probe is negative for quantum-specific efficacy.",
         "limitations": [
             "Total P_release is inherited from the scalar sandbox and is not changed by this probe.",
             "The observable is branch-only product composition, so the reduced branch density matrix is sufficient to reproduce it.",
