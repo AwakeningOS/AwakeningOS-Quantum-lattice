@@ -26,39 +26,32 @@ QUARANTINED_CLAIM:
 ## Current latest session
 
 ```text
-information_microreactor_backpressure_contamination
+information_microreactor_quantumized_comparison
 ```
 
-This is the latest active experiment in the classical-effective information microreactor line.
+This is the latest active comparison in the classical-effective / quantum-audit boundary line.
 
 It is backed by:
 
 ```text
-scripts/phenomenology/information_microreactor_backpressure_contamination.py
-data/microreactor/information_microreactor_backpressure_contamination_seed20260707_summary.csv
-data/microreactor/information_microreactor_backpressure_contamination_seed20260707_events.csv
-data/microreactor/information_microreactor_backpressure_contamination_seed20260707_timeseries.csv
+scripts/phenomenology/information_microreactor_quantumized_comparison.py
+data/microreactor/information_microreactor_quantumized_comparison_seed20260707_summary.csv
 ```
 
-The immediately previous assembled sandbox is:
+The immediately previous classical-effective observation experiment is:
 
 ```text
-information_microreactor_sandbox_2026-07-07.md
+information_microreactor_backpressure_contamination_2026-07-08.md
 ```
 
-The immediately previous quantum-audit/component-semantics bridge is:
-
-```text
-quantum_coupled_microreactor_step6_explicit_component_chain_2026-07-07.md
-```
-
-Do not confuse the current classical-effective observation branch with a quantum-witness claim.
+Do not confuse this comparison with a full quantum sandbox: only the finite M/C/R pass-convert-store core is quantumized; continuous environment variables remain classical.
 
 ## Current results/ classification
 
 | file | status | action |
 |---|---|---|
-| `information_microreactor_backpressure_contamination_2026-07-08.md` | RAW_LOG_BACKED | Latest experiment. Backed by `scripts/phenomenology/information_microreactor_backpressure_contamination.py` and three raw CSV logs: summary, events, and timeseries checkpoints. Classical-effective observation sandbox; not quantum-specific. |
+| `information_microreactor_quantumized_comparison_2026-07-08.md` | RAW_LOG_BACKED | Latest comparison. Backed by `scripts/phenomenology/information_microreactor_quantumized_comparison.py` and `data/microreactor/information_microreactor_quantumized_comparison_seed20260707_summary.csv`. Straightforward finite-core quantumization gives the same summaries as the classical probability core. |
+| `information_microreactor_backpressure_contamination_2026-07-08.md` | RAW_LOG_BACKED | Backed by `scripts/phenomenology/information_microreactor_backpressure_contamination.py` and three raw CSV logs: summary, events, and timeseries checkpoints. Classical-effective observation sandbox; not quantum-specific. |
 | `information_microreactor_sandbox_2026-07-07.md` | RAW_LOG_BACKED | Backed by `scripts/phenomenology/information_microreactor_sandbox.py` and `data/microreactor/information_microreactor_sandbox_seed20260707_summary.csv`. Classical-effective assembled sandbox; not quantum-specific. |
 | `quantum_coupled_microreactor_step6_explicit_component_chain_2026-07-07.md` | RAW_LOG_BACKED | Backed by `scripts/audit/quantum_coupled_microreactor_step6_explicit_component_chain.py` and `data/quantum_microreactor/step6_explicit_component_chain_seed0_summary.csv`. Explicit component-chain audit; result is classical-effective, not a quantum-specific witness. |
 | `quantum_coupled_microreactor_step5_reactor_like_population_synergy_2026-07-07.md` | RAW_LOG_BACKED | Backed by `scripts/audit/quantum_coupled_microreactor_step5_reactor_like_population_synergy.py` and `data/quantum_microreactor/step5_reactor_like_population_synergy_seed0_summary.csv`. Minimal reactor-like P111 product-population synergy audit only; not full microreactor. |
@@ -71,20 +64,6 @@ Do not confuse the current classical-effective observation branch with a quantum
 | `negativity_causality_test_2026-07-07.md` | RAW_LOG_BACKED | Backed by `scripts/negativity_causality_test.py` and `data/negativity_causality/negativity_causality_test_seed0.json`. Audit inventory only; not component evidence. |
 | `gpt_key_findings.md` | META | Updated to move unverified phase-dependent transport to `QUARANTINED_CLAIM`. |
 | `gpt_summary.json` | META | Treat as GPT summary metadata, not experiment data. |
-| `phase_channel_controls_2026-07-07.md` | PHENOMENOLOGY_NOTE | Add generator script and raw logs before promoting. |
-| `phase_routed_information_chemistry_2026-07-07.md` | PHENOMENOLOGY_NOTE | Add generator script and raw logs before promoting. |
-| `two_species_encounter_2026-07-07.md` | PHENOMENOLOGY_NOTE | Add generator script and raw logs before promoting. |
-| `information_chemistry_2026-07-07.md` | PHENOMENOLOGY_NOTE | Add generator script and raw logs before promoting. |
-| `random_information_chemistry_ecology_2026-07-07.md` | PHENOMENOLOGY_NOTE | Add generator script and raw logs before promoting. |
-| `reaction_written_terrain_ecology_2026-07-07.md` | PHENOMENOLOGY_NOTE | Add generator script and raw logs before promoting. |
-| `reaction_written_terrain_focused_followup_2026-07-07.md` | PHENOMENOLOGY_NOTE | Add generator script and raw logs before promoting. |
-| `syntax_driven_information_matter_2026-07-07.md` | PHENOMENOLOGY_NOTE | Add generator script and raw logs before promoting. |
-| `membrane_like_information_matter_2026-07-07.md` | PHENOMENOLOGY_NOTE | Add generator script and raw logs before promoting. |
-| `law_separated_information_compartments_2026-07-07.md` | PHENOMENOLOGY_NOTE | Add generator script and raw logs before promoting. |
-| `catalytic_compartment_membrane_characterization_2026-07-07.md` | PHENOMENOLOGY_NOTE | Add generator script and raw logs before promoting. |
-| `catalytic_membrane_material_property_map_2026-07-07.md` | PHENOMENOLOGY_NOTE | Add generator script and raw logs before promoting. |
-| `information_storage_reservoir_2026-07-07.md` | PHENOMENOLOGY_NOTE | Add generator script and raw logs before promoting. |
-| `source_sink_pair_2026-07-07.md` | PHENOMENOLOGY_NOTE | Add generator script and raw logs before promoting. |
 
 ## Current code-backed experiment sources
 
@@ -95,6 +74,7 @@ scripts/negativity_causality_test.py
 scripts/phenomenology/converter_core.py
 scripts/phenomenology/information_microreactor_sandbox.py
 scripts/phenomenology/information_microreactor_backpressure_contamination.py
+scripts/phenomenology/information_microreactor_quantumized_comparison.py
 scripts/audit/quantum_coupled_microreactor_step1.py
 scripts/audit/quantum_coupled_microreactor_step2_backpressure.py
 scripts/audit/quantum_coupled_microreactor_step2_v2_unitary_population.py
@@ -122,46 +102,35 @@ A phenomenology note can be promoted only when all are present:
 
 `quantum_coupled_microreactor_step2_backpressure_2026-07-07.md` is also quarantined as a functional claim: its `conversion_effect` was equivalent to a Bell-bond projector and therefore did not provide an independent device observable.
 
-## Latest observation-safe finding
+## Latest comparison-safe finding
 
-`information_microreactor_backpressure_contamination_2026-07-08.md` establishes a time-resolved classical-effective observation sandbox:
+`information_microreactor_quantumized_comparison_2026-07-08.md` establishes a boundary comparison:
 
 ```text
-continuous 1000-step trajectory
-50-step timeseries checkpoints plus final row
-clean finite reactor
-leaky contamination
-storage pressure
-stress collapse
-stabilizer rescue
-summary/event/timeseries-checkpoint raw logs
+classical_probability_core
+quantum_dephased_core
+quantum_coherent_core
+M/C/R pass-convert-store flags represented as a 3-qubit finite core
+diagonal P111 product-population readout
+continuous sandbox environment remains classical
 ```
 
-Observed threshold order:
+Across the tested scenarios, stored summary differences are zero:
 
 ```text
-quality < 0.7 at t=206
-quality < 0.5 at t=218
-quality < 0.3 at t=259
-backpressure < 0.5 at t=410
-fill > 0.5 at t=420
-backpressure < 0.2 at t=462
-fill > 0.75 at t=510
-integrity < 0.5 at t=648
-integrity < 0.1 at t=708
-rescue integrity > 0.5 after t=800 at t=893
+diff_P_release_vs_classical = 0.0
+diff_P_generated_vs_classical = 0.0
+diff_terrain_vs_classical = 0.0
+diff_P_release_vs_dephased = 0.0
 ```
 
 Safe interpretation:
 
 ```text
-contamination degrades product quality before flow stops
-reservoir saturation produces upstream backpressure
-stress collapses membrane integrity
-external stabilizer input partially restores membrane integrity
+straightforward finite-core quantumization does not change the current sandbox behavior
 ```
 
-This is classical-effective component dynamics, not quantum-specific behavior and not autonomous self-repair.
+This is not a full quantum sandbox and not a quantum-specific result.
 
 ## Last-session handoff
 
