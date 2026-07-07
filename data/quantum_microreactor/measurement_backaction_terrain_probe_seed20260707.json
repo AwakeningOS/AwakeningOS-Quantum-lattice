@@ -1,0 +1,17 @@
+{
+  "experiment": "quantum_measurement_backaction_terrain_probe",
+  "date": "2026-07-08",
+  "layer": "quantum-audit probe",
+  "seed": 20260707,
+  "model": "persistent two-qubit boundary state; measurement acts as nonselective projective/dephasing backaction; no outcome write is used",
+  "verdict": "POSITIVE_FOR_MODEL_LEVEL_MEASUREMENT_BACKACTION_TERRAIN",
+  "positive_rows": 2,
+  "safe_interpretation": "In stress gamma=0, invasive measurement of the boundary state suppresses later Bell-excess terrain signal and lowers downstream release after measurement stops being treated as a passive readout. The effect is backaction-like and negative/suppressive: measurement changes the future boundary state rather than merely reporting it. Normal/storage and gamma=1 null rows remain unchanged.",
+  "limitations": [
+    "Not a hardware result.",
+    "Backaction is simulated as nonselective local projective/dephasing measurement in fixed CHSH bases.",
+    "The effect is suppressive rather than beneficial.",
+    "No measurement outcome is directly written to terrain; the effect is through later boundary-state change.",
+    "Post-backaction reactor dynamics remain classical-effective."
+  ]
+}
