@@ -1,0 +1,31 @@
+{
+  "experiment": "quantum_microreactor_transported_branching_arm2_kill",
+  "date": "2026-07-08",
+  "layer": "quantum-audit probe",
+  "seed": 20260707,
+  "scripts": [
+    "scripts/audit/quantum_branch_converter.py",
+    "scripts/audit/arm2_kill.py"
+  ],
+  "raw_log": "data/quantum_microreactor/transported_branching_arm2_kill_seed20260707_summary.csv",
+  "scenarios": [
+    "normal",
+    "stress",
+    "storage_heavy"
+  ],
+  "verdict": "NEGATIVE_FOR_QUANTUM_SPECIFIC_TRANSPORT",
+  "main_findings": {
+    "gamma1_gate": "PASS; quantum gamma=1 returns to classical 50/50 branch within machine precision.",
+    "transported_release_changes": "YES; quantum gamma=0 changes P_release by +93.27% normal, +30.35% stress, +56.48% storage_heavy versus classical.",
+    "weak_arm2_false_positive": "YES; mean-field Arm2 differs from quantum gamma=0 and would create a false positive if used as the only control.",
+    "correct_arm2_kill": "YES; correct reduced single-qubit Arm2 reproduces quantum transported release at gamma=0 and gamma=0.5 to machine precision.",
+    "negativity": "Nonzero negativity appears, including max negativity 0.5 in stress at gamma=0, but it does not change transported release beyond the local B reduced channel."
+  },
+  "safe_interpretation": "The phase-dependent branching converter transports a large phase-dependent effect into P_release, and the C:B state can be entangled. However, the transported observable depends only on the local B reduced density matrix, so a zero-entanglement reduced Arm2 channel reproduces P_release exactly. This is negative for quantum-specific transport.",
+  "limitations": [
+    "This is not a universal no-go theorem for all possible reactors.",
+    "It is a structural negative result for transported observables that depend only on local branch population.",
+    "Negativity-release correlations can be phi-confounded because both are driven by integrity through phi = pi * (1 - integrity).",
+    "A future positive route would need joint/nonlocal or noncommutative readout, not simple local population plumbing."
+  ]
+}
