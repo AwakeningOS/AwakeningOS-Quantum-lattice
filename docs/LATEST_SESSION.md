@@ -5,7 +5,7 @@ Updated: 2026-07-08
 ## Current latest experiment
 
 ```text
-quantum_microreactor_gamma_sweep_quality_probe
+quantum_microreactor_branching_converter_probe
 ```
 
 This is the latest active quantum-audit probe in the classical-effective / quantum-audit boundary line.
@@ -17,19 +17,18 @@ README.md
 SKILLS.md
 results/STATUS.md
 docs/RAW_LOG_GATE.md
-results/quantum_microreactor_gamma_sweep_quality_probe_2026-07-08.md
-experiments/quantum_microreactor_gamma_sweep_quality_probe_protocol_2026-07-08.md
-scripts/audit/quantum_microreactor_gamma_sweep_quality_probe.py
+results/quantum_microreactor_branching_converter_probe_2026-07-08.md
+experiments/quantum_microreactor_branching_converter_probe_protocol_2026-07-08.md
+scripts/audit/quantum_microreactor_branching_converter_probe.py
 ```
 
 ## Reproduction command
 
 ```bash
-python scripts/audit/quantum_microreactor_gamma_sweep_quality_probe.py \
+python scripts/audit/quantum_microreactor_branching_converter_probe.py \
   --seed 20260707 \
-  --out data/quantum_microreactor/gamma_sweep_quality_probe_seed20260707.json \
-  --summary-csv data/quantum_microreactor/gamma_sweep_quality_probe_seed20260707_summary.csv \
-  --detail-csv data/quantum_microreactor/gamma_sweep_quality_probe_seed20260707_detail.csv
+  --out data/quantum_microreactor/branching_converter_probe_seed20260707.json \
+  --summary-csv data/quantum_microreactor/branching_converter_probe_seed20260707_summary.csv
 ```
 
 ## RAW_LOG gate
@@ -40,11 +39,10 @@ Run:
 python scripts/check_raw_logs.py
 ```
 
-The new canonical logs are:
+The new canonical log is:
 
 ```text
-data/quantum_microreactor/gamma_sweep_quality_probe_seed20260707_summary.csv
-data/quantum_microreactor/gamma_sweep_quality_probe_seed20260707_detail.csv
+data/quantum_microreactor/branching_converter_probe_seed20260707_summary.csv
 ```
 
 ## Current result
@@ -52,11 +50,11 @@ data/quantum_microreactor/gamma_sweep_quality_probe_seed20260707_detail.csv
 The latest run tests:
 
 ```text
-quality/coherence auxiliary probe
-with gamma sweep
-Arm1 scalar baseline
-Arm2 classical complex-wave control
-Arm3 density-matrix quantum proxy
+phase-dependent branching converter
+entangled control qubit
+Arm1 scalar fixed branch
+Arm2 classical complex-wave branch control
+Arm3 entangled control+branch density matrix
 ```
 
 Verdict:
@@ -68,10 +66,11 @@ NEGATIVE_FOR_QUANTUM_SPECIFIC_EFFECT
 Details:
 
 ```text
-max_abs_diff_P_release_vs_gamma_max = 0
-max_abs_diff_quality_z_vs_gamma_max = 0
-arm2_matches_arm3_coherence = TRUE
-negativity_changes_observable = FALSE
+total_P_release_validation_diff = 0
+max_arm3_negativity = 0.353553390593
+max_arm2_arm3_main_prob_abs_diff = 0
+phase_sensitive_branching_effect = TRUE
+arm2_reproduces_branch_observable = TRUE
 quantum_specific_effect = FALSE
 ```
 
@@ -80,10 +79,10 @@ quantum_specific_effect = FALSE
 Safe claim:
 
 ```text
-The first quality/coherence gamma sweep does not show quantum-specific usefulness. Gamma-sensitive coherence appears, but Arm2 reproduces it and existing sandbox observables do not change.
+The branching converter produces a large phase-sensitive product-composition effect and Arm3 negativity, but the branch-only observable is fully reproduced by Arm2 classical complex-wave control.
 ```
 
-This is a useful negative filter: quality-as-coherence alone is not enough.
+This is a strong negative filter: branch-only phase-dependent product composition is not enough for quantum-specific efficacy.
 
 ## What this does not mean
 
@@ -93,23 +92,23 @@ Do not claim:
 quantum advantage
 quantum-specific behavior
 functional entanglement
-coherence-driven improvement
-basis noncommutativity
 hardware feasibility
+chemical realism
+biological metabolism
 ```
 
 ## Previous sessions
 
-The immediately previous validation gate is:
+The immediately previous gamma sweep is:
+
+```text
+quantum_microreactor_gamma_sweep_quality_probe_2026-07-08.md
+```
+
+The previous validation gate is:
 
 ```text
 quantum_microreactor_gamma_validation_2026-07-08.md
-```
-
-The previous comparison is:
-
-```text
-information_microreactor_quantumized_comparison_2026-07-08.md
 ```
 
 The previous classical-effective observation experiment is:
@@ -124,27 +123,23 @@ The earlier quantum-audit/component-semantics bridge is:
 quantum_coupled_microreactor_step6_explicit_component_chain_2026-07-07.md
 ```
 
-## Recommended next experiment
+## Recommended next decision
+
+The current line has now ruled out:
 
 ```text
-quantum_microreactor_negativity_coupled_observable_probe
+one-path converter coherence
+quality-as-coherence auxiliary probe
+branch-only phase-dependent product composition
 ```
 
-Required discipline:
+A future quantum-specific attempt would need a non-branch-only observable:
 
 ```text
-Arm 1: scalar classical sandbox
-Arm 2: classical complex-wave control
-Arm 3: density-matrix quantum model
+control-conditioned product readout
+measurement backaction that changes release or terrain
+basis-dependent quality readout that Arm2 cannot reproduce
+nonlocal witness tied to reactor output
 ```
 
-The next probe must make the witness do work in an observable, for example:
-
-```text
-quality_weighted_release
-conversion efficiency
-membrane-converter sensing
-basis-dependent quality readout
-```
-
-Quantum-specific status still requires Arm3 to produce an observable effect that Arm2 cannot reproduce.
+Without one of these, entanglement remains present but functionally unused.
