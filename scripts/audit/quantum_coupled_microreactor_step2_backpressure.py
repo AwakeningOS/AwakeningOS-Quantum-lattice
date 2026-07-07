@@ -121,11 +121,11 @@ def same_population_effect(cfg: Config) -> np.ndarray:
 
 
 def theta_grid() -> List[float]:
-    return [0.0, math.pi / 12, math.pi / 8, math.pi / 6, math.pi / 4, math.pi / 3, 3 * math.pi / 8, 5 * math.pi / 12, math.pi / 2]
+    return [0.0, math.pi / 8, math.pi / 4, 3 * math.pi / 8, math.pi / 2]
 
 
 def capacity_grid() -> List[float]:
-    return [1.0, 0.75, 0.5, 0.25, 0.1]
+    return [1.0, 0.5, 0.1]
 
 
 def rf(x: float) -> float:
