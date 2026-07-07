@@ -1,0 +1,30 @@
+{
+  "experiment": "quantum_membrane_decision_boundary_probe",
+  "date": "2026-07-08",
+  "layer": "quantum-audit probe",
+  "seed": 20260707,
+  "fixed_basis": "pre-calibrated once at phi=pi; no per-step optimization",
+  "shots_per_setting_per_step": 32768,
+  "alpha": 0.001,
+  "confidence_margin_S": 0.093683293042,
+  "a_gate_gain": 0.25,
+  "b_block_gain": 1.8,
+  "d_block_gain": 0.9,
+  "verdict": "POSITIVE_FOR_MODEL_LEVEL_MEMBRANE_DECISION_BOUNDARY",
+  "positive_rows": 4,
+  "pre_registered_predictions": {
+    "P1_gamma1_null": "PASS: gamma=1 has no membrane signal and no pass/block change in all scenarios.",
+    "P2_stress_membrane": "PASS: stress gamma=0 and gamma=0.25 show Bell-excess membrane signal, A passage increase, B leak suppression, D stress suppression, and release change.",
+    "P3_contaminated_stress": "PASS: contaminated stress keeps the same selectivity and shows B leak suppression under a higher B load.",
+    "P4_normal_storage_specificity": "PASS: normal/storage have no membrane Bell-excess signal and no pass/block change.",
+    "P5_replay_specificity": "PASS: matched replay reproduces downstream release, so post-gate dynamics follow the gate trace."
+  },
+  "safe_interpretation": "A fixed-basis finite-shot CHSH measurement-boundary signal can directly modulate membrane pass/block decisions in stress contexts: A passage increases while B contaminant and D stress passage are suppressed. Matched replay shows downstream dynamics follow the gate trace; specificity remains at the Bell-bound measurement/decision boundary.",
+  "limitations": [
+    "Not a hardware result.",
+    "Not chemical realism or biological metabolism.",
+    "The membrane decision rule is a model component, not a discovered biological membrane mechanism.",
+    "Post-gate dynamics are classical-effective once the membrane gate trace is fixed.",
+    "Ordinary local population plumbing remains classical-effective."
+  ]
+}
