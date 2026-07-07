@@ -27,7 +27,7 @@ QUARANTINED_CLAIM:
 
 | file | status | action |
 |---|---|---|
-| `quantum_coupled_microreactor_step1_2026-07-07.md` | RAW_LOG_BACKED | Backed by `scripts/audit/quantum_coupled_microreactor_step1.py` and `data/quantum_microreactor/step1_cr_coupling_seed0_summary.csv`. Quantum-audit Step 1 C-R bond only; not full microreactor. |
+| `quantum_coupled_microreactor_step1_2026-07-07.md` | RAW_LOG_BACKED | Backed by `scripts/audit/quantum_coupled_microreactor_step1.py` and `data/quantum_microreactor/step1_cr_coupling_seed0_summary.csv`. Designed C-R bond witness only; not full microreactor and not natural device throughput. |
 | `converter_core_2026-07-07.md` | RAW_LOG_BACKED | Backed by `scripts/phenomenology/converter_core.py` and `data/converter/converter_core_seed8128_summary.csv`. Classical stochastic phenomenology. |
 | `negativity_causality_test_2026-07-07.md` | RAW_LOG_BACKED | Backed by `scripts/negativity_causality_test.py` and `data/negativity_causality/negativity_causality_test_seed0.json`. Audit inventory only; not component evidence. |
 | `gpt_key_findings.md` | META | Updated to move unverified phase-dependent transport to `QUARANTINED_CLAIM`. |
@@ -79,16 +79,16 @@ A phenomenology note can be promoted only when all are present:
 
 ## New audit-safe findings
 
-`quantum_coupled_microreactor_step1_2026-07-07.md` establishes a Step 1 C-R module-bond audit:
+`quantum_coupled_microreactor_step1_2026-07-07.md` establishes a designed C-R module-bond witness:
 
 ```text
 matched module marginals
 N(C:R) > 0 in entangled_event
 N(C:R) = 0 in dephased_correlated
-joint throughput bonus tracks N(C:R)
+N=0 controls do not reproduce the Bell-bond analyzer value
 ```
 
-This is not yet a full microreactor result.
+The equality `throughput_bonus_vs_dephased = N(C:R)` is an analytic identity for the chosen two-branch state and analyzer, not an independent functional finding. This is not yet a full microreactor result.
 
 `negativity_causality_test_2026-07-07.md` establishes a minimal basis-relative matched-control pattern:
 
