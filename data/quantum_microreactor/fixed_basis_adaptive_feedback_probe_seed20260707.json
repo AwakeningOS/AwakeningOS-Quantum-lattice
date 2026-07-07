@@ -1,0 +1,28 @@
+{
+  "experiment": "quantum_fixed_basis_adaptive_feedback_probe",
+  "date": "2026-07-08",
+  "layer": "quantum-audit probe",
+  "seed": 20260707,
+  "fixed_basis": "pre-calibrated once at phi=pi; no per-step optimization",
+  "shots_per_setting_per_step": 32768,
+  "alpha": 0.001,
+  "confidence_margin_S": 0.093683293042,
+  "adaptive_phase_gain": 1.25,
+  "adaptive_gate_gain": 0.18,
+  "verdict": "POSITIVE_FOR_MODEL_LEVEL_FIXED_BASIS_ADAPTIVE_FEEDBACK",
+  "positive_rows": 2,
+  "pre_registered_predictions": {
+    "P1_gamma1_null": "PASS: gamma=1 has no phase-1 write and no later release difference.",
+    "P2_fixed_basis_stress": "PASS: stress gamma=0 and gamma=0.25 remain positive without per-step optimized bases.",
+    "P3_strict_positivity": "PASS: normal/storage later adaptive activity is not counted positive without phase-1 Bell-excess terrain inscription.",
+    "P4_replay_specificity": "PASS: matched replay reproduces post-write dynamics."
+  },
+  "safe_interpretation": "A fixed-basis finite-shot CHSH measurement boundary, pre-calibrated once rather than optimized per step, can still write terrain memory and shift later adaptive measurement gates in stress context. Normal/storage later adaptive activity is not counted positive without phase-1 Bell-excess terrain inscription. This remains model-level and not hardware or ordinary local population plumbing.",
+  "limitations": [
+    "Not a hardware result.",
+    "Not chemical realism or biological metabolism.",
+    "The fixed basis is pre-calibrated at the stress/Bell point, not derived from hardware calibration.",
+    "Post-write adaptive dynamics follow the written terrain trace and are not independently quantum-specific.",
+    "Local population plumbing without measurement-boundary writeback remains classical-effective."
+  ]
+}
