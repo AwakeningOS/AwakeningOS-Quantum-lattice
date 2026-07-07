@@ -2,7 +2,7 @@
 
 Small quantum-lattice and information-matter exploration repository.
 
-This repository now separates **code-backed quantum/core simulations** from **classical phenomenological information-matter notes**. The distinction is intentional and is part of the research record.
+This repository separates **code-backed quantum/core simulations** from **classical phenomenological information-matter notes**. The distinction is intentional and is part of the research record.
 
 ## Audit status as of 2026-07-07
 
@@ -12,6 +12,7 @@ A reproducibility audit found a clear split:
 CODE-BACKED:
   scripts/quantum_lattice_core.py
   scripts/history_droplet_core.py
+  scripts/negativity_causality_test.py
 
 NOT YET CODE-BACKED:
   most results/*.md files about information chemistry, membrane, reservoir,
@@ -31,6 +32,13 @@ These claims are backed by committed Python scripts:
 3. Adjacent-pair negativity is a valid quantum-information witness in the small lattice core.
 4. The history-droplet core is a no-jump/postselective exploratory model, not a full Lindblad simulator.
 5. History/droplet behavior has classical controls and must be interpreted with those controls.
+6. A minimal two-qubit negativity causality test shows a load-bearing Bell-negativity/coherence pattern after one-particle marginals are exactly matched against N=0 controls.
+
+Important limitation for claim 6:
+
+```text
+This is a minimal channel-analyzer test, not yet a spatial lattice/droplet transport result.
+```
 
 ### Quarantined or unverified claims
 
@@ -77,6 +85,10 @@ scripts/
     CODE_BACKED. Hard-core droplet, history terrain, no-jump/postselective loss,
     classical controls.
 
+  negativity_causality_test.py
+    CODE_BACKED / RAW_LOG_BACKED. Minimal three-arm marginal-matched test for
+    load-bearing Bell negativity in a contact-channel analyzer.
+
 experiments/
   REPORT_2026-07-07.md
     Historical report. Read with audit notes.
@@ -85,6 +97,9 @@ results/
   STATUS.md
     Per-file reproducibility status.
 
+  negativity_causality_test_2026-07-07.md
+    RAW_LOG_BACKED report for the minimal causality test.
+
   gpt_key_findings.md
     Updated finding list with unverified phase-dependent transport quarantined.
 
@@ -92,7 +107,8 @@ results/
     Mixed historical reports and phenomenology notes. See results/STATUS.md.
 
 data/
-  raw logs should be committed here when scripts generate json/csv/jsonl output.
+  negativity_causality/negativity_causality_test_seed0.json
+    Raw log for the minimal negativity causality test.
 ```
 
 ## Setup
@@ -108,6 +124,7 @@ Representative runnable commands:
 ```bash
 python scripts/quantum_lattice_core.py --all
 python scripts/history_droplet_core.py --all
+python scripts/negativity_causality_test.py --out data/negativity_causality/negativity_causality_test_seed0.json
 ```
 
 ## Experimental discipline
@@ -118,6 +135,7 @@ This repository follows these rules going forward:
 - Classical probability, classical complex-wave, and classical CA explanations are not failures; they define the classical-effective layer.
 - Simple phase interference is not a quantum-specific witness by itself.
 - Negativity, block entanglement, dephase sensitivity, and measurement backaction may be quantum-information witnesses only when the corresponding code and controls are present.
+- A witness being present is not enough; load-bearing status requires matched controls.
 - Information-matter behavior and quantum-information witnesses must be reported separately.
 - For exploration runs, commit raw event logs, seeds, and configuration files.
 - `results/*.json` and `results/*.csv` are no longer ignored; raw logs may be committed.
@@ -128,9 +146,10 @@ The clean path is now:
 
 ```text
 1. keep the small quantum-lattice core strict and reproducible
-2. rebuild the phenomenological components with scripts and raw logs
-3. promote only code-backed components into the main result chain
-4. later reduce selected components back into 12-13 qubit quantum primitives
+2. test whether negativity is load-bearing, not merely present
+3. rebuild the phenomenological components with scripts and raw logs
+4. promote only code-backed components into the main result chain
+5. later reduce selected components back into 12-13 qubit quantum primitives
 ```
 
 ## Not a current claim
@@ -147,5 +166,7 @@ large-scale quantum information matter
 ```
 
 The current strongest code-backed quantum witness is adjacent negativity in the small EXCH/ZZ lattice core.
+
+The current first code-backed load-bearing test is the minimal marginal-matched negativity causality test. It must next be embedded into a spatial lattice/droplet setting before supporting claims about transport or information-matter behavior.
 
 The current phenomenological direction is information-material component design, but those component tables must be regenerated from committed code before being treated as results.
