@@ -1,0 +1,132 @@
+{
+  "experiment": "quantum_microreactor_branching_converter_probe",
+  "date": "2026-07-08",
+  "layer": "quantum-audit probe",
+  "seed": 20260707,
+  "gamma_values": [
+    1.0,
+    0.75,
+    0.5,
+    0.25,
+    0.0
+  ],
+  "phase_values": [
+    "0",
+    "pi/2",
+    "pi"
+  ],
+  "arms": [
+    "arm1_scalar_branch",
+    "arm2_complex_wave_branch",
+    "arm3_entangled_branch"
+  ],
+  "summary": [
+    {
+      "scenario": "normal",
+      "gamma_values": "1.0;0.75;0.5;0.25;0.0",
+      "phi_values": "0;pi/2;pi",
+      "total_P_release_validation_diff": 0.0,
+      "max_abs_main_branch_shift_vs_gamma1": 20.366591458251,
+      "max_arm3_negativity": 0.353553390593,
+      "max_arm2_arm3_main_prob_abs_diff": 0.0,
+      "phase_sensitive_branching_effect": "TRUE",
+      "arm2_reproduces_branch_observable": "TRUE",
+      "negativity_changes_observable_beyond_arm2": "FALSE",
+      "quantum_specific_effect": "FALSE",
+      "classification": "phase-sensitive branching exists but branch observable is Arm2-reproducible"
+    },
+    {
+      "scenario": "high_load",
+      "gamma_values": "1.0;0.75;0.5;0.25;0.0",
+      "phi_values": "0;pi/2;pi",
+      "total_P_release_validation_diff": 0.0,
+      "max_abs_main_branch_shift_vs_gamma1": 49.396941839926,
+      "max_arm3_negativity": 0.353553390593,
+      "max_arm2_arm3_main_prob_abs_diff": 0.0,
+      "phase_sensitive_branching_effect": "TRUE",
+      "arm2_reproduces_branch_observable": "TRUE",
+      "negativity_changes_observable_beyond_arm2": "FALSE",
+      "quantum_specific_effect": "FALSE",
+      "classification": "phase-sensitive branching exists but branch observable is Arm2-reproducible"
+    },
+    {
+      "scenario": "stress",
+      "gamma_values": "1.0;0.75;0.5;0.25;0.0",
+      "phi_values": "0;pi/2;pi",
+      "total_P_release_validation_diff": 0.0,
+      "max_abs_main_branch_shift_vs_gamma1": 0.031221857307,
+      "max_arm3_negativity": 0.353553390593,
+      "max_arm2_arm3_main_prob_abs_diff": 0.0,
+      "phase_sensitive_branching_effect": "TRUE",
+      "arm2_reproduces_branch_observable": "TRUE",
+      "negativity_changes_observable_beyond_arm2": "FALSE",
+      "quantum_specific_effect": "FALSE",
+      "classification": "phase-sensitive branching exists but branch observable is Arm2-reproducible"
+    },
+    {
+      "scenario": "stabilizer",
+      "gamma_values": "1.0;0.75;0.5;0.25;0.0",
+      "phi_values": "0;pi/2;pi",
+      "total_P_release_validation_diff": 0.0,
+      "max_abs_main_branch_shift_vs_gamma1": 17.533594490665,
+      "max_arm3_negativity": 0.353553390593,
+      "max_arm2_arm3_main_prob_abs_diff": 0.0,
+      "phase_sensitive_branching_effect": "TRUE",
+      "arm2_reproduces_branch_observable": "TRUE",
+      "negativity_changes_observable_beyond_arm2": "FALSE",
+      "quantum_specific_effect": "FALSE",
+      "classification": "phase-sensitive branching exists but branch observable is Arm2-reproducible"
+    },
+    {
+      "scenario": "leaky_membrane",
+      "gamma_values": "1.0;0.75;0.5;0.25;0.0",
+      "phi_values": "0;pi/2;pi",
+      "total_P_release_validation_diff": 0.0,
+      "max_abs_main_branch_shift_vs_gamma1": 20.372647107667,
+      "max_arm3_negativity": 0.353553390593,
+      "max_arm2_arm3_main_prob_abs_diff": 0.0,
+      "phase_sensitive_branching_effect": "TRUE",
+      "arm2_reproduces_branch_observable": "TRUE",
+      "negativity_changes_observable_beyond_arm2": "FALSE",
+      "quantum_specific_effect": "FALSE",
+      "classification": "phase-sensitive branching exists but branch observable is Arm2-reproducible"
+    },
+    {
+      "scenario": "road_fed",
+      "gamma_values": "1.0;0.75;0.5;0.25;0.0",
+      "phi_values": "0;pi/2;pi",
+      "total_P_release_validation_diff": 0.0,
+      "max_abs_main_branch_shift_vs_gamma1": 42.919969725896,
+      "max_arm3_negativity": 0.353553390593,
+      "max_arm2_arm3_main_prob_abs_diff": 0.0,
+      "phase_sensitive_branching_effect": "TRUE",
+      "arm2_reproduces_branch_observable": "TRUE",
+      "negativity_changes_observable_beyond_arm2": "FALSE",
+      "quantum_specific_effect": "FALSE",
+      "classification": "phase-sensitive branching exists but branch observable is Arm2-reproducible"
+    },
+    {
+      "scenario": "storage_heavy",
+      "gamma_values": "1.0;0.75;0.5;0.25;0.0",
+      "phi_values": "0;pi/2;pi",
+      "total_P_release_validation_diff": 0.0,
+      "max_abs_main_branch_shift_vs_gamma1": 9.623717960721,
+      "max_arm3_negativity": 0.353553390593,
+      "max_arm2_arm3_main_prob_abs_diff": 0.0,
+      "phase_sensitive_branching_effect": "TRUE",
+      "arm2_reproduces_branch_observable": "TRUE",
+      "negativity_changes_observable_beyond_arm2": "FALSE",
+      "quantum_specific_effect": "FALSE",
+      "classification": "phase-sensitive branching exists but branch observable is Arm2-reproducible"
+    }
+  ],
+  "detail_rows_available": 45,
+  "verdict": "NEGATIVE_FOR_QUANTUM_SPECIFIC_EFFECT",
+  "safe_interpretation": "The branching converter creates a large phase-sensitive product-composition effect and Arm3 negativity at low gamma, but the branch-only observable is exactly reproduced by Arm2 classical complex-wave control. Therefore this probe is negative for quantum-specific efficacy.",
+  "limitations": [
+    "Total P_release is inherited from the scalar sandbox and is not changed by this probe.",
+    "The observable is branch-only product composition, so the reduced branch density matrix is sufficient to reproduce it.",
+    "Arm3 negativity is present but does not change a reactor observable beyond Arm2.",
+    "A non-Arm2-reproducible result would need a nonlocal/control-conditioned observable or a measurement backaction channel that changes reactor output."
+  ]
+}
