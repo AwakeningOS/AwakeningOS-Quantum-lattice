@@ -128,6 +128,7 @@ def main() -> int:
             ("quantum_measurement_terrain_feedback_probe.py", "measurement_terrain_feedback_probe_seed20260707", [], ["data/quantum_microreactor/measurement_terrain_feedback_probe_seed20260707_summary.csv"]),
             ("quantum_sampled_chsh_terrain_feedback_probe.py", "sampled_chsh_terrain_feedback_probe_seed20260707", [], ["data/quantum_microreactor/sampled_chsh_terrain_feedback_probe_seed20260707_summary.csv"]),
             ("quantum_measurement_terrain_memory_probe.py", "measurement_terrain_memory_probe_seed20260707", [], ["data/quantum_microreactor/measurement_terrain_memory_probe_seed20260707_summary.csv"]),
+            ("quantum_adaptive_measurement_feedback_probe.py", "adaptive_measurement_feedback_probe_seed20260707", [], ["data/quantum_microreactor/adaptive_measurement_feedback_probe_seed20260707_summary.csv"]),
         ]
         for script, stem, extra_args, expected_paths in audit_specs:
             out_json = tmp / f"{stem}.json"
