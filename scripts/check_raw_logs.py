@@ -125,38 +125,14 @@ def main() -> int:
 
         quantumized_tmp_json = tmp / "information_microreactor_quantumized_comparison_seed20260707.json"
         quantumized_tmp_csv = tmp / "information_microreactor_quantumized_comparison_seed20260707_summary.csv"
-        run([
-            sys.executable,
-            "scripts/phenomenology/information_microreactor_quantumized_comparison.py",
-            "--seed",
-            "20260707",
-            "--out",
-            str(quantumized_tmp_json),
-            "--csv",
-            str(quantumized_tmp_csv),
-        ])
+        run([sys.executable, "scripts/phenomenology/information_microreactor_quantumized_comparison.py", "--seed", "20260707", "--out", str(quantumized_tmp_json), "--csv", str(quantumized_tmp_csv)])
         compare_csv(ROOT / "data/microreactor/information_microreactor_quantumized_comparison_seed20260707_summary.csv", quantumized_tmp_csv, rtol=args.rtol, atol=args.atol)
 
         obs_tmp_json = tmp / "information_microreactor_backpressure_contamination_seed20260707.json"
         obs_tmp_summary = tmp / "information_microreactor_backpressure_contamination_seed20260707_summary.csv"
         obs_tmp_events = tmp / "information_microreactor_backpressure_contamination_seed20260707_events.csv"
         obs_tmp_timeseries = tmp / "information_microreactor_backpressure_contamination_seed20260707_timeseries.csv"
-        run([
-            sys.executable,
-            "scripts/phenomenology/information_microreactor_backpressure_contamination.py",
-            "--seed",
-            "20260707",
-            "--out",
-            str(obs_tmp_json),
-            "--summary-csv",
-            str(obs_tmp_summary),
-            "--events-csv",
-            str(obs_tmp_events),
-            "--timeseries-csv",
-            str(obs_tmp_timeseries),
-            "--timeseries-stride",
-            "50",
-        ])
+        run([sys.executable, "scripts/phenomenology/information_microreactor_backpressure_contamination.py", "--seed", "20260707", "--out", str(obs_tmp_json), "--summary-csv", str(obs_tmp_summary), "--events-csv", str(obs_tmp_events), "--timeseries-csv", str(obs_tmp_timeseries), "--timeseries-stride", "50"])
         compare_csv(ROOT / "data/microreactor/information_microreactor_backpressure_contamination_seed20260707_summary.csv", obs_tmp_summary, rtol=args.rtol, atol=args.atol)
         compare_csv(ROOT / "data/microreactor/information_microreactor_backpressure_contamination_seed20260707_events.csv", obs_tmp_events, rtol=args.rtol, atol=args.atol)
         compare_csv(ROOT / "data/microreactor/information_microreactor_backpressure_contamination_seed20260707_timeseries.csv", obs_tmp_timeseries, rtol=args.rtol, atol=args.atol)
@@ -164,20 +140,16 @@ def main() -> int:
         gamma_tmp_json = tmp / "gamma_validation_seed20260707.json"
         gamma_tmp_summary = tmp / "gamma_validation_seed20260707_summary.csv"
         gamma_tmp_comparison = tmp / "gamma_validation_seed20260707_comparison.csv"
-        run([
-            sys.executable,
-            "scripts/audit/quantum_microreactor_gamma_validation.py",
-            "--seed",
-            "20260707",
-            "--out",
-            str(gamma_tmp_json),
-            "--summary-csv",
-            str(gamma_tmp_summary),
-            "--comparison-csv",
-            str(gamma_tmp_comparison),
-        ])
+        run([sys.executable, "scripts/audit/quantum_microreactor_gamma_validation.py", "--seed", "20260707", "--out", str(gamma_tmp_json), "--summary-csv", str(gamma_tmp_summary), "--comparison-csv", str(gamma_tmp_comparison)])
         compare_csv(ROOT / "data/quantum_microreactor/gamma_validation_seed20260707_summary.csv", gamma_tmp_summary, rtol=args.rtol, atol=args.atol)
         compare_csv(ROOT / "data/quantum_microreactor/gamma_validation_seed20260707_comparison.csv", gamma_tmp_comparison, rtol=args.rtol, atol=args.atol)
+
+        gamma_sweep_tmp_json = tmp / "gamma_sweep_quality_probe_seed20260707.json"
+        gamma_sweep_tmp_summary = tmp / "gamma_sweep_quality_probe_seed20260707_summary.csv"
+        gamma_sweep_tmp_detail = tmp / "gamma_sweep_quality_probe_seed20260707_detail.csv"
+        run([sys.executable, "scripts/audit/quantum_microreactor_gamma_sweep_quality_probe.py", "--seed", "20260707", "--out", str(gamma_sweep_tmp_json), "--summary-csv", str(gamma_sweep_tmp_summary), "--detail-csv", str(gamma_sweep_tmp_detail)])
+        compare_csv(ROOT / "data/quantum_microreactor/gamma_sweep_quality_probe_seed20260707_summary.csv", gamma_sweep_tmp_summary, rtol=args.rtol, atol=args.atol)
+        compare_csv(ROOT / "data/quantum_microreactor/gamma_sweep_quality_probe_seed20260707_detail.csv", gamma_sweep_tmp_detail, rtol=args.rtol, atol=args.atol)
 
         audit_specs = [
             ("scripts/audit/quantum_coupled_microreactor_step1.py", "step1_cr_coupling_seed0", "data/quantum_microreactor/step1_cr_coupling_seed0_summary.csv"),
