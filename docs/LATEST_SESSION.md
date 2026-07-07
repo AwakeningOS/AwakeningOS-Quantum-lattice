@@ -5,7 +5,7 @@ Updated: 2026-07-08
 ## Current latest experiment
 
 ```text
-quantum_measurement_backaction_terrain_probe
+quantum_context_order_terrain_probe
 ```
 
 ## Files to read first
@@ -14,43 +14,47 @@ quantum_measurement_backaction_terrain_probe
 README.md
 SKILLS.md
 results/STATUS.md
-results/quantum_measurement_backaction_terrain_probe_2026-07-08.md
-experiments/quantum_measurement_backaction_terrain_probe_protocol_2026-07-08.md
-scripts/audit/quantum_measurement_backaction_terrain_probe.py
+results/quantum_context_order_terrain_probe_2026-07-08.md
+experiments/quantum_context_order_terrain_probe_protocol_2026-07-08.md
+scripts/audit/quantum_context_order_terrain_probe.py
 ```
 
 ## Reproduction command
 
 ```bash
-python scripts/audit/quantum_measurement_backaction_terrain_probe.py \
+python scripts/audit/quantum_context_order_terrain_probe.py \
   --seed 20260707 \
-  --out data/quantum_microreactor/measurement_backaction_terrain_probe_seed20260707.json \
-  --summary-csv data/quantum_microreactor/measurement_backaction_terrain_probe_seed20260707_summary.csv
+  --out data/quantum_microreactor/context_order_terrain_probe_seed20260707.json \
+  --summary-csv data/quantum_microreactor/context_order_terrain_probe_seed20260707_summary.csv
 ```
 
 ## Current result
 
 ```text
-POSITIVE_FOR_MODEL_LEVEL_MEASUREMENT_BACKACTION_TERRAIN
+POSITIVE_FOR_MODEL_LEVEL_CONTEXT_ORDER_TERRAIN
 ```
 
 Key results:
 
 ```text
-stress gamma=0 projective measurement: signal -100%, terrain -99.958308%, release -1.149391%
-stress gamma=0 gentle measurement: signal -33.013319%, terrain -32.333922%, release -0.635817%
+stress gamma=0: AB signal total 198.363585, BA signal total 0
+stress gamma=0: AB positive steps 683, BA positive steps 0
+stress gamma=0: final terrain 1.266166 vs 0.003792
+stress gamma=0: release AB +2.038803% vs BA
 gamma=1 null: no effect
 normal/storage: no effect
+matched replay release diff vs AB = 0
 ```
 
 ## Safe claim
 
 ```text
-In stress gamma=0, invasive measurement of the boundary state suppresses later Bell-excess terrain signal and lowers downstream release after measurement stops being treated as a passive readout. The effect is backaction-like and negative/suppressive: measurement changes the future boundary state rather than merely reporting it. Normal/storage and gamma=1 null rows remain unchanged.
+With fixed noncommuting context probes and no direct outcome write beyond the conservative order signal, AB and BA read order diverge only in stress gamma=0. AB produces a conservative order signal, higher final terrain, and higher downstream release; BA remains at baseline. Gamma=1 and normal/storage are null. Matched replay reproduces downstream release once the order-signal trace is fixed, so specificity is at the context-order measurement boundary.
 ```
 
 ## Next boundary
 
 ```text
-quantum_context_order_terrain_probe
+integrated status report / synthesis
+separate negative plumbing results from positive measurement-boundary results
 ```
