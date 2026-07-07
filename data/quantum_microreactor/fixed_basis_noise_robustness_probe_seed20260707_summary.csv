@@ -1,0 +1,9 @@
+scenario,noise_type,shots,max_positive_noise_rate,first_failure_noise_rate,release_dev_pct_at_max_positive,b_leak_dev_pct_at_max_positive,d_pass_dev_pct_at_max_positive,membrane_signal_total_at_max_positive,positive_sampled_steps_at_max_positive,effect_at_max_positive
+stress_membrane,depolarizing,2048,0.15,0.2,0.040552957177,-0.099982773809,-2.666374690304,23.70110835826,468,TRUE
+contaminated_stress_membrane,depolarizing,2048,0.15,0.2,0.050923249509,-0.124628132979,-2.70409945469,24.036439597241,488,TRUE
+stress_membrane,phase_damping,2048,0.15,0.2,0.026408280912,-0.064045934356,-2.667713181069,23.713006053947,472,TRUE
+contaminated_stress_membrane,phase_damping,2048,0.15,0.2,0.04889542269,-0.123128014503,-2.607710280803,23.17964694047,474,TRUE
+stress_membrane,amplitude_damping,2048,0.1,0.15,0.297877889552,-0.695977071578,-8.741206532537,77.699613622547,616,TRUE
+contaminated_stress_membrane,amplitude_damping,2048,0.1,0.15,0.248679636213,-0.603795677472,-8.546199819658,75.966220619179,618,TRUE
+stress_membrane,readout_error,2048,0.02,0.05,1.345439302964,-2.952383192622,-19.233311775029,170.962771333592,638,TRUE
+contaminated_stress_membrane,readout_error,2048,0.02,0.05,1.435003096772,-3.149418826153,-19.501920762957,173.350406781841,636,TRUE
