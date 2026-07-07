@@ -55,6 +55,7 @@ class Config:
     seed: int = 20260707
     steps: int = 1000
     pulse_period: float = 64.0
+    timeseries_stride: int = 10
 
 
 @dataclass(frozen=True)
@@ -337,6 +338,21 @@ def event_rows(rows: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     return out
 
 
+def sample_timeseries(rows: List[Dict[str, Any]], stride: int) -> List[Dict[str, Any]]:
+    """Return compact deterministic checkpoints plus final row.
+
+    Events CSV keeps exact threshold crossing times. The timeseries CSV keeps
+    regular checkpoints so the trajectory shape is inspectable without turning
+    the repository into a large data dump.
+    """
+    if stride <= 0:
+        return rows
+    sampled = [row for row in rows if int(row["t"]) % stride == 0]
+    if sampled[-1]["t"] != rows[-1]["t"]:
+        sampled.append(rows[-1])
+    return sampled
+
+
 def rounded_rows(rows: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     out = []
     for row in rows:
@@ -355,12 +371,12 @@ def write_csv(rows: List[Dict[str, Any]], path: Path) -> None:
         writer.writerows(rows)
 
 
-def run(seed: int = 20260707) -> Dict[str, Any]:
-    cfg = Config(seed=seed)
+def run(seed: int = 20260707, timeseries_stride: int = 10) -> Dict[str, Any]:
+    cfg = Config(seed=seed, timeseries_stride=timeseries_stride)
     rows, timeline = simulate(cfg)
     summary = rounded_rows(summarize(rows, timeline))
     events = rounded_rows(event_rows(rows))
-    timeseries = rounded_rows(rows)
+    timeseries = rounded_rows(sample_timeseries(rows, cfg.timeseries_stride))
 
     return {
         "experiment": "information_microreactor_backpressure_contamination",
@@ -405,9 +421,10 @@ def main() -> None:
     parser.add_argument("--summary-csv", type=Path, default=Path("data/microreactor/information_microreactor_backpressure_contamination_seed20260707_summary.csv"))
     parser.add_argument("--events-csv", type=Path, default=Path("data/microreactor/information_microreactor_backpressure_contamination_seed20260707_events.csv"))
     parser.add_argument("--timeseries-csv", type=Path, default=Path("data/microreactor/information_microreactor_backpressure_contamination_seed20260707_timeseries.csv"))
+    parser.add_argument("--timeseries-stride", type=int, default=10)
     args = parser.parse_args()
 
-    result = run(seed=args.seed)
+    result = run(seed=args.seed, timeseries_stride=args.timeseries_stride)
 
     args.out.parent.mkdir(parents=True, exist_ok=True)
     result_for_json = {k: v for k, v in result.items() if k != "timeseries"}
