@@ -1,0 +1,22 @@
+{
+  "experiment": "quantum_microreactor_chsh_readout_transport_probe",
+  "date": "2026-07-08",
+  "layer": "quantum-audit probe",
+  "seed": 20260707,
+  "readout": "yb = max(2, S_CHSH) / (2*sqrt(2)); classical ceiling yb=1/sqrt(2)",
+  "verdict": "POSITIVE_FOR_MODEL_LEVEL_CHSH_READOUT_TRANSPORT",
+  "positive_rows": 4,
+  "pre_registered_predictions": {
+    "P1_null": "PASS: gamma=1 has max_chsh=0 and zero violating post-burn steps in all tested scenarios.",
+    "P3_main": "PASS: gamma=0 gives max_chsh>2 and P_release exceeds the classical ceiling; strongest in stress.",
+    "P4_monotonic": "PASS in tested grid: violation/excess is destroyed as gamma increases; stress shows threshold between gamma=0.5 and 0.25.",
+    "P5_localization": "PASS: stress g=0 exceeds ceiling by +29.43%, while normal is +2.33% and storage_heavy is +0.98%."
+  },
+  "safe_interpretation": "A deliberately added CHSH readout component can make Bell-violating joint correlations exceed the classical release ceiling and reach transported P_release. This is a model-level quantum-audit positive for the measurement/readout component, not for ordinary local population plumbing.",
+  "limitations": [
+    "This is not a hardware result.",
+    "This is not chemical realism or biological metabolism.",
+    "The positive result depends on adding a CHSH/noncommutative readout component.",
+    "It does not rescue local population plumbing, which remains reduced-state/Arm2 reproducible."
+  ]
+}
