@@ -5,7 +5,7 @@ Updated: 2026-07-08
 ## Current latest experiment
 
 ```text
-quantum_fixed_basis_adaptive_feedback_probe
+quantum_fixed_basis_shot_budget_probe
 ```
 
 ## Files to read first
@@ -14,62 +14,46 @@ quantum_fixed_basis_adaptive_feedback_probe
 README.md
 SKILLS.md
 results/STATUS.md
-docs/RAW_LOG_GATE.md
-results/quantum_fixed_basis_adaptive_feedback_probe_2026-07-08.md
-experiments/quantum_fixed_basis_adaptive_feedback_probe_protocol_2026-07-08.md
-scripts/audit/quantum_fixed_basis_adaptive_feedback_probe.py
+results/quantum_fixed_basis_shot_budget_probe_2026-07-08.md
+experiments/quantum_fixed_basis_shot_budget_probe_protocol_2026-07-08.md
+scripts/audit/quantum_fixed_basis_shot_budget_probe.py
 ```
 
 ## Reproduction command
 
 ```bash
-python scripts/audit/quantum_fixed_basis_adaptive_feedback_probe.py \
+python scripts/audit/quantum_fixed_basis_shot_budget_probe.py \
   --seed 20260707 \
-  --out data/quantum_microreactor/fixed_basis_adaptive_feedback_probe_seed20260707.json \
-  --summary-csv data/quantum_microreactor/fixed_basis_adaptive_feedback_probe_seed20260707_summary.csv
-```
-
-## RAW_LOG gate
-
-Run:
-
-```bash
-python scripts/check_raw_logs.py
-```
-
-New canonical log:
-
-```text
-data/quantum_microreactor/fixed_basis_adaptive_feedback_probe_seed20260707_summary.csv
+  --out data/quantum_microreactor/fixed_basis_shot_budget_probe_seed20260707.json \
+  --summary-csv data/quantum_microreactor/fixed_basis_shot_budget_probe_seed20260707_summary.csv
 ```
 
 ## Current result
 
 ```text
-POSITIVE_FOR_MODEL_LEVEL_FIXED_BASIS_ADAPTIVE_FEEDBACK
+POSITIVE_FOR_MODEL_LEVEL_FIXED_BASIS_SHOT_BUDGET
 ```
 
 Key results:
 
 ```text
-stress gamma=0.25: phase1 write 0.360060, phase2 adaptive steps 12, phase3 adaptive steps 289, phase2 release +1.438670%, phase3 +0.105794%
-stress gamma=0: phase1 write 10.580120, phase2 adaptive steps 90, phase3 adaptive steps 346, phase2 release +21.867957%, phase3 +3.988183%
-gamma>=0.5: no positive fixed-basis adaptive effect
-normal/storage: later adaptive activity alone is not counted positive without phase1 Bell-excess terrain inscription
-matched replay: phase2/phase3 diff vs Arm3 = 0
+stress gamma=0 survives from 32768 down to 512 shots per setting
+512 shots: A pass +0.156974%, B leak -0.330297%, D pass -7.119113%, release +0.156974%
+normal/storage false positives: 0
+stress gamma=0.25 survives only at 32768 shots; 8192 and below are zero
+matched replay release diff = 0
 ```
 
 ## Safe claim
 
 ```text
-A fixed-basis finite-shot CHSH measurement boundary, pre-calibrated once rather than optimized per step, can still write terrain memory and shift later adaptive measurement gates in stress context. Normal/storage later adaptive activity is not counted positive without phase-1 Bell-excess terrain inscription. This remains model-level and not hardware or ordinary local population plumbing.
+The fixed-basis membrane decision-boundary effect survives down to 512 shots per setting in stress gamma=0, while normal/storage false positives remain zero on the tested grid. The weaker stress gamma=0.25 effect survives only at 32768 shots.
 ```
 
 ## Next boundary
 
 ```text
-membrane decision boundary using adaptive terrain memory
-pre-registered hardware shot budget
-explicit QPU candidate circuit
-noise-model robustness
+quantum_fixed_basis_noise_robustness_probe
+quantum_measurement_backaction_terrain_probe
+quantum_context_order_terrain_probe
 ```
