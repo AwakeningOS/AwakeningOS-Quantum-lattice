@@ -1,0 +1,8 @@
+scenario,num_metrics,max_abs_error,max_error_metric,failed_metrics,pass
+normal,24,0,,0,TRUE
+high_load,24,0,,0,TRUE
+stress,24,0,,0,TRUE
+stabilizer,24,0,,0,TRUE
+leaky_membrane,24,0,,0,TRUE
+road_fed,24,0,,0,TRUE
+storage_heavy,24,0,,0,TRUE
