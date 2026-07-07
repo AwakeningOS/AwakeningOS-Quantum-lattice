@@ -2,7 +2,7 @@
 
 Date: 2026-07-07
 
-Status: `RAW_LOG_BACKED`
+Status: `QUARANTINED_CLAIM`
 Layer: `quantum-audit`
 
 Generator script:
@@ -23,154 +23,71 @@ Run command:
 python scripts/audit/quantum_coupled_microreactor_step2_backpressure.py --seed 0 --csv data/quantum_microreactor/step2_backpressure_seed0_summary.csv
 ```
 
-## Purpose
+## Quarantine reason
 
-Step 1 established a designed static C-R bond witness.
+This report is reproducible, but the functional interpretation failed audit.
 
-Step 2 asks whether the C-R bond changes a functional response:
-
-```text
-reservoir capacity -> conversion probability -> release probability -> backpressure index
-```
-
-This is still not the full chain:
+The intended claim was:
 
 ```text
-source -> membrane -> converter -> reservoir -> sink
+capacity-dependent conversion/release response is independent from the entanglement witness
 ```
 
-It tests only the C-R submodule.
+But the implementation does not satisfy that requirement.
 
-## Design choice
+## Critical audit finding
 
-Use dynamic backpressure.
+The `conversion_effect(capacity=1)` used here is equivalent to the Step 1 Bell-bond projector times `base_rate`:
 
 ```text
-open_empty_path  = capacity
-open_fuller_path = capacity^2
+conversion_effect(capacity=1) == base_rate * |J+><J+|
 ```
 
-The fuller reservoir branch is more strongly suppressed when capacity is low.
-
-## Functional observables
-
-The main observables are defined by the capacity-dependent conversion effect, not by the entanglement witness.
+where:
 
 ```text
-conversion_probability = Tr(E_convert(capacity) rho)
-release_probability    = conversion_probability * drain_rate * capacity
-backpressure_index     = 1 - conversion_probability(capacity) / conversion_probability(capacity=1)
+|J+> = (|c0,r0> + |c1,r1>) / sqrt(2)
 ```
 
-This is not a Bell-target analyzer.
+Therefore the reported conversion bonus is still a coherence/Bell-bond readout in disguise.
 
-## Arms
+## Why the claim is invalid
 
-For each theta and capacity:
+The previous report stated that the observable was not a Bell-target analyzer. That was wrong.
+
+The capacity factor changes the branch weights, but the effect remains a rank-1 coherence-sensitive projector. It does not provide an independent functional population readout.
+
+The observed bonus is therefore a scaled version of the same Step 1 structure, not evidence that a natural device conversion/backpressure function is controlled by entanglement.
+
+## What remains useful
+
+This file remains useful as a negative audit case:
 
 ```text
-entangled_event:
-  |psi(theta)> = cos(theta)|c0,r0> + sin(theta)|c1,r1>
-
-dephased_correlated:
-  configuration-basis dephase of entangled_event
-  same rho_C/rho_R and same same-pair population
-  N(C:R) = 0
-
-product_marginals:
-  rho_C(theta) tensor rho_R(theta)
-  same rho_C/rho_R but no C-R correlation
-  N(C:R) = 0
+Renaming a Bell-bond projector as conversion_effect does not make it an independent device observable.
 ```
 
-## Marginal audit
-
-For all theta and capacity rows:
+The lesson for future Step 2 work is:
 
 ```text
-marginal_diff_vs_entangled_C_fro = 0.0
-marginal_diff_vs_entangled_R_fro = 0.0
+coherence sensitivity must occur in the dynamics
+final readout must be diagonal population after dynamics
 ```
 
-for the dephased-correlated arm. Product marginals also preserve the single-module reductions by construction.
+## Superseding file
 
-## Main result at theta/pi = 0.25
-
-| capacity | arm | N(C:R) | conversion | release | backpressure |
-|---:|---|---:|---:|---:|---:|
-| 1.0 | entangled_event | 0.5 | 0.900000 | 0.720000 | 0.000000 |
-| 1.0 | dephased_correlated | 0.0 | 0.450000 | 0.360000 | 0.000000 |
-| 1.0 | product_marginals | 0.0 | 0.225000 | 0.180000 | 0.000000 |
-| 0.5 | entangled_event | 0.5 | 0.327849 | 0.131140 | 0.635723 |
-| 0.5 | dephased_correlated | 0.0 | 0.168750 | 0.067500 | 0.625000 |
-| 0.5 | product_marginals | 0.0 | 0.084375 | 0.033750 | 0.625000 |
-| 0.1 | entangled_event | 0.5 | 0.038980 | 0.003118 | 0.956689 |
-| 0.1 | dephased_correlated | 0.0 | 0.024750 | 0.001980 | 0.945000 |
-| 0.1 | product_marginals | 0.0 | 0.012375 | 0.000990 | 0.945000 |
-
-## Result pattern
-
-At theta/pi = 0.25, the entangled C-R bond gives a conversion bonus over the matched dephased control:
+The corrected follow-up is:
 
 ```text
-capacity 1.0:
-  entangled - dephased = 0.450000
-
-capacity 0.5:
-  entangled - dephased = 0.159099
-
-capacity 0.1:
-  entangled - dephased = 0.014230
+results/quantum_coupled_microreactor_step2_v2_unitary_population_2026-07-07.md
 ```
 
-The bonus decreases as reservoir capacity is restricted.
-
-This is different from Step 1: the observable is not the static C-R Bell-bond analyzer. It is a capacity-dependent conversion/release response.
-
-## Backpressure behavior
-
-The backpressure index rises as capacity is restricted.
-
-At theta/pi = 0.25:
-
-```text
-entangled_event:
-  capacity 0.5 -> backpressure_index 0.635723
-  capacity 0.1 -> backpressure_index 0.956689
-
-dephased_correlated:
-  capacity 0.5 -> backpressure_index 0.625000
-  capacity 0.1 -> backpressure_index 0.945000
-```
-
-Both arms feel backpressure. The entangled arm retains an extra conversion response above the dephased control, but this extra response is also squeezed by low capacity.
-
-## Interpretation
-
-Step 2 shows a designed capacity-dependent C-R conversion response:
-
-```text
-matched module marginals
-N(C:R) > 0 only in the entangled arm
-conversion/release response differs from N=0 controls
-capacity restriction changes both response and entangled bonus
-```
-
-The result supports a narrow claim:
-
-```text
-A capacity-dependent C-R conversion response differs between an entangled C-R bond and N=0 correlated controls under module-marginal matching.
-```
-
-## Critical audit note
-
-This is still a designed 6-qubit C-R effect model.
-
-It does not yet prove that a natural full microreactor uses entanglement to integrate parts. It does show that once the functional observable is defined independently of the entanglement witness, the entangled and dephased arms remain distinguishable under backpressure.
+That version uses explicit unitary C-R conversion dynamics and reads only the final diagonal product population.
 
 ## What this does not claim
 
 ```text
+not a valid Step 2 functional witness
 not a full microreactor
 not membrane integration
 not source/sink integration
@@ -178,17 +95,4 @@ not nonlocal signaling
 not quantum advantage
 not life-like behavior
 not hardware result
-```
-
-## Next step
-
-Add the membrane module M only after this C-R backpressure result survives audit.
-
-The next experiment should test:
-
-```text
-M-C-R synergy
-whole-system response minus independent-component prediction
-same module-marginal/dephase discipline
-raw-log gate registration
 ```
