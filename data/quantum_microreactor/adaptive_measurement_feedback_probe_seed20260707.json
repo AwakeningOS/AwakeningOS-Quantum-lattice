@@ -1,0 +1,27 @@
+{
+  "experiment": "quantum_adaptive_measurement_feedback_probe",
+  "date": "2026-07-08",
+  "layer": "quantum-audit probe",
+  "seed": 20260707,
+  "adaptive_phase_gain": 1.25,
+  "adaptive_gate_gain": 0.18,
+  "shots_per_setting_per_step": 32768,
+  "alpha": 0.001,
+  "confidence_margin_S": 0.093683293042,
+  "verdict": "POSITIVE_FOR_MODEL_LEVEL_ADAPTIVE_MEASUREMENT_FEEDBACK",
+  "positive_rows": 2,
+  "pre_registered_predictions": {
+    "P1_gamma1_null": "PASS: gamma=1 has no phase-1 terrain write, no adaptive gate change, and no later release difference.",
+    "P2_stress_adaptive": "PASS: stress gamma=0 and gamma=0.25 show phase-1 CHSH terrain write, later adaptive positive sampled steps, and later release change.",
+    "P3_localization": "PASS by strict criterion: normal/storage can show later adaptive CHSH activity, but without phase-1 CHSH terrain write they remain classified negative.",
+    "P4_replay_specificity": "PASS: matched replay reproduces Arm3 release after replaying the same phase-1 write trace and aligned adaptive sampling stream."
+  },
+  "safe_interpretation": "Finite-shot sampled CHSH terrain memory can shift later adaptive measurement/readout gates and alter later reactor output in stress context. The matched replay shows the post-write adaptive dynamics follow the written terrain trace; quantum-specificity remains at the Bell-bound measurement/write/readout boundary, not in ordinary local population plumbing.",
+  "limitations": [
+    "Not a hardware result.",
+    "Not chemical realism or biological metabolism.",
+    "The adaptive loop still uses simulated quantum states and simulated finite-shot CHSH measurements.",
+    "Normal/storage later adaptive CHSH activity is not counted as positive without phase-1 Bell-excess terrain inscription.",
+    "Post-write adaptive dynamics are not claimed to be quantum-specific beyond the measurement/readout eligibility rule."
+  ]
+}
