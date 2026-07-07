@@ -16,6 +16,7 @@ CODE-BACKED:
   scripts/history_droplet_core.py
   scripts/negativity_causality_test.py
   scripts/phenomenology/converter_core.py
+  scripts/audit/quantum_coupled_microreactor_step1.py
 
 NOT YET CODE-BACKED:
   most older results/*.md files about information chemistry, membrane, reservoir,
@@ -36,7 +37,8 @@ These claims are backed by committed Python scripts:
 4. The history-droplet core is a no-jump/postselective exploratory model, not a full Lindblad simulator.
 5. History/droplet behavior has classical controls and must be interpreted with those controls.
 6. A minimal two-qubit causality test shows a basis-relative coherence pattern after one-particle marginals are exactly matched against controls.
-7. A classical stochastic converter component is now code-backed and raw-log-backed; it characterizes identity/meaning transformation through throughput, fidelity/promiscuity, gating, poisoning, and bistable hysteresis axes.
+7. A classical stochastic converter component is code-backed and raw-log-backed; it characterizes identity/meaning transformation through throughput, fidelity/promiscuity, gating, poisoning, and bistable hysteresis axes.
+8. A 6-qubit C-R module-bond audit shows an entanglement-dependent joint response under exact module-marginal matching against a dephased N=0 correlated control.
 
 Important limitation for claim 6:
 
@@ -49,6 +51,14 @@ Important limitation for claim 7:
 
 ```text
 The converter core is classical phenomenology.
+```
+
+Important limitation for claim 8:
+
+```text
+This is Step 1 for the converter-reservoir bond only.
+It is not a full source -> membrane -> converter -> reservoir -> sink microreactor.
+It is not a nonlocal signaling claim.
 ```
 
 ### Quarantined or unverified claims
@@ -90,45 +100,24 @@ QUARANTINED_CLAIM:
 ```text
 scripts/
   quantum_lattice_core.py
-    CODE_BACKED. EXCH lattice, classical-wave control, negativity witness.
-
   history_droplet_core.py
-    CODE_BACKED. Hard-core droplet, history terrain, no-jump/postselective loss,
-    classical controls.
-
   negativity_causality_test.py
-    CODE_BACKED / RAW_LOG_BACKED. Minimal three-arm marginal-matched test for
-    basis-relative channel causality.
-
   phenomenology/converter_core.py
-    CODE_BACKED / RAW_LOG_BACKED. Classical stochastic converter component.
+  audit/quantum_coupled_microreactor_step1.py
 
 experiments/
-  REPORT_2026-07-07.md
-    Historical report. Read with audit notes.
+  quantum_coupled_microreactor_step1_protocol_2026-07-07.md
 
 results/
   STATUS.md
-    Per-file reproducibility status.
-
   negativity_causality_test_2026-07-07.md
-    RAW_LOG_BACKED report for the minimal causality test.
-
   converter_core_2026-07-07.md
-    RAW_LOG_BACKED report for the converter component.
-
-  gpt_key_findings.md
-    Updated finding list with unverified phase-dependent transport quarantined.
-
-  *.md
-    Mixed historical reports and phenomenology notes. See results/STATUS.md.
+  quantum_coupled_microreactor_step1_2026-07-07.md
 
 data/
   negativity_causality/negativity_causality_test_seed0.json
-    Raw log for the minimal causality test.
-
   converter/converter_core_seed8128_summary.csv
-    Raw CSV summary log for the converter component sweeps.
+  quantum_microreactor/step1_cr_coupling_seed0_summary.csv
 ```
 
 ## Setup
@@ -146,6 +135,8 @@ python scripts/quantum_lattice_core.py --all
 python scripts/history_droplet_core.py --all
 python scripts/negativity_causality_test.py --out data/negativity_causality/negativity_causality_test_seed0.json
 python scripts/phenomenology/converter_core.py --seed 8128 --csv data/converter/converter_core_seed8128_summary.csv
+python scripts/audit/quantum_coupled_microreactor_step1.py --seed 0 --csv data/quantum_microreactor/step1_cr_coupling_seed0_summary.csv
+python scripts/check_raw_logs.py
 ```
 
 ## Experimental discipline
@@ -167,10 +158,10 @@ The clean path is now:
 
 ```text
 1. keep the small quantum-lattice core strict and reproducible
-2. treat A/B/C witness tests as audit-chapter inventory, not the current component front line
-3. rebuild phenomenological components with scripts and raw logs
-4. promote only code-backed components into the main result chain
-5. compose code-backed classical components before reducing selected substructures back into 12-13 qubit quantum primitives
+2. keep classical-effective component work code-backed and raw-log-backed
+3. use quantum/audit tests only when testing witness-bearing substructures
+4. grow the microreactor in stages: C-R bond -> backpressure -> M-C-R -> full chain
+5. promote only code-backed results into the main claim chain
 ```
 
 ## Not a current claim
@@ -184,10 +175,11 @@ self-repair
 self-regulation
 quantum advantage
 large-scale quantum information matter
+full quantum-coupled information microreactor
 ```
 
 The current strongest code-backed quantum witness is adjacent negativity in the small EXCH/ZZ lattice core.
 
-The current minimal basis-relative causality test is audit-chapter inventory. It must not be used to support component-development claims.
-
 The current code-backed phenomenology front line is the converter component, which changes identity/meaning in a classical stochastic model.
+
+The current quantum-audit front line is Step 1 of the quantum-coupled microreactor: a 6-qubit C-R module-bond witness, not yet the full device.
