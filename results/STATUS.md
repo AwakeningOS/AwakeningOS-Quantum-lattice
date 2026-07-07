@@ -17,27 +17,27 @@ QUARANTINED_CLAIM: Previously stated or implied as a result that failed audit or
 ## Current latest session
 
 ```text
-quantum_measurement_terrain_feedback_probe
+quantum_sampled_chsh_terrain_feedback_probe
 ```
 
 Backed by:
 
 ```text
-scripts/audit/quantum_measurement_terrain_feedback_probe.py
-data/quantum_microreactor/measurement_terrain_feedback_probe_seed20260707_summary.csv
-results/quantum_measurement_terrain_feedback_probe_2026-07-08.md
+scripts/audit/quantum_sampled_chsh_terrain_feedback_probe.py
+data/quantum_microreactor/sampled_chsh_terrain_feedback_probe_seed20260707_summary.csv
+results/quantum_sampled_chsh_terrain_feedback_probe_2026-07-08.md
 ```
 
 Safe status:
 
 ```text
-POSITIVE_FOR_MODEL_LEVEL_MEASUREMENT_TERRAIN_FEEDBACK
+POSITIVE_FOR_MODEL_LEVEL_SAMPLED_CHSH_TERRAIN_FEEDBACK
 ```
 
 Scope:
 
 ```text
-positive for a deliberately added CHSH/noncommutative measurement-boundary terrain feedback component
+positive for finite-shot sampled CHSH measurement-boundary terrain feedback in stress context
 not positive for ordinary local population plumbing
 not a hardware result
 ```
@@ -46,7 +46,8 @@ not a hardware result
 
 | file | status | action |
 |---|---|---|
-| `quantum_measurement_terrain_feedback_probe_2026-07-08.md` | RAW_LOG_BACKED | Latest terrain-feedback probe. CHSH excess is written into terrain only when `S_CHSH > 2`; stress at `gamma=0` writes terrain delta +2.646051 and changes next-phase P_release by +21.389922% vs Bell-bound Arm2. |
+| `quantum_sampled_chsh_terrain_feedback_probe_2026-07-08.md` | RAW_LOG_BACKED | Latest sampled readout/terrain probe. Uses 32768 shots per CHSH setting per step and subtracts margin S=0.093683; stress at `gamma=0` remains positive with terrain delta +2.347412 and next-phase release +19.998558%; normal/storage are filtered to zero. |
+| `quantum_measurement_terrain_feedback_probe_2026-07-08.md` | RAW_LOG_BACKED | Exact-CHSH terrain-feedback probe. CHSH excess is written into terrain only when `S_CHSH > 2`; stress at `gamma=0` writes terrain delta +2.646051 and changes next-phase P_release by +21.389922% vs Bell-bound Arm2. |
 | `quantum_microreactor_chsh_readout_transport_probe_2026-07-08.md` | RAW_LOG_BACKED | Readout-component probe. `gamma=1` has zero violations; stress at `gamma=0` reaches max CHSH 2.828427 and exceeds the classical release ceiling by +29.429224%. |
 | `quantum_microreactor_transported_branching_arm2_kill_2026-07-08.md` | RAW_LOG_BACKED | Transported branching probe. `P_release` moves strongly, but correct zero-entanglement reduced Arm2 reproduces the transported observable exactly; negative for quantum-specific local-population transport. |
 | `quantum_microreactor_branching_converter_probe_2026-07-08.md` | RAW_LOG_BACKED | Branch-only converter probe. Finds phase-sensitive product composition and Arm3 negativity, but branch-only observables are Arm2-reproducible. |
@@ -55,7 +56,6 @@ not a hardware result
 | `information_microreactor_quantumized_comparison_2026-07-08.md` | RAW_LOG_BACKED | Straightforward finite-core quantumization gives the same summaries as the classical probability core. |
 | `information_microreactor_backpressure_contamination_2026-07-08.md` | RAW_LOG_BACKED | Classical-effective observation sandbox with summary/events/timeseries logs. |
 | `information_microreactor_sandbox_2026-07-07.md` | RAW_LOG_BACKED | Classical-effective assembled sandbox; not quantum-specific. |
-| `quantum_coupled_microreactor_step6_explicit_component_chain_2026-07-07.md` | RAW_LOG_BACKED | Explicit component-chain audit; classical-effective, not a quantum-specific witness. |
 | `converter_core_2026-07-07.md` | RAW_LOG_BACKED | Classical stochastic phenomenology. |
 | `negativity_causality_test_2026-07-07.md` | RAW_LOG_BACKED | Audit inventory only. |
 | `gpt_key_findings.md` | META | Summary metadata. |
@@ -64,6 +64,7 @@ not a hardware result
 ## Current code-backed experiment sources
 
 ```text
+scripts/audit/quantum_sampled_chsh_terrain_feedback_probe.py
 scripts/audit/quantum_measurement_terrain_feedback_probe.py
 scripts/audit/quantum_microreactor_chsh_readout_transport_probe.py
 scripts/audit/quantum_microreactor_transported_branching_arm2_kill.py
@@ -80,7 +81,7 @@ scripts/phenomenology/information_microreactor_quantumized_comparison.py
 ## Latest safe finding
 
 ```text
-A deliberately added CHSH measurement-boundary signal can be written into terrain and later modulate classical-effective reactor dynamics. This is a model-level positive for measurement-boundary terrain feedback, not for ordinary local population plumbing.
+A finite-shot sampled CHSH measurement-boundary signal, after subtracting a conservative Bell-bound margin, can still be written into terrain and later modulate classical-effective dynamics in stress context. This is a model-level positive for sampled measurement-boundary terrain feedback, not for ordinary local population plumbing.
 ```
 
 ## Promotion rule
