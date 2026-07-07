@@ -99,7 +99,7 @@ def diagonal_reactor_metrics(rho_readout: np.ndarray, cfg: Config) -> Dict[str, 
 
 
 def gamma_grid() -> List[float]:
-    return [0.0, math.pi / 16, math.pi / 8, math.pi / 4]
+    return [0.0, math.pi / 8, math.pi / 4]
 
 
 def run(seed: int = 0) -> Dict[str, Any]:
