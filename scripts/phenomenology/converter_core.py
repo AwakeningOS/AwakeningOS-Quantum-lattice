@@ -1,34 +1,25 @@
 #!/usr/bin/env python3
 """
-Converter core: code-backed phenomenological information-material component.
+Converter core: code-backed classical information-material component.
 
 Purpose:
-    Build the first non-plumbing information-material part:
-    a converter that changes identity/meaning, not just location, quantity, or timing.
+    Build a converter that changes identity/meaning, not location,
+    quantity, or timing.
 
-Component role:
+Component roles:
     membrane     -> location/access
     source-sink  -> quantity
     reservoir    -> timing
     converter    -> identity/meaning
 
-This is a classical stochastic phenomenology model, not a quantum witness.
-It is intentionally code-backed with fixed seeds and raw JSON output.
+This is a classical stochastic phenomenology model. It is not a quantum
+witness and makes no quantum claim.
 
 Modes:
-    linear_control:
-        historyless baseline; conversion probability depends smoothly on A stock
-        but has no threshold, hysteresis, or product feedback.
-
-    threshold:
-        conversion turns on sharply only above an A-stock threshold.
-
-    bistable:
-        internal mode switches high/low using hysteresis thresholds.
-        This gives memory-dependent P/Q branch behavior.
-
-    inhibition:
-        end-product P inhibits further A->P conversion.
+    linear_control: historyless baseline.
+    threshold: conversion turns on above an A-stock threshold.
+    bistable: internal mode switches high/low using hysteresis thresholds.
+    inhibition: product P inhibits further conversion.
 
 Sweeps:
     1. conversion-throughput
@@ -40,6 +31,7 @@ Sweeps:
 from __future__ import annotations
 
 import argparse
+import csv
 import json
 import math
 from dataclasses import asdict, dataclass
@@ -57,26 +49,17 @@ class ConverterParams:
     seed: int = 0
     steps: int = 900
     burn_in: int = 250
-
-    # input / converter kinetics
     input_flux: float = 2.0
     base_convert_prob: float = 0.18
     km: float = 25.0
     threshold: float = 30.0
     threshold_width: float = 4.0
-
-    # bistability
     high_threshold: float = 42.0
     low_threshold: float = 18.0
     low_activity: float = 0.25
     high_activity: float = 1.0
-
-    # identity branching and errors
     gate: float = 1.0
     off_target_prob: float = 0.02
-    phase_gate_phi: float | None = None
-
-    # poisoning / inhibition / drains
     stress_d: float = 0.0
     product_inhibition_strength: float = 0.0
     product_inhibition_k: float = 60.0
@@ -94,14 +77,7 @@ class ConverterCore:
         self.P = 0
         self.Q = 0
         self.Pprime = 0
-        self.mode_state = 0  # used by bistable
-
-    def effective_gate(self) -> float:
-        if self.p.phase_gate_phi is None:
-            return float(np.clip(self.p.gate, 0.0, 1.0))
-        # Forward-compatible hook for later phase/coherence tests.
-        # Classical-effective interpretation here: a tunable continuous gate.
-        return float(np.cos(self.p.phase_gate_phi / 2.0) ** 2)
+        self.mode_state = 0
 
     @staticmethod
     def sigmoid(x: float) -> float:
@@ -127,8 +103,7 @@ class ConverterCore:
                 self.mode_state = 0
             mode_factor = p.high_activity if self.mode_state else p.low_activity
         elif p.mode == "inhibition":
-            inhibition = 1.0 / (1.0 + p.product_inhibition_strength * self.P / max(1e-9, p.product_inhibition_k))
-            mode_factor = inhibition
+            mode_factor = 1.0 / (1.0 + p.product_inhibition_strength * self.P / max(1e-9, p.product_inhibition_k))
         else:
             raise ValueError(f"unknown mode {p.mode}")
 
@@ -136,12 +111,10 @@ class ConverterCore:
 
     def step(self) -> Dict[str, float]:
         p = self.p
-
         arrivals = int(self.rng.poisson(p.input_flux))
         self.A += arrivals
 
-        # substrate leak before conversion
-        a_leak_count = int(self.rng.binomial(self.A, min(max(p.a_leak + 0.03 * p.stress_d, 0.0), 1.0)))
+        a_leak_count = int(self.rng.binomial(self.A, min(max(p.a_leak + 0.03 * p.stress_d, 0.0), 1.0))) if self.A > 0 else 0
         self.A -= a_leak_count
 
         act = self.activity()
@@ -149,14 +122,12 @@ class ConverterCore:
         converted = int(self.rng.binomial(self.A, p_convert)) if self.A > 0 else 0
         self.A -= converted
 
-        # stress increases off-target/meaning drift
         off_p = float(np.clip(p.off_target_prob * (1.0 + 4.0 * p.stress_d), 0.0, 0.95))
         off_target = int(self.rng.binomial(converted, off_p)) if converted > 0 else 0
         on_target = converted - off_target
 
-        gate = self.effective_gate()
+        gate = float(np.clip(p.gate, 0.0, 1.0))
         if p.mode == "bistable":
-            # low mode mostly P, high mode mostly Q, with gate still modulating P fraction.
             p_to_p = 0.85 * gate if self.mode_state == 0 else 0.15 * gate
         else:
             p_to_p = gate
@@ -195,11 +166,8 @@ class ConverterCore:
         }
 
     def run(self) -> Dict[str, Any]:
-        rows: List[Dict[str, float]] = []
-        for _ in range(self.p.steps):
-            rows.append(self.step())
-
-        tail = rows[self.p.burn_in :]
+        rows: List[Dict[str, float]] = [self.step() for _ in range(self.p.steps)]
+        tail = rows[self.p.burn_in:]
         sums = {k: float(sum(r[k] for r in tail)) for k in tail[0].keys()}
         n = max(1, len(tail))
         input_total = sums["arrivals"]
@@ -232,15 +200,11 @@ class ConverterCore:
             "Q_out_flux": safe_div(sums["Q_out"], n),
             "Pprime_out_flux": safe_div(sums["Pprime_out"], n),
         }
-        return {
-            "params": asdict(self.p),
-            "metrics": {k: round(v, 6) for k, v in metrics.items()},
-        }
+        return {"params": asdict(self.p), "metrics": {k: round(v, 6) for k, v in metrics.items()}}
 
 
 def run_condition(mode: Mode, seed: int, **kwargs: Any) -> Dict[str, Any]:
-    params = ConverterParams(mode=mode, seed=seed, **kwargs)
-    return ConverterCore(params).run()
+    return ConverterCore(ConverterParams(mode=mode, seed=seed, **kwargs)).run()
 
 
 def make_sweeps(seed: int) -> Dict[str, Any]:
@@ -261,42 +225,22 @@ def make_sweeps(seed: int) -> Dict[str, Any]:
 
     off_targets = [0.0, 0.005, 0.01, 0.02, 0.05, 0.1, 0.2]
     out["sweeps"]["fidelity_promiscuity"] = [
-        {
-            "off_target_setting": o,
-            **run_condition("threshold", seed + 1000 + i, input_flux=4.0, off_target_prob=o)["metrics"],
-        }
+        {"off_target_setting": o, **run_condition("threshold", seed + 1000 + i, input_flux=4.0, off_target_prob=o)["metrics"]}
         for i, o in enumerate(off_targets)
     ]
 
     gates = [0.0, 0.1, 0.25, 0.5, 0.75, 0.9, 1.0]
     out["sweeps"]["gating_conditional_response"] = [
-        {
-            "gate_setting": g,
-            **run_condition("threshold", seed + 2000 + i, input_flux=4.0, gate=g)["metrics"],
-        }
+        {"gate_setting": g, **run_condition("threshold", seed + 2000 + i, input_flux=4.0, gate=g)["metrics"]}
         for i, g in enumerate(gates)
-    ]
-
-    phase_gates = [0.0, math.pi / 4, math.pi / 2, 3 * math.pi / 4, math.pi]
-    out["sweeps"]["phase_gate_hook_classical_effective"] = [
-        {
-            "phase_phi": round(phi, 6),
-            "gate_effective": round(math.cos(phi / 2) ** 2, 6),
-            **run_condition("threshold", seed + 2500 + i, input_flux=4.0, phase_gate_phi=phi)["metrics"],
-        }
-        for i, phi in enumerate(phase_gates)
     ]
 
     stresses = [0.0, 0.05, 0.1, 0.2, 0.35, 0.5, 0.75, 1.0]
     out["sweeps"]["stability_poisoning"] = [
-        {
-            "stress_d": d,
-            **run_condition("inhibition", seed + 3000 + i, input_flux=4.0, product_inhibition_strength=2.0, stress_d=d)["metrics"],
-        }
+        {"stress_d": d, **run_condition("inhibition", seed + 3000 + i, input_flux=4.0, product_inhibition_strength=2.0, stress_d=d)["metrics"]}
         for i, d in enumerate(stresses)
     ]
 
-    # Hysteresis loop: sweep input up and down using different seeds but same model.
     up = [0.5, 1.0, 2.0, 4.0, 7.0, 10.0]
     down = list(reversed(up))
     out["sweeps"]["bistable_hysteresis_up"] = [
@@ -307,22 +251,50 @@ def make_sweeps(seed: int) -> Dict[str, Any]:
         {"direction": "down", "input_flux_setting": f, **run_condition("bistable", seed + 5000 + i, input_flux=f)["metrics"]}
         for i, f in enumerate(down)
     ]
-
     return out
+
+
+def write_summary_csv(result: Dict[str, Any], path: Path) -> None:
+    fields = [
+        "sweep", "mode", "direction", "setting_name", "setting", "input_flux",
+        "conversion_flux", "P_flux", "Q_flux", "Pprime_flux", "conversion_efficiency",
+        "fidelity_P_fraction", "promiscuity_Pprime_fraction", "Q_branch_fraction",
+        "P_over_Q_ratio", "A_mean", "P_mean", "Q_mean", "Pprime_mean",
+        "activity_mean", "mode_state_mean", "P_out_flux", "Q_out_flux", "Pprime_out_flux",
+    ]
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=fields)
+        writer.writeheader()
+        for sweep, rows in result["sweeps"].items():
+            for r in rows:
+                row = {key: "" for key in fields}
+                row["sweep"] = sweep
+                row["mode"] = r.get("mode", "")
+                row["direction"] = r.get("direction", "")
+                for src, name in [("input_flux_setting", "input_flux"), ("off_target_setting", "off_target"), ("gate_setting", "gate"), ("stress_d", "stress_d")]:
+                    if src in r:
+                        row["setting_name"] = name
+                        row["setting"] = r[src]
+                for key in fields:
+                    if key in r:
+                        row[key] = r[key]
+                writer.writerow(row)
 
 
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--seed", type=int, default=8128)
     parser.add_argument("--out", type=Path, default=Path("data/converter/converter_core_seed8128.json"))
+    parser.add_argument("--csv", type=Path, default=Path("data/converter/converter_core_seed8128_summary.csv"))
     args = parser.parse_args()
 
     result = make_sweeps(args.seed)
     text = json.dumps(result, indent=2, ensure_ascii=False)
     print(text)
-    if args.out:
-        args.out.parent.mkdir(parents=True, exist_ok=True)
-        args.out.write_text(text + "\n", encoding="utf-8")
+    args.out.parent.mkdir(parents=True, exist_ok=True)
+    args.out.write_text(text + "\n", encoding="utf-8")
+    write_summary_csv(result, args.csv)
 
 
 if __name__ == "__main__":
