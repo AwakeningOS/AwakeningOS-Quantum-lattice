@@ -1,0 +1,8 @@
+scenario,gamma_values,max_abs_diff_P_release_vs_gamma_max,max_abs_diff_quality_z_vs_gamma_max,max_arm2_coherence_proxy,max_arm3_coherence_proxy,max_arm3_negativity,arm2_matches_arm3_coherence,negativity_changes_observable,quantum_specific_effect,classification
+normal,1.0;0.75;0.5;0.25;0.0,0.0,0.0,0.278161032188,0.278161032188,0.278161032188,TRUE,FALSE,FALSE,gamma-sensitive coherence proxy but no quantum-specific observable advantage
+high_load,1.0;0.75;0.5;0.25;0.0,0.0,0.0,0.278161032188,0.278161032188,0.278161032188,TRUE,FALSE,FALSE,gamma-sensitive coherence proxy but no quantum-specific observable advantage
+stress,1.0;0.75;0.5;0.25;0.0,0.0,0.0,0.042083155678,0.042083155678,0.042083155678,TRUE,FALSE,FALSE,gamma-sensitive coherence proxy but no quantum-specific observable advantage
+stabilizer,1.0;0.75;0.5;0.25;0.0,0.0,0.0,0.266888702766,0.266888702766,0.266888702766,TRUE,FALSE,FALSE,gamma-sensitive coherence proxy but no quantum-specific observable advantage
+leaky_membrane,1.0;0.75;0.5;0.25;0.0,0.0,0.0,0.453276246839,0.453276246839,0.453276246839,TRUE,FALSE,FALSE,gamma-sensitive coherence proxy but no quantum-specific observable advantage
+road_fed,1.0;0.75;0.5;0.25;0.0,0.0,0.0,0.278161032188,0.278161032188,0.278161032188,TRUE,FALSE,FALSE,gamma-sensitive coherence proxy but no quantum-specific observable advantage
+storage_heavy,1.0;0.75;0.5;0.25;0.0,0.0,0.0,0.278161032188,0.278161032188,0.278161032188,TRUE,FALSE,FALSE,gamma-sensitive coherence proxy but no quantum-specific observable advantage
