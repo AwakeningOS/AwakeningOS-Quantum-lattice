@@ -1,0 +1,26 @@
+{
+  "experiment": "quantum_measurement_terrain_feedback_probe",
+  "date": "2026-07-08",
+  "layer": "quantum-audit probe",
+  "seed": 20260707,
+  "phase1_steps": 400,
+  "phase2_steps": 400,
+  "measurement_write_gain": 0.04,
+  "readout": "CHSH_excess = max(0, S_CHSH - 2)/(2*sqrt(2)-2); measurement terrain write occurs only during phase 1",
+  "verdict": "POSITIVE_FOR_MODEL_LEVEL_MEASUREMENT_TERRAIN_FEEDBACK",
+  "positive_rows": 4,
+  "pre_registered_predictions": {
+    "P1_gamma1_null": "PASS: gamma=1 has zero CHSH excess and no terrain feedback in all scenarios.",
+    "P2_Arm2_bound": "PASS: Arm2/Bell-bound control has no CHSH excess terrain bonus.",
+    "P3_main": "PASS: stress gamma=0 and gamma=0.25 show CHSH excess, terrain delta, and next-phase P_release increase beyond Arm2.",
+    "P4_gamma_sensitivity": "PASS on tested grid: stress effect is 0 at gamma>=0.5, +5.45% at gamma=0.25, +21.39% at gamma=0.",
+    "P5_localization": "PASS: stress gamma=0 next-phase release +21.39% >> normal +0.97% and storage +0.68%."
+  },
+  "safe_interpretation": "A deliberately added CHSH measurement-boundary signal can be written into terrain and later modulate classical-effective reactor dynamics. This is a model-level positive for measurement-boundary terrain feedback, not for ordinary local population plumbing.",
+  "limitations": [
+    "Not a hardware result.",
+    "Not chemical realism or biological metabolism.",
+    "The positive effect depends on adding a CHSH/noncommutative readout and terrain feedback component.",
+    "Local population plumbing without this measurement-boundary writeback remains reduced-Arm2 reproducible."
+  ]
+}
