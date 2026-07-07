@@ -1,0 +1,7 @@
+context,observables,target_product,quantum_product,quantum_satisfies,best_global_table_score,best_global_table_satisfied,context_indexed_replay_possible
+row1,"XI IX XX",1,1,TRUE,4,5,TRUE
+row2,"IY YI YY",1,1,TRUE,4,5,TRUE
+row3,"XY YX ZZ",1,1,TRUE,4,5,TRUE
+col1,"XI IY XY",1,1,TRUE,4,5,TRUE
+col2,"IX YI YX",1,1,TRUE,4,5,TRUE
+col3,"XX YY ZZ",-1,-1,TRUE,4,5,TRUE
