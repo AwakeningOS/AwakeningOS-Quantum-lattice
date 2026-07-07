@@ -33,19 +33,20 @@ These claims are backed by committed Python scripts:
 3. Adjacent-pair negativity is a valid quantum-information witness in the small lattice core.
 4. The history-droplet core is a no-jump/postselective exploratory model, not a full Lindblad simulator.
 5. History/droplet behavior has classical controls and must be interpreted with those controls.
-6. A minimal two-qubit negativity causality test shows a load-bearing Bell-negativity/coherence pattern after one-particle marginals are exactly matched against N=0 controls.
+6. A minimal two-qubit causality test shows a basis-relative coherence pattern after one-particle marginals are exactly matched against controls.
 7. A classical stochastic converter component is now code-backed and raw-log-backed; it characterizes identity/meaning transformation through throughput, fidelity/promiscuity, gating, poisoning, and bistable hysteresis axes.
 
 Important limitation for claim 6:
 
 ```text
 This is a minimal channel-analyzer test, not yet a spatial lattice/droplet transport result.
+It is not used as a component-development claim.
 ```
 
 Important limitation for claim 7:
 
 ```text
-The converter core is classical phenomenology, not a quantum result.
+The converter core is classical phenomenology.
 ```
 
 ### Quarantined or unverified claims
@@ -95,7 +96,7 @@ scripts/
 
   negativity_causality_test.py
     CODE_BACKED / RAW_LOG_BACKED. Minimal three-arm marginal-matched test for
-    load-bearing Bell negativity in a contact-channel analyzer.
+    basis-relative channel causality.
 
   phenomenology/converter_core.py
     CODE_BACKED / RAW_LOG_BACKED. Classical stochastic converter component.
@@ -122,10 +123,10 @@ results/
 
 data/
   negativity_causality/negativity_causality_test_seed0.json
-    Raw log for the minimal negativity causality test.
+    Raw log for the minimal causality test.
 
-  converter/converter_core_seed8128.json
-    Raw log for the converter component sweeps.
+  converter/converter_core_seed8128_summary.csv
+    Raw CSV summary log for the converter component sweeps.
 ```
 
 ## Setup
@@ -142,7 +143,7 @@ Representative runnable commands:
 python scripts/quantum_lattice_core.py --all
 python scripts/history_droplet_core.py --all
 python scripts/negativity_causality_test.py --out data/negativity_causality/negativity_causality_test_seed0.json
-python scripts/phenomenology/converter_core.py --seed 8128 --out data/converter/converter_core_seed8128.json
+python scripts/phenomenology/converter_core.py --seed 8128 --csv data/converter/converter_core_seed8128_summary.csv
 ```
 
 ## Experimental discipline
@@ -164,7 +165,7 @@ The clean path is now:
 
 ```text
 1. keep the small quantum-lattice core strict and reproducible
-2. treat A/B/C quantum witness tests as audit-chapter inventory, not the current component front line
+2. treat A/B/C witness tests as audit-chapter inventory, not the current component front line
 3. rebuild phenomenological components with scripts and raw logs
 4. promote only code-backed components into the main result chain
 5. compose code-backed classical components before reducing selected substructures back into 12-13 qubit quantum primitives
@@ -185,6 +186,6 @@ large-scale quantum information matter
 
 The current strongest code-backed quantum witness is adjacent negativity in the small EXCH/ZZ lattice core.
 
-The current first code-backed load-bearing test is the minimal marginal-matched negativity causality test. It must next be embedded into a spatial lattice/droplet setting before supporting claims about transport or information-matter behavior.
+The current minimal basis-relative causality test is audit-chapter inventory. It must not be used to support component-development claims.
 
 The current code-backed phenomenology front line is the converter component, which changes identity/meaning in a classical stochastic model.
