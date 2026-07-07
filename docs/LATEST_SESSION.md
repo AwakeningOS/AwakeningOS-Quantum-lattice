@@ -5,10 +5,10 @@ Updated: 2026-07-08
 ## Current latest experiment
 
 ```text
-information_microreactor_backpressure_contamination
+quantum_microreactor_gamma_validation
 ```
 
-This is the latest active experiment in the classical-effective information microreactor line.
+This is the latest active validation gate in the classical-effective / quantum-audit boundary line.
 
 ## Files to read first
 
@@ -17,21 +17,19 @@ README.md
 SKILLS.md
 results/STATUS.md
 docs/RAW_LOG_GATE.md
-results/information_microreactor_backpressure_contamination_2026-07-08.md
-experiments/information_microreactor_backpressure_contamination_protocol_2026-07-08.md
-scripts/phenomenology/information_microreactor_backpressure_contamination.py
+results/quantum_microreactor_gamma_validation_2026-07-08.md
+experiments/quantum_microreactor_gamma_validation_protocol_2026-07-08.md
+scripts/audit/quantum_microreactor_gamma_validation.py
 ```
 
 ## Reproduction command
 
 ```bash
-python scripts/phenomenology/information_microreactor_backpressure_contamination.py \
+python scripts/audit/quantum_microreactor_gamma_validation.py \
   --seed 20260707 \
-  --out data/microreactor/information_microreactor_backpressure_contamination_seed20260707.json \
-  --summary-csv data/microreactor/information_microreactor_backpressure_contamination_seed20260707_summary.csv \
-  --events-csv data/microreactor/information_microreactor_backpressure_contamination_seed20260707_events.csv \
-  --timeseries-csv data/microreactor/information_microreactor_backpressure_contamination_seed20260707_timeseries.csv \
-  --timeseries-stride 50
+  --out data/quantum_microreactor/gamma_validation_seed20260707.json \
+  --summary-csv data/quantum_microreactor/gamma_validation_seed20260707_summary.csv \
+  --comparison-csv data/quantum_microreactor/gamma_validation_seed20260707_comparison.csv
 ```
 
 ## RAW_LOG gate
@@ -45,106 +43,99 @@ python scripts/check_raw_logs.py
 The new canonical logs are:
 
 ```text
-data/microreactor/information_microreactor_backpressure_contamination_seed20260707_summary.csv
-data/microreactor/information_microreactor_backpressure_contamination_seed20260707_events.csv
-data/microreactor/information_microreactor_backpressure_contamination_seed20260707_timeseries.csv
+data/quantum_microreactor/gamma_validation_seed20260707_summary.csv
+data/quantum_microreactor/gamma_validation_seed20260707_comparison.csv
 ```
 
-## Current observation
+## Current validation result
 
-The latest run combines:
+The latest run tests:
 
 ```text
-clean finite reactor
-leaky contamination
-storage pressure
-stress collapse
-stabilizer rescue
+gamma=max fully dephased diagonal/population embedding
+vs
+existing scalar information_microreactor_sandbox summaries
 ```
 
-in one continuous state trajectory.
-
-Main observed order:
+Verdict:
 
 ```text
-quality collapse first
-reservoir/backpressure second
-membrane integrity collapse third
-stabilizer-assisted recovery fourth
+PASS
 ```
 
-Key event times:
+Details:
 
 ```text
-quality < 0.7: t=206
-quality < 0.5: t=218
-quality < 0.3: t=259
-backpressure < 0.5: t=410
-fill > 0.5: t=420
-backpressure < 0.2: t=462
-fill > 0.75: t=510
-integrity < 0.5: t=648
-integrity < 0.1: t=708
-rescue integrity > 0.5 after t=800: t=893
+7 scenarios
+24 metrics per scenario
+168 total metric comparisons
+max_abs_error_overall = 0
+failed_scenarios = []
 ```
 
-## Do not confuse with Step 6
+## What this means
 
-The immediately previous quantum-audit/component-semantics bridge is:
+Safe claim:
 
 ```text
-quantum_coupled_microreactor_step6_explicit_component_chain_2026-07-07.md
+The gamma=max classical limit is validated for the existing sandbox summary observables.
 ```
 
-Step 6 concluded that its explicit three-body boost survived dephase and was therefore classical-effective, not a quantum-specific witness.
+This is only a validation gate. It is not a quantum-specific result.
 
-The latest line is not Step 6. The latest line is:
-
-```text
-classical-effective information microreactor observation sandbox
-```
-
-## Safe claim
-
-```text
-A code-backed classical-effective observation sandbox shows ordered failure/recovery modes: contamination degrades quality before flow stops; reservoir saturation produces upstream backpressure; stress collapses membrane integrity; and external stabilizer input partially restores membrane integrity.
-```
-
-## Forbidden claims
+## What this does not mean
 
 Do not claim:
 
 ```text
 quantum advantage
-quantum-specific effect
-hardware result
-life-like behavior
-metabolism
-autonomous self-repair
-autonomous self-regulation
+quantum-specific behavior
+functional entanglement
+coherence-driven improvement
+basis noncommutativity
+hardware feasibility
+```
+
+## Previous sessions
+
+The immediately previous comparison is:
+
+```text
+information_microreactor_quantumized_comparison_2026-07-08.md
+```
+
+The immediately previous classical-effective observation experiment is:
+
+```text
+information_microreactor_backpressure_contamination_2026-07-08.md
+```
+
+The earlier quantum-audit/component-semantics bridge is:
+
+```text
+quantum_coupled_microreactor_step6_explicit_component_chain_2026-07-07.md
 ```
 
 ## Recommended next experiment
 
 ```text
-information_microreactor_backpressure_contamination_ablation
+quantum_microreactor_gamma_sweep
 ```
 
-Suggested ablations:
+Required discipline:
 
 ```text
-no_backpressure_feedback
-no_B_contaminant_effect
-no_terrain_write
-no_stabilizer_repair
+Arm 1: scalar classical sandbox
+Arm 2: classical complex-wave control
+Arm 3: density-matrix quantum model
 ```
 
-The next useful output should keep:
+Quantum-specific status requires:
 
 ```text
-summary.csv
-events.csv
-timeseries.csv
+1. gamma sensitivity in Arm 3
+2. failure of Arm 2 to reproduce the relevant observable
+3. a witness such as negativity, purity, or basis dependence tied to a measured observable
 ```
 
-because event timing is now part of the result, not a side note.
+Negativity alone is not enough. It must do work in an observable such as quality, release, backpressure, or conversion.
