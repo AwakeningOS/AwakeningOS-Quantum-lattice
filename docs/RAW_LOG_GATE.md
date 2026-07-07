@@ -18,6 +18,7 @@ The script regenerates canonical raw logs into a temporary directory and compare
 data/negativity_causality/negativity_causality_test_seed0.json
 data/converter/converter_core_seed8128_summary.csv
 data/microreactor/information_microreactor_sandbox_seed20260707_summary.csv
+data/microreactor/information_microreactor_quantumized_comparison_seed20260707_summary.csv
 data/microreactor/information_microreactor_backpressure_contamination_seed20260707_summary.csv
 data/microreactor/information_microreactor_backpressure_contamination_seed20260707_events.csv
 data/microreactor/information_microreactor_backpressure_contamination_seed20260707_timeseries.csv
@@ -30,9 +31,33 @@ data/quantum_microreactor/step5_reactor_like_population_synergy_seed0_summary.cs
 data/quantum_microreactor/step6_explicit_component_chain_seed0_summary.csv
 ```
 
+## Latest comparison log
+
+The latest comparison is:
+
+```text
+information_microreactor_quantumized_comparison
+```
+
+It adds one summary raw CSV log:
+
+```text
+data/microreactor/information_microreactor_quantumized_comparison_seed20260707_summary.csv
+```
+
+This log compares:
+
+```text
+classical_probability_core
+quantum_dephased_core
+quantum_coherent_core
+```
+
+for the finite M/C/R pass-convert-store core embedded in the classical sandbox environment.
+
 ## Latest observation logs
 
-The latest experiment is:
+The latest time-resolved observation experiment is:
 
 ```text
 information_microreactor_backpressure_contamination
@@ -106,14 +131,6 @@ This writes `.git/hooks/pre-commit` to run:
 
 ```bash
 python scripts/check_raw_logs.py
-```
-
-## CI
-
-GitHub Actions also runs the gate on push and pull requests:
-
-```text
-.github/workflows/reproducibility.yml
 ```
 
 ## Rule
