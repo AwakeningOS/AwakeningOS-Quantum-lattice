@@ -123,6 +123,20 @@ def main() -> int:
         run([sys.executable, "scripts/phenomenology/information_microreactor_sandbox.py", "--seed", "20260707", "--out", str(sandbox_tmp_json), "--csv", str(sandbox_tmp_csv)])
         compare_csv(ROOT / "data/microreactor/information_microreactor_sandbox_seed20260707_summary.csv", sandbox_tmp_csv, rtol=args.rtol, atol=args.atol)
 
+        quantumized_tmp_json = tmp / "information_microreactor_quantumized_comparison_seed20260707.json"
+        quantumized_tmp_csv = tmp / "information_microreactor_quantumized_comparison_seed20260707_summary.csv"
+        run([
+            sys.executable,
+            "scripts/phenomenology/information_microreactor_quantumized_comparison.py",
+            "--seed",
+            "20260707",
+            "--out",
+            str(quantumized_tmp_json),
+            "--csv",
+            str(quantumized_tmp_csv),
+        ])
+        compare_csv(ROOT / "data/microreactor/information_microreactor_quantumized_comparison_seed20260707_summary.csv", quantumized_tmp_csv, rtol=args.rtol, atol=args.atol)
+
         obs_tmp_json = tmp / "information_microreactor_backpressure_contamination_seed20260707.json"
         obs_tmp_summary = tmp / "information_microreactor_backpressure_contamination_seed20260707_summary.csv"
         obs_tmp_events = tmp / "information_microreactor_backpressure_contamination_seed20260707_events.csv"
