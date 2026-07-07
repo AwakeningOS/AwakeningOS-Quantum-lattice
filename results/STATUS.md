@@ -26,16 +26,23 @@ QUARANTINED_CLAIM:
 ## Current latest session
 
 ```text
-information_microreactor_quantumized_comparison
+quantum_microreactor_gamma_validation
 ```
 
-This is the latest active comparison in the classical-effective / quantum-audit boundary line.
+This is the latest active validation gate in the classical-effective / quantum-audit boundary line.
 
 It is backed by:
 
 ```text
-scripts/phenomenology/information_microreactor_quantumized_comparison.py
-data/microreactor/information_microreactor_quantumized_comparison_seed20260707_summary.csv
+scripts/audit/quantum_microreactor_gamma_validation.py
+data/quantum_microreactor/gamma_validation_seed20260707_summary.csv
+data/quantum_microreactor/gamma_validation_seed20260707_comparison.csv
+```
+
+The immediately previous comparison is:
+
+```text
+information_microreactor_quantumized_comparison_2026-07-08.md
 ```
 
 The immediately previous classical-effective observation experiment is:
@@ -44,13 +51,14 @@ The immediately previous classical-effective observation experiment is:
 information_microreactor_backpressure_contamination_2026-07-08.md
 ```
 
-Do not confuse this comparison with a full quantum sandbox: only the finite M/C/R pass-convert-store core is quantumized; continuous environment variables remain classical.
+Do not confuse this gamma=max validation with a quantum-specific result. It only validates that the fully dephased diagonal/population embedding reproduces the existing scalar sandbox summaries.
 
 ## Current results/ classification
 
 | file | status | action |
 |---|---|---|
-| `information_microreactor_quantumized_comparison_2026-07-08.md` | RAW_LOG_BACKED | Latest comparison. Backed by `scripts/phenomenology/information_microreactor_quantumized_comparison.py` and `data/microreactor/information_microreactor_quantumized_comparison_seed20260707_summary.csv`. Straightforward finite-core quantumization gives the same summaries as the classical probability core. |
+| `quantum_microreactor_gamma_validation_2026-07-08.md` | RAW_LOG_BACKED | Latest validation gate. Backed by `scripts/audit/quantum_microreactor_gamma_validation.py` and two raw CSV logs: summary and full per-metric comparison. gamma=max diagonal/population embedding reproduces the existing scalar sandbox summaries exactly; not quantum-specific. |
+| `information_microreactor_quantumized_comparison_2026-07-08.md` | RAW_LOG_BACKED | Backed by `scripts/phenomenology/information_microreactor_quantumized_comparison.py` and `data/microreactor/information_microreactor_quantumized_comparison_seed20260707_summary.csv`. Straightforward finite-core quantumization gives the same summaries as the classical probability core. |
 | `information_microreactor_backpressure_contamination_2026-07-08.md` | RAW_LOG_BACKED | Backed by `scripts/phenomenology/information_microreactor_backpressure_contamination.py` and three raw CSV logs: summary, events, and timeseries checkpoints. Classical-effective observation sandbox; not quantum-specific. |
 | `information_microreactor_sandbox_2026-07-07.md` | RAW_LOG_BACKED | Backed by `scripts/phenomenology/information_microreactor_sandbox.py` and `data/microreactor/information_microreactor_sandbox_seed20260707_summary.csv`. Classical-effective assembled sandbox; not quantum-specific. |
 | `quantum_coupled_microreactor_step6_explicit_component_chain_2026-07-07.md` | RAW_LOG_BACKED | Backed by `scripts/audit/quantum_coupled_microreactor_step6_explicit_component_chain.py` and `data/quantum_microreactor/step6_explicit_component_chain_seed0_summary.csv`. Explicit component-chain audit; result is classical-effective, not a quantum-specific witness. |
@@ -75,6 +83,7 @@ scripts/phenomenology/converter_core.py
 scripts/phenomenology/information_microreactor_sandbox.py
 scripts/phenomenology/information_microreactor_backpressure_contamination.py
 scripts/phenomenology/information_microreactor_quantumized_comparison.py
+scripts/audit/quantum_microreactor_gamma_validation.py
 scripts/audit/quantum_coupled_microreactor_step1.py
 scripts/audit/quantum_coupled_microreactor_step2_backpressure.py
 scripts/audit/quantum_coupled_microreactor_step2_v2_unitary_population.py
@@ -102,7 +111,29 @@ A phenomenology note can be promoted only when all are present:
 
 `quantum_coupled_microreactor_step2_backpressure_2026-07-07.md` is also quarantined as a functional claim: its `conversion_effect` was equivalent to a Bell-bond projector and therefore did not provide an independent device observable.
 
-## Latest comparison-safe finding
+## Latest validation-safe finding
+
+`quantum_microreactor_gamma_validation_2026-07-08.md` establishes the first gamma=max validation gate:
+
+```text
+gamma=max fully dephased diagonal/population embedding
+existing scalar sandbox summary target
+7 scenarios
+24 metrics per scenario
+168 total metric comparisons
+max_abs_error_overall = 0
+verdict = PASS
+```
+
+Safe interpretation:
+
+```text
+the gamma=max classical limit is validated for the existing sandbox summary observables
+```
+
+This is not a quantum-specific result. It only means a later gamma sweep can be attempted from a matched classical-limit starting point.
+
+## Previous comparison-safe finding
 
 `information_microreactor_quantumized_comparison_2026-07-08.md` establishes a boundary comparison:
 
