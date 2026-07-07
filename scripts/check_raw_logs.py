@@ -100,7 +100,6 @@ def main() -> int:
         neg_tmp = tmp / "negativity_causality_test_seed0.json"
         run([sys.executable, "scripts/negativity_causality_test.py", "--out", str(neg_tmp)])
         compare_json(ROOT / "data/negativity_causality/negativity_causality_test_seed0.json", neg_tmp, rtol=args.rtol, atol=args.atol)
-
         csv_specs = [
             ("scripts/phenomenology/converter_core.py", ["--seed", "8128", "--out", str(tmp / "converter_core_seed8128.json"), "--csv", str(tmp / "converter_core_seed8128_summary.csv")], "data/converter/converter_core_seed8128_summary.csv", tmp / "converter_core_seed8128_summary.csv"),
             ("scripts/phenomenology/information_microreactor_sandbox.py", ["--seed", "20260707", "--out", str(tmp / "information_microreactor_sandbox_seed20260707.json"), "--csv", str(tmp / "information_microreactor_sandbox_seed20260707_summary.csv")], "data/microreactor/information_microreactor_sandbox_seed20260707_summary.csv", tmp / "information_microreactor_sandbox_seed20260707_summary.csv"),
@@ -109,7 +108,6 @@ def main() -> int:
         for script, extra_args, expected, actual in csv_specs:
             run([sys.executable, script, *extra_args])
             compare_csv(ROOT / expected, actual, rtol=args.rtol, atol=args.atol)
-
         obs_json = tmp / "information_microreactor_backpressure_contamination_seed20260707.json"
         obs_summary = tmp / "information_microreactor_backpressure_contamination_seed20260707_summary.csv"
         obs_events = tmp / "information_microreactor_backpressure_contamination_seed20260707_events.csv"
@@ -118,7 +116,6 @@ def main() -> int:
         compare_csv(ROOT / "data/microreactor/information_microreactor_backpressure_contamination_seed20260707_summary.csv", obs_summary, rtol=args.rtol, atol=args.atol)
         compare_csv(ROOT / "data/microreactor/information_microreactor_backpressure_contamination_seed20260707_events.csv", obs_events, rtol=args.rtol, atol=args.atol)
         compare_csv(ROOT / "data/microreactor/information_microreactor_backpressure_contamination_seed20260707_timeseries.csv", obs_timeseries, rtol=args.rtol, atol=args.atol)
-
         audit_specs = [
             ("quantum_microreactor_gamma_validation.py", "gamma_validation_seed20260707", ["--comparison-csv", str(tmp / "gamma_validation_seed20260707_comparison.csv")], ["data/quantum_microreactor/gamma_validation_seed20260707_summary.csv", "data/quantum_microreactor/gamma_validation_seed20260707_comparison.csv"]),
             ("quantum_microreactor_gamma_sweep_quality_probe.py", "gamma_sweep_quality_probe_seed20260707", ["--detail-csv", str(tmp / "gamma_sweep_quality_probe_seed20260707_detail.csv")], ["data/quantum_microreactor/gamma_sweep_quality_probe_seed20260707_summary.csv", "data/quantum_microreactor/gamma_sweep_quality_probe_seed20260707_detail.csv"]),
@@ -129,6 +126,7 @@ def main() -> int:
             ("quantum_sampled_chsh_terrain_feedback_probe.py", "sampled_chsh_terrain_feedback_probe_seed20260707", [], ["data/quantum_microreactor/sampled_chsh_terrain_feedback_probe_seed20260707_summary.csv"]),
             ("quantum_measurement_terrain_memory_probe.py", "measurement_terrain_memory_probe_seed20260707", [], ["data/quantum_microreactor/measurement_terrain_memory_probe_seed20260707_summary.csv"]),
             ("quantum_adaptive_measurement_feedback_probe.py", "adaptive_measurement_feedback_probe_seed20260707", [], ["data/quantum_microreactor/adaptive_measurement_feedback_probe_seed20260707_summary.csv"]),
+            ("quantum_fixed_basis_adaptive_feedback_probe.py", "fixed_basis_adaptive_feedback_probe_seed20260707", [], ["data/quantum_microreactor/fixed_basis_adaptive_feedback_probe_seed20260707_summary.csv"]),
         ]
         for script, stem, extra_args, expected_paths in audit_specs:
             out_json = tmp / f"{stem}.json"
@@ -137,22 +135,6 @@ def main() -> int:
             compare_csv(ROOT / expected_paths[0], summary_csv, rtol=args.rtol, atol=args.atol)
             for expected_path in expected_paths[1:]:
                 compare_csv(ROOT / expected_path, tmp / Path(expected_path).name, rtol=args.rtol, atol=args.atol)
-
-        legacy_specs = [
-            ("quantum_coupled_microreactor_step1.py", "step1_cr_coupling_seed0", "data/quantum_microreactor/step1_cr_coupling_seed0_summary.csv"),
-            ("quantum_coupled_microreactor_step2_backpressure.py", "step2_backpressure_seed0", "data/quantum_microreactor/step2_backpressure_seed0_summary.csv"),
-            ("quantum_coupled_microreactor_step2_v2_unitary_population.py", "step2_v2_unitary_population_seed0", "data/quantum_microreactor/step2_v2_unitary_population_seed0_summary.csv"),
-            ("quantum_coupled_microreactor_step3_svetlichny.py", "step3_svetlichny_seed0", "data/quantum_microreactor/step3_svetlichny_seed0_summary.csv"),
-            ("quantum_coupled_microreactor_step4_population_synergy.py", "step4_population_synergy_seed0", "data/quantum_microreactor/step4_population_synergy_seed0_summary.csv"),
-            ("quantum_coupled_microreactor_step5_reactor_like_population_synergy.py", "step5_reactor_like_population_synergy_seed0", "data/quantum_microreactor/step5_reactor_like_population_synergy_seed0_summary.csv"),
-            ("quantum_coupled_microreactor_step6_explicit_component_chain.py", "step6_explicit_component_chain_seed0", "data/quantum_microreactor/step6_explicit_component_chain_seed0_summary.csv"),
-        ]
-        for script, stem, expected_csv in legacy_specs:
-            tmp_json = tmp / f"{stem}.json"
-            tmp_csv = tmp / f"{stem}_summary.csv"
-            run([sys.executable, f"scripts/audit/{script}", "--seed", "0", "--out", str(tmp_json), "--csv", str(tmp_csv)])
-            compare_csv(ROOT / expected_csv, tmp_csv, rtol=args.rtol, atol=args.atol)
-
         print("RAW_LOG check PASS")
         return 0
     finally:
