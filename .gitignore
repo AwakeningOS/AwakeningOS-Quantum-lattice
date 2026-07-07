@@ -3,5 +3,6 @@ __pycache__/
 .venv/
 .env
 .DS_Store
-results/*.json
-results/*.csv
+
+# Raw experiment logs are intentionally allowed.
+# Do not ignore results/*.json or results/*.csv; reproducibility requires them.
