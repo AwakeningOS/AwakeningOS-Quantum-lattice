@@ -17,6 +17,9 @@ CODE-BACKED:
   scripts/negativity_causality_test.py
   scripts/phenomenology/converter_core.py
   scripts/audit/quantum_coupled_microreactor_step1.py
+  scripts/audit/quantum_coupled_microreactor_step2_v2_unitary_population.py
+
+QUARANTINED BUT REPRODUCIBLE:
   scripts/audit/quantum_coupled_microreactor_step2_backpressure.py
 
 NOT YET CODE-BACKED:
@@ -40,7 +43,7 @@ These claims are backed by committed Python scripts:
 6. A minimal two-qubit causality test shows a basis-relative coherence pattern after one-particle marginals are exactly matched against controls.
 7. A classical stochastic converter component is code-backed and raw-log-backed; it characterizes identity/meaning transformation through throughput, fidelity/promiscuity, gating, poisoning, and bistable hysteresis axes.
 8. A 6-qubit C-R module-bond audit shows a designed joint analyzer distinguishes an entangled C-R bond from N=0 controls under exact module-marginal matching.
-9. A 6-qubit dynamic C-R backpressure audit shows a capacity-dependent conversion/release response differs between an entangled C-R bond and N=0 correlated controls under module-marginal matching.
+9. A corrected 6-qubit Step 2-v2 audit shows coherent C-R conversion dynamics can convert C-R entanglement/coherence into a diagonal product-population response under exact module-marginal matching.
 
 Important limitation for claim 6:
 
@@ -66,16 +69,18 @@ It is not a nonlocal signaling claim.
 Important limitation for claim 9:
 
 ```text
-This is Step 2 for the converter-reservoir bond only.
-It is a designed capacity-dependent effect model, not a full microreactor or hardware result.
+This is Step 2-v2 for the converter-reservoir bond only.
+It uses designed coherent conversion dynamics and diagonal population readout.
+It is not a full microreactor or hardware result.
 It is not a nonlocal signaling claim.
 ```
 
 ### Quarantined or unverified claims
 
-These claims are **not currently code-backed in this repository** and must not be cited as reproducible results:
+These claims are **not currently valid claims** and must not be cited as reproducible positive results:
 
 - phase-dependent transport on a frozen history terrain
+- the original Step 2 backpressure functional claim: its conversion effect was a Bell-bond projector in disguise
 - information chemistry ecology tables
 - reaction-written terrain ecology tables
 - syntax-driven information matter tables
@@ -85,7 +90,7 @@ These claims are **not currently code-backed in this repository** and must not b
 - information storage reservoir tables
 - source-sink pair tables
 
-These can remain as phenomenological notes, but each needs a generator script and raw log before being promoted.
+These can remain as historical or phenomenological notes, but each needs a valid generator script, raw log, and audit status before being promoted.
 
 ## Repository status labels
 
@@ -115,10 +120,12 @@ scripts/
   phenomenology/converter_core.py
   audit/quantum_coupled_microreactor_step1.py
   audit/quantum_coupled_microreactor_step2_backpressure.py
+  audit/quantum_coupled_microreactor_step2_v2_unitary_population.py
 
 experiments/
   quantum_coupled_microreactor_step1_protocol_2026-07-07.md
   quantum_coupled_microreactor_step2_backpressure_protocol_2026-07-07.md
+  quantum_coupled_microreactor_step2_v2_unitary_population_protocol_2026-07-07.md
 
 results/
   STATUS.md
@@ -126,12 +133,14 @@ results/
   converter_core_2026-07-07.md
   quantum_coupled_microreactor_step1_2026-07-07.md
   quantum_coupled_microreactor_step2_backpressure_2026-07-07.md
+  quantum_coupled_microreactor_step2_v2_unitary_population_2026-07-07.md
 
 data/
   negativity_causality/negativity_causality_test_seed0.json
   converter/converter_core_seed8128_summary.csv
   quantum_microreactor/step1_cr_coupling_seed0_summary.csv
   quantum_microreactor/step2_backpressure_seed0_summary.csv
+  quantum_microreactor/step2_v2_unitary_population_seed0_summary.csv
 ```
 
 ## Setup
@@ -150,7 +159,7 @@ python scripts/history_droplet_core.py --all
 python scripts/negativity_causality_test.py --out data/negativity_causality/negativity_causality_test_seed0.json
 python scripts/phenomenology/converter_core.py --seed 8128 --csv data/converter/converter_core_seed8128_summary.csv
 python scripts/audit/quantum_coupled_microreactor_step1.py --seed 0 --csv data/quantum_microreactor/step1_cr_coupling_seed0_summary.csv
-python scripts/audit/quantum_coupled_microreactor_step2_backpressure.py --seed 0 --csv data/quantum_microreactor/step2_backpressure_seed0_summary.csv
+python scripts/audit/quantum_coupled_microreactor_step2_v2_unitary_population.py --seed 0 --csv data/quantum_microreactor/step2_v2_unitary_population_seed0_summary.csv
 python scripts/check_raw_logs.py
 ```
 
@@ -175,7 +184,7 @@ The clean path is now:
 1. keep the small quantum-lattice core strict and reproducible
 2. keep classical-effective component work code-backed and raw-log-backed
 3. use quantum/audit tests only when testing witness-bearing substructures
-4. grow the microreactor in stages: C-R bond -> backpressure -> M-C-R -> full chain
+4. grow the microreactor in stages: C-R bond -> population-dynamics Step 2 -> M-C-R -> full chain
 5. promote only code-backed results into the main claim chain
 ```
 
@@ -197,4 +206,4 @@ The current strongest code-backed quantum witness is adjacent negativity in the 
 
 The current code-backed phenomenology front line is the converter component, which changes identity/meaning in a classical stochastic model.
 
-The current quantum-audit front line is Step 2 of the quantum-coupled microreactor: a 6-qubit dynamic C-R backpressure audit, not yet the full device.
+The current quantum-audit front line is Step 2-v2 of the quantum-coupled microreactor: a 6-qubit C-R unitary conversion dynamics with diagonal product-population readout, not yet the full device.
