@@ -27,6 +27,7 @@ QUARANTINED_CLAIM:
 
 | file | status | action |
 |---|---|---|
+| `converter_core_2026-07-07.md` | RAW_LOG_BACKED | Backed by `scripts/phenomenology/converter_core.py` and `data/converter/converter_core_seed8128.json`. Classical stochastic phenomenology, not quantum. |
 | `negativity_causality_test_2026-07-07.md` | RAW_LOG_BACKED | Backed by `scripts/negativity_causality_test.py` and `data/negativity_causality/negativity_causality_test_seed0.json`. Minimal channel test only; not yet lattice/droplet transport. |
 | `gpt_key_findings.md` | META | Updated to move unverified phase-dependent transport to `QUARANTINED_CLAIM`. |
 | `gpt_summary.json` | META | Treat as GPT summary metadata, not experiment data. |
@@ -53,6 +54,7 @@ The code-backed layer currently lives in `scripts/`:
 scripts/quantum_lattice_core.py
 scripts/history_droplet_core.py
 scripts/negativity_causality_test.py
+scripts/phenomenology/converter_core.py
 ```
 
 These should be treated as the current reproducible core until additional result generators are committed.
@@ -73,7 +75,7 @@ A phenomenology note can be promoted only when all are present:
 
 `phase-dependent transport on frozen history terrain` is not currently a code-backed surviving result. It should remain quarantined until the history terrain and second droplet overlap correctly and the phase dependence survives controls.
 
-## New audit-safe finding
+## New audit-safe findings
 
 `negativity_causality_test_2026-07-07.md` establishes a minimal marginal-matched load-bearing negativity pattern:
 
@@ -82,3 +84,13 @@ outcome(coherent, N>0) != outcome(dephased, N=0) == outcome(product_marginals, N
 ```
 
 with exact one-particle marginal matching. This is not yet evidence for negativity-driven lattice transport or information-matter behavior.
+
+`converter_core_2026-07-07.md` establishes the first code-backed phenomenology component:
+
+```text
+converter:
+  identity/meaning transform with throughput, fidelity/promiscuity,
+  gating, poisoning, and bistable hysteresis axes
+```
+
+It is classical phenomenology, not a quantum result.
