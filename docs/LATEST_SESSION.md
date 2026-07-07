@@ -5,7 +5,7 @@ Updated: 2026-07-08
 ## Current latest experiment
 
 ```text
-quantum_microreactor_transported_branching_arm2_kill
+quantum_microreactor_chsh_readout_transport_probe
 ```
 
 This is the latest active quantum-audit probe in the classical-effective / quantum-audit boundary line.
@@ -17,29 +17,18 @@ README.md
 SKILLS.md
 results/STATUS.md
 docs/RAW_LOG_GATE.md
-results/quantum_microreactor_transported_branching_arm2_kill_2026-07-08.md
-experiments/quantum_microreactor_transported_branching_arm2_kill_protocol_2026-07-08.md
-scripts/audit/quantum_branch_converter.py
-scripts/audit/arm2_kill.py
-scripts/audit/quantum_microreactor_transported_branching_arm2_kill.py
+results/quantum_microreactor_chsh_readout_transport_probe_2026-07-08.md
+experiments/quantum_microreactor_chsh_readout_transport_probe_protocol_2026-07-08.md
+scripts/audit/quantum_microreactor_chsh_readout_transport_probe.py
 ```
 
-## Reproduction commands
-
-Display harnesses:
+## Reproduction command
 
 ```bash
-python scripts/audit/quantum_branch_converter.py
-python scripts/audit/arm2_kill.py
-```
-
-Canonical CSV generator:
-
-```bash
-python scripts/audit/quantum_microreactor_transported_branching_arm2_kill.py \
+python scripts/audit/quantum_microreactor_chsh_readout_transport_probe.py \
   --seed 20260707 \
-  --out data/quantum_microreactor/transported_branching_arm2_kill_seed20260707.json \
-  --summary-csv data/quantum_microreactor/transported_branching_arm2_kill_seed20260707_summary.csv
+  --out data/quantum_microreactor/chsh_readout_transport_probe_seed20260707.json \
+  --summary-csv data/quantum_microreactor/chsh_readout_transport_probe_seed20260707_summary.csv
 ```
 
 ## RAW_LOG gate
@@ -53,7 +42,7 @@ python scripts/check_raw_logs.py
 The new canonical log is:
 
 ```text
-data/quantum_microreactor/transported_branching_arm2_kill_seed20260707_summary.csv
+data/quantum_microreactor/chsh_readout_transport_probe_seed20260707_summary.csv
 ```
 
 ## Current result
@@ -61,100 +50,62 @@ data/quantum_microreactor/transported_branching_arm2_kill_seed20260707_summary.c
 The latest run tests:
 
 ```text
-phase-dependent branching converter where B=0 is transported to reservoir
-entangled C:B branch circuit
-weak Arm2 mean-field control
-correct Arm2 reduced single-qubit control
+joint / noncommutative CHSH readout component
+classical ceiling yb = 1/sqrt(2)
+quantum readout yb = max(2, S_CHSH) / (2*sqrt(2))
 transported P_release observable
 ```
 
 Verdict:
 
 ```text
-NEGATIVE_FOR_QUANTUM_SPECIFIC_TRANSPORT
+POSITIVE_FOR_MODEL_LEVEL_CHSH_READOUT_TRANSPORT
 ```
 
-Details:
+Key results:
 
 ```text
-gamma=1 gate passes to machine precision
-P_release moves strongly with gamma
-normal g=0: +93.27%
-stress g=0: +30.35%
-storage_heavy g=0: +56.48%
-weak Arm2 creates a false-positive-looking mismatch
-correct reduced Arm2 matches quantum transported release to machine precision
-max negativity reaches 0.5 in stress at gamma=0
-quantum_specific_transport_effect = FALSE
+P1 gamma=1 null: PASS; max_chsh=0 and zero violating steps in all scenarios
+P3 stress gamma=0: PASS; max_chsh=2.828427 and P_release exceeds ceiling by +29.429224%
+P4 monotonicity: PASS on tested grid; stress violation appears at gamma=0.25 and strengthens at gamma=0
+P5 localization: PASS; stress +29.43% >> normal +2.33% and storage_heavy +0.98%
 ```
 
-## What this means
-
-Safe claim:
+## Safe claim
 
 ```text
-Transported release can move strongly, and C:B entanglement can exist, but local population transport is fully determined by the reduced B channel and is exactly Arm2-reproducible.
+A deliberately added CHSH readout component can make Bell-violating joint correlations exceed the classical release ceiling and reach transported P_release. This is a model-level quantum-audit positive for the measurement/readout component, not for ordinary local population plumbing.
 ```
-
-This is the strongest negative filter so far: even when the quantum branch affects `P_release`, it is still not quantum-specific if the reactor reads only local branch population.
 
 ## What this does not mean
 
 Do not claim:
 
 ```text
-quantum advantage
-quantum-specific transported effect
-functional entanglement in reactor plumbing
-hardware feasibility
+hardware result
 chemical realism
 biological metabolism
+universal quantum advantage
+local population plumbing is quantum-specific
 ```
 
 ## Previous sessions
 
-The immediately previous branch-only probe is:
+The immediately previous transported local-population test is:
 
 ```text
-quantum_microreactor_branching_converter_probe_2026-07-08.md
+quantum_microreactor_transported_branching_arm2_kill_2026-07-08.md
 ```
 
-The previous gamma sweep is:
+That result remains negative for local population transport because correct reduced Arm2 reproduces the transported observable exactly.
+
+## Recommended next boundary
+
+The next boundary is not another pipe. It is whether this readout can be made into a plausible component:
 
 ```text
-quantum_microreactor_gamma_sweep_quality_probe_2026-07-08.md
+measurement backaction changes release or terrain
+basis choices are explicit and audited
+classical/local bound remains S <= 2
+hardware-feasible witness circuit is separated from classical-effective reactor dynamics
 ```
-
-The previous validation gate is:
-
-```text
-quantum_microreactor_gamma_validation_2026-07-08.md
-```
-
-The previous classical-effective observation experiment is:
-
-```text
-information_microreactor_backpressure_contamination_2026-07-08.md
-```
-
-## Recommended next decision
-
-The reactor line has now ruled out:
-
-```text
-one-path converter coherence
-quality-as-coherence auxiliary probe
-branch-only phase-dependent product composition
-transported local-population branch release
-```
-
-A future quantum-specific attempt needs a measurement/readout component, not another pipe:
-
-```text
-release depends on <Z_C Z_B>
-control-conditioned product readout
-basis-dependent quality readout that Arm2 cannot reproduce
-measurement backaction that changes release or terrain
-```
-
-Without such a component, entanglement remains present but functionally unused by reactor output.
