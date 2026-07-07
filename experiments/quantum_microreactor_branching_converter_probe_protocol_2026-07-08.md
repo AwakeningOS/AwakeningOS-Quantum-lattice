@@ -161,11 +161,19 @@ therefore the result will likely be classical-effective / negative for quantum-s
 
 ## Expected raw outputs
 
+Canonical raw log:
+
 ```text
 data/quantum_microreactor/branching_converter_probe_seed20260707_summary.csv
-data/quantum_microreactor/branching_converter_probe_seed20260707_detail.csv
+```
+
+Auxiliary metadata:
+
+```text
 data/quantum_microreactor/branching_converter_probe_seed20260707.json
 ```
+
+The script can also regenerate a compact branch detail table internally, but the canonical committed raw log for this result is the summary CSV because all reported claims are summary-level claims.
 
 ## Run command
 
@@ -173,8 +181,7 @@ data/quantum_microreactor/branching_converter_probe_seed20260707.json
 python scripts/audit/quantum_microreactor_branching_converter_probe.py \
   --seed 20260707 \
   --out data/quantum_microreactor/branching_converter_probe_seed20260707.json \
-  --summary-csv data/quantum_microreactor/branching_converter_probe_seed20260707_summary.csv \
-  --detail-csv data/quantum_microreactor/branching_converter_probe_seed20260707_detail.csv
+  --summary-csv data/quantum_microreactor/branching_converter_probe_seed20260707_summary.csv
 ```
 
 ## Forbidden claims
