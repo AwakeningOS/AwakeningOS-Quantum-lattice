@@ -22,6 +22,8 @@ data/microreactor/information_microreactor_quantumized_comparison_seed20260707_s
 data/microreactor/information_microreactor_backpressure_contamination_seed20260707_summary.csv
 data/microreactor/information_microreactor_backpressure_contamination_seed20260707_events.csv
 data/microreactor/information_microreactor_backpressure_contamination_seed20260707_timeseries.csv
+data/quantum_microreactor/gamma_validation_seed20260707_summary.csv
+data/quantum_microreactor/gamma_validation_seed20260707_comparison.csv
 data/quantum_microreactor/step1_cr_coupling_seed0_summary.csv
 data/quantum_microreactor/step2_backpressure_seed0_summary.csv
 data/quantum_microreactor/step2_v2_unitary_population_seed0_summary.csv
@@ -31,9 +33,26 @@ data/quantum_microreactor/step5_reactor_like_population_synergy_seed0_summary.cs
 data/quantum_microreactor/step6_explicit_component_chain_seed0_summary.csv
 ```
 
-## Latest comparison log
+## Latest validation log
 
-The latest comparison is:
+The latest validation experiment is:
+
+```text
+quantum_microreactor_gamma_validation
+```
+
+It adds two canonical raw CSV logs:
+
+```text
+data/quantum_microreactor/gamma_validation_seed20260707_summary.csv
+data/quantum_microreactor/gamma_validation_seed20260707_comparison.csv
+```
+
+This gate checks whether the gamma=max fully dephased diagonal/population embedding reproduces the existing scalar sandbox summaries exactly.
+
+## Previous comparison log
+
+The previous comparison is:
 
 ```text
 information_microreactor_quantumized_comparison
