@@ -26,7 +26,7 @@ QUARANTINED_CLAIM:
 ## Current latest session
 
 ```text
-quantum_microreactor_branching_converter_probe
+quantum_microreactor_transported_branching_arm2_kill
 ```
 
 This is the latest active quantum-audit probe in the classical-effective / quantum-audit boundary line.
@@ -34,23 +34,26 @@ This is the latest active quantum-audit probe in the classical-effective / quant
 It is backed by:
 
 ```text
-scripts/audit/quantum_microreactor_branching_converter_probe.py
-data/quantum_microreactor/branching_converter_probe_seed20260707_summary.csv
+scripts/audit/quantum_branch_converter.py
+scripts/audit/arm2_kill.py
+scripts/audit/quantum_microreactor_transported_branching_arm2_kill.py
+data/quantum_microreactor/transported_branching_arm2_kill_seed20260707_summary.csv
 ```
 
-The immediately previous gamma sweep is:
+The immediately previous branch-only probe is:
 
 ```text
-quantum_microreactor_gamma_sweep_quality_probe_2026-07-08.md
+quantum_microreactor_branching_converter_probe_2026-07-08.md
 ```
 
-Do not confuse this branching converter probe with a quantum-specific positive result. It is negative for quantum-specific efficacy because Arm2 classical complex-wave control exactly reproduces the Arm3 branch-only observable even when Arm3 has nonzero negativity.
+Do not confuse this transported-release movement with a quantum-specific positive result. It is negative for quantum-specific transport because the correct zero-entanglement reduced Arm2 channel reproduces transported `P_release` to numerical precision.
 
 ## Current results/ classification
 
 | file | status | action |
 |---|---|---|
-| `quantum_microreactor_branching_converter_probe_2026-07-08.md` | RAW_LOG_BACKED | Latest branching converter probe. Backed by `scripts/audit/quantum_microreactor_branching_converter_probe.py` and `data/quantum_microreactor/branching_converter_probe_seed20260707_summary.csv`. Finds large phase-sensitive product-composition changes and Arm3 negativity, but branch-only observables are exactly Arm2-reproducible; negative for quantum-specific efficacy. |
+| `quantum_microreactor_transported_branching_arm2_kill_2026-07-08.md` | RAW_LOG_BACKED | Latest transported branching probe. Backed by `scripts/audit/quantum_branch_converter.py`, `scripts/audit/arm2_kill.py`, wrapper `scripts/audit/quantum_microreactor_transported_branching_arm2_kill.py`, and `data/quantum_microreactor/transported_branching_arm2_kill_seed20260707_summary.csv`. Finds large transported `P_release` movement and real negativity, but correct reduced Arm2 reproduces the transported observable exactly; negative for quantum-specific transport. |
+| `quantum_microreactor_branching_converter_probe_2026-07-08.md` | RAW_LOG_BACKED | Backed by `scripts/audit/quantum_microreactor_branching_converter_probe.py` and `data/quantum_microreactor/branching_converter_probe_seed20260707_summary.csv`. Finds large phase-sensitive product-composition changes and Arm3 negativity, but branch-only observables are exactly Arm2-reproducible; negative for quantum-specific efficacy. |
 | `quantum_microreactor_gamma_sweep_quality_probe_2026-07-08.md` | RAW_LOG_BACKED | Backed by `scripts/audit/quantum_microreactor_gamma_sweep_quality_probe.py` and two raw CSV logs: summary and detail. Finds gamma-sensitive coherence and Arm3 negativity proxies, but no existing observable changes and Arm2 reproduces the coherence proxy; negative for quantum-specific efficacy. |
 | `quantum_microreactor_gamma_validation_2026-07-08.md` | RAW_LOG_BACKED | Backed by `scripts/audit/quantum_microreactor_gamma_validation.py` and two raw CSV logs: summary and full per-metric comparison. gamma=max diagonal/population embedding reproduces the existing scalar sandbox summaries exactly; not quantum-specific. |
 | `information_microreactor_quantumized_comparison_2026-07-08.md` | RAW_LOG_BACKED | Backed by `scripts/phenomenology/information_microreactor_quantumized_comparison.py` and `data/microreactor/information_microreactor_quantumized_comparison_seed20260707_summary.csv`. Straightforward finite-core quantumization gives the same summaries as the classical probability core. |
@@ -81,6 +84,9 @@ scripts/phenomenology/information_microreactor_quantumized_comparison.py
 scripts/audit/quantum_microreactor_gamma_validation.py
 scripts/audit/quantum_microreactor_gamma_sweep_quality_probe.py
 scripts/audit/quantum_microreactor_branching_converter_probe.py
+scripts/audit/quantum_branch_converter.py
+scripts/audit/arm2_kill.py
+scripts/audit/quantum_microreactor_transported_branching_arm2_kill.py
 scripts/audit/quantum_coupled_microreactor_step1.py
 scripts/audit/quantum_coupled_microreactor_step2_backpressure.py
 scripts/audit/quantum_coupled_microreactor_step2_v2_unitary_population.py
@@ -90,36 +96,31 @@ scripts/audit/quantum_coupled_microreactor_step5_reactor_like_population_synergy
 scripts/audit/quantum_coupled_microreactor_step6_explicit_component_chain.py
 ```
 
-## Latest branching-converter finding
+## Latest transported-branching finding
 
-`quantum_microreactor_branching_converter_probe_2026-07-08.md` tests the strongest remaining branching topology:
-
-```text
-Arm 1: scalar fixed branch split
-Arm 2: separable classical complex-wave branch control
-Arm 3: entangled control+branch density matrix
-gamma values: 1.0, 0.75, 0.5, 0.25, 0.0
-phi values: 0, pi/2, pi
-```
+`quantum_microreactor_transported_branching_arm2_kill_2026-07-08.md` tests a phase-dependent branching converter where only branch `B=0` is transported into reservoir/release.
 
 Result:
 
 ```text
-total_P_release_validation_diff = 0
-max_arm3_negativity = 0.353553390593
-max_arm2_arm3_main_prob_abs_diff = 0
-phase_sensitive_branching_effect = TRUE
-arm2_reproduces_branch_observable = TRUE
-quantum_specific_effect = FALSE
+gamma=1 gate passes to machine precision
+P_release moves strongly with gamma
+normal g=0: +93.27%
+stress g=0: +30.35%
+storage_heavy g=0: +56.48%
+weak Arm2 creates a false-positive-looking mismatch
+correct reduced Arm2 matches quantum transported release to machine precision
+max negativity reaches 0.5 in stress at gamma=0
+quantum_specific_transport_effect = FALSE
 ```
 
 Safe interpretation:
 
 ```text
-phase-sensitive product branching exists, but the branch-only observable is fully Arm2-reproducible even with Arm3 negativity
+transported release can move strongly, and entanglement can exist, but local population transport is fully determined by the reduced B channel and is exactly Arm2-reproducible
 ```
 
-This is negative for quantum-specific efficacy.
+This is negative for quantum-specific transport.
 
 ## Promotion rule
 
