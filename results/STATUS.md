@@ -27,6 +27,7 @@ QUARANTINED_CLAIM:
 
 | file | status | action |
 |---|---|---|
+| `quantum_coupled_microreactor_step3_svetlichny_2026-07-07.md` | RAW_LOG_BACKED | Backed by `scripts/audit/quantum_coupled_microreactor_step3_svetlichny.py` and `data/quantum_microreactor/step3_svetlichny_seed0_summary.csv`. Three-module Svetlichny audit only; not full microreactor. |
 | `quantum_coupled_microreactor_step2_v2_unitary_population_2026-07-07.md` | RAW_LOG_BACKED | Backed by `scripts/audit/quantum_coupled_microreactor_step2_v2_unitary_population.py` and `data/quantum_microreactor/step2_v2_unitary_population_seed0_summary.csv`. Corrected Step 2 with unitary dynamics and diagonal population readout. |
 | `quantum_coupled_microreactor_step2_backpressure_2026-07-07.md` | QUARANTINED_CLAIM | Reproducible negative audit case. Its `conversion_effect` was a Bell-bond projector in disguise, so the independent functional claim is invalid. Superseded by Step 2-v2. |
 | `quantum_coupled_microreactor_step1_2026-07-07.md` | RAW_LOG_BACKED | Backed by `scripts/audit/quantum_coupled_microreactor_step1.py` and `data/quantum_microreactor/step1_cr_coupling_seed0_summary.csv`. Designed C-R bond witness only; not full microreactor and not natural device throughput. |
@@ -61,6 +62,7 @@ scripts/phenomenology/converter_core.py
 scripts/audit/quantum_coupled_microreactor_step1.py
 scripts/audit/quantum_coupled_microreactor_step2_backpressure.py
 scripts/audit/quantum_coupled_microreactor_step2_v2_unitary_population.py
+scripts/audit/quantum_coupled_microreactor_step3_svetlichny.py
 ```
 
 These should be treated as the current reproducible core until additional result generators are committed.
@@ -84,6 +86,17 @@ A phenomenology note can be promoted only when all are present:
 `quantum_coupled_microreactor_step2_backpressure_2026-07-07.md` is also quarantined as a functional claim: its conversion effect was equivalent to a Bell-bond projector and therefore did not provide an independent device observable.
 
 ## New audit-safe findings
+
+`quantum_coupled_microreactor_step3_svetlichny_2026-07-07.md` establishes the first three-module M-C-R audit:
+
+```text
+diagonal parity readout after local basis rotations
+Svetlichny violation exceeds the biseparable bound in the entangled arm
+matched single-module marginals for dephased/product controls
+dephased and product controls do not violate the bound
+```
+
+This is not yet a full microreactor or natural device-throughput result.
 
 `quantum_coupled_microreactor_step2_v2_unitary_population_2026-07-07.md` establishes the corrected Step 2 audit:
 
