@@ -17,7 +17,7 @@ META:
   Repository management / summary file, not an experiment result.
 
 PHENOMENOLOGY_NOTE:
-  Conceptual or exploratory note. May contain illustrative tables, but not reproducible yet.
+  Conceptual or exploratory note. May contain illustrative tables but not a reproducible result yet.
 
 QUARANTINED_CLAIM:
   Previously stated or implied as a result that failed audit or lacks reproduction support.
@@ -26,38 +26,33 @@ QUARANTINED_CLAIM:
 ## Current latest session
 
 ```text
-quantum_microreactor_gamma_validation
+quantum_microreactor_gamma_sweep_quality_probe
 ```
 
-This is the latest active validation gate in the classical-effective / quantum-audit boundary line.
+This is the latest active quantum-audit probe in the classical-effective / quantum-audit boundary line.
 
 It is backed by:
 
 ```text
-scripts/audit/quantum_microreactor_gamma_validation.py
-data/quantum_microreactor/gamma_validation_seed20260707_summary.csv
-data/quantum_microreactor/gamma_validation_seed20260707_comparison.csv
+scripts/audit/quantum_microreactor_gamma_sweep_quality_probe.py
+data/quantum_microreactor/gamma_sweep_quality_probe_seed20260707_summary.csv
+data/quantum_microreactor/gamma_sweep_quality_probe_seed20260707_detail.csv
 ```
 
-The immediately previous comparison is:
+The immediately previous validation gate is:
 
 ```text
-information_microreactor_quantumized_comparison_2026-07-08.md
+quantum_microreactor_gamma_validation_2026-07-08.md
 ```
 
-The immediately previous classical-effective observation experiment is:
-
-```text
-information_microreactor_backpressure_contamination_2026-07-08.md
-```
-
-Do not confuse this gamma=max validation with a quantum-specific result. It only validates that the fully dephased diagonal/population embedding reproduces the existing scalar sandbox summaries.
+Do not confuse this gamma sweep with a quantum-specific positive result. It is negative for quantum-specific efficacy because Arm2 classical complex-wave control reproduces the gamma-sensitive coherence proxy and Arm3 negativity does not change existing observables.
 
 ## Current results/ classification
 
 | file | status | action |
 |---|---|---|
-| `quantum_microreactor_gamma_validation_2026-07-08.md` | RAW_LOG_BACKED | Latest validation gate. Backed by `scripts/audit/quantum_microreactor_gamma_validation.py` and two raw CSV logs: summary and full per-metric comparison. gamma=max diagonal/population embedding reproduces the existing scalar sandbox summaries exactly; not quantum-specific. |
+| `quantum_microreactor_gamma_sweep_quality_probe_2026-07-08.md` | RAW_LOG_BACKED | Latest gamma sweep probe. Backed by `scripts/audit/quantum_microreactor_gamma_sweep_quality_probe.py` and two raw CSV logs: summary and detail. Finds gamma-sensitive coherence and Arm3 negativity proxies, but no existing observable changes and Arm2 reproduces the coherence proxy; negative for quantum-specific efficacy. |
+| `quantum_microreactor_gamma_validation_2026-07-08.md` | RAW_LOG_BACKED | Backed by `scripts/audit/quantum_microreactor_gamma_validation.py` and two raw CSV logs: summary and full per-metric comparison. gamma=max diagonal/population embedding reproduces the existing scalar sandbox summaries exactly; not quantum-specific. |
 | `information_microreactor_quantumized_comparison_2026-07-08.md` | RAW_LOG_BACKED | Backed by `scripts/phenomenology/information_microreactor_quantumized_comparison.py` and `data/microreactor/information_microreactor_quantumized_comparison_seed20260707_summary.csv`. Straightforward finite-core quantumization gives the same summaries as the classical probability core. |
 | `information_microreactor_backpressure_contamination_2026-07-08.md` | RAW_LOG_BACKED | Backed by `scripts/phenomenology/information_microreactor_backpressure_contamination.py` and three raw CSV logs: summary, events, and timeseries checkpoints. Classical-effective observation sandbox; not quantum-specific. |
 | `information_microreactor_sandbox_2026-07-07.md` | RAW_LOG_BACKED | Backed by `scripts/phenomenology/information_microreactor_sandbox.py` and `data/microreactor/information_microreactor_sandbox_seed20260707_summary.csv`. Classical-effective assembled sandbox; not quantum-specific. |
@@ -84,6 +79,7 @@ scripts/phenomenology/information_microreactor_sandbox.py
 scripts/phenomenology/information_microreactor_backpressure_contamination.py
 scripts/phenomenology/information_microreactor_quantumized_comparison.py
 scripts/audit/quantum_microreactor_gamma_validation.py
+scripts/audit/quantum_microreactor_gamma_sweep_quality_probe.py
 scripts/audit/quantum_coupled_microreactor_step1.py
 scripts/audit/quantum_coupled_microreactor_step2_backpressure.py
 scripts/audit/quantum_coupled_microreactor_step2_v2_unitary_population.py
@@ -105,15 +101,38 @@ A phenomenology note can be promoted only when all are present:
 5. classical/quantum control status clearly stated
 ```
 
-## Quarantined finding
+## Latest gamma-sweep finding
 
-`phase-dependent transport on frozen history terrain` is not currently a code-backed surviving result. It should remain quarantined until the history terrain and second droplet overlap correctly and the phase dependence survives controls.
+`quantum_microreactor_gamma_sweep_quality_probe_2026-07-08.md` establishes the first gamma sweep quality/coherence probe:
 
-`quantum_coupled_microreactor_step2_backpressure_2026-07-07.md` is also quarantined as a functional claim: its `conversion_effect` was equivalent to a Bell-bond projector and therefore did not provide an independent device observable.
+```text
+Arm 1: scalar classical sandbox
+Arm 2: classical complex-wave control
+Arm 3: density-matrix quantum proxy
+gamma values: 1.0, 0.75, 0.5, 0.25, 0.0
+```
 
-## Latest validation-safe finding
+Result:
 
-`quantum_microreactor_gamma_validation_2026-07-08.md` establishes the first gamma=max validation gate:
+```text
+max_abs_diff_P_release_vs_gamma_max = 0
+max_abs_diff_quality_z_vs_gamma_max = 0
+arm2_matches_arm3_coherence = TRUE
+negativity_changes_observable = FALSE
+quantum_specific_effect = FALSE
+```
+
+Safe interpretation:
+
+```text
+quality/coherence gamma sensitivity is Arm2-reproducible and does not change existing sandbox observables
+```
+
+This is negative for quantum-specific efficacy, but useful because it rules out a naive quality-as-coherence route.
+
+## Previous validation-safe finding
+
+`quantum_microreactor_gamma_validation_2026-07-08.md` establishes the gamma=max validation gate:
 
 ```text
 gamma=max fully dephased diagonal/population embedding
@@ -131,37 +150,7 @@ Safe interpretation:
 the gamma=max classical limit is validated for the existing sandbox summary observables
 ```
 
-This is not a quantum-specific result. It only means a later gamma sweep can be attempted from a matched classical-limit starting point.
-
-## Previous comparison-safe finding
-
-`information_microreactor_quantumized_comparison_2026-07-08.md` establishes a boundary comparison:
-
-```text
-classical_probability_core
-quantum_dephased_core
-quantum_coherent_core
-M/C/R pass-convert-store flags represented as a 3-qubit finite core
-diagonal P111 product-population readout
-continuous sandbox environment remains classical
-```
-
-Across the tested scenarios, stored summary differences are zero:
-
-```text
-diff_P_release_vs_classical = 0.0
-diff_P_generated_vs_classical = 0.0
-diff_terrain_vs_classical = 0.0
-diff_P_release_vs_dephased = 0.0
-```
-
-Safe interpretation:
-
-```text
-straightforward finite-core quantumization does not change the current sandbox behavior
-```
-
-This is not a full quantum sandbox and not a quantum-specific result.
+This is not a quantum-specific result. It only means gamma sweeps can be attempted from a matched classical-limit starting point.
 
 ## Last-session handoff
 
