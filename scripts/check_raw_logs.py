@@ -151,6 +151,11 @@ def main() -> int:
         compare_csv(ROOT / "data/quantum_microreactor/gamma_sweep_quality_probe_seed20260707_summary.csv", gamma_sweep_tmp_summary, rtol=args.rtol, atol=args.atol)
         compare_csv(ROOT / "data/quantum_microreactor/gamma_sweep_quality_probe_seed20260707_detail.csv", gamma_sweep_tmp_detail, rtol=args.rtol, atol=args.atol)
 
+        branch_tmp_json = tmp / "branching_converter_probe_seed20260707.json"
+        branch_tmp_summary = tmp / "branching_converter_probe_seed20260707_summary.csv"
+        run([sys.executable, "scripts/audit/quantum_microreactor_branching_converter_probe.py", "--seed", "20260707", "--out", str(branch_tmp_json), "--summary-csv", str(branch_tmp_summary)])
+        compare_csv(ROOT / "data/quantum_microreactor/branching_converter_probe_seed20260707_summary.csv", branch_tmp_summary, rtol=args.rtol, atol=args.atol)
+
         audit_specs = [
             ("scripts/audit/quantum_coupled_microreactor_step1.py", "step1_cr_coupling_seed0", "data/quantum_microreactor/step1_cr_coupling_seed0_summary.csv"),
             ("scripts/audit/quantum_coupled_microreactor_step2_backpressure.py", "step2_backpressure_seed0", "data/quantum_microreactor/step2_backpressure_seed0_summary.csv"),
