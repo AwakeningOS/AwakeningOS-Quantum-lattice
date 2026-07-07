@@ -1,6 +1,6 @@
 # Results reproducibility status
 
-Date: 2026-07-07
+Date: 2026-07-08
 
 This file is the audit index for `results/`.
 
@@ -23,10 +23,42 @@ QUARANTINED_CLAIM:
   Previously stated or implied as a result that failed audit or lacks reproduction support.
 ```
 
+## Current latest session
+
+```text
+information_microreactor_backpressure_contamination
+```
+
+This is the latest active experiment in the classical-effective information microreactor line.
+
+It is backed by:
+
+```text
+scripts/phenomenology/information_microreactor_backpressure_contamination.py
+data/microreactor/information_microreactor_backpressure_contamination_seed20260707_summary.csv
+data/microreactor/information_microreactor_backpressure_contamination_seed20260707_events.csv
+data/microreactor/information_microreactor_backpressure_contamination_seed20260707_timeseries.csv
+```
+
+The immediately previous assembled sandbox is:
+
+```text
+information_microreactor_sandbox_2026-07-07.md
+```
+
+The immediately previous quantum-audit/component-semantics bridge is:
+
+```text
+quantum_coupled_microreactor_step6_explicit_component_chain_2026-07-07.md
+```
+
+Do not confuse the current classical-effective observation branch with a quantum-witness claim.
+
 ## Current results/ classification
 
 | file | status | action |
 |---|---|---|
+| `information_microreactor_backpressure_contamination_2026-07-08.md` | RAW_LOG_BACKED | Latest experiment. Backed by `scripts/phenomenology/information_microreactor_backpressure_contamination.py` and three raw CSV logs: summary, events, and timeseries checkpoints. Classical-effective observation sandbox; not quantum-specific. |
 | `information_microreactor_sandbox_2026-07-07.md` | RAW_LOG_BACKED | Backed by `scripts/phenomenology/information_microreactor_sandbox.py` and `data/microreactor/information_microreactor_sandbox_seed20260707_summary.csv`. Classical-effective assembled sandbox; not quantum-specific. |
 | `quantum_coupled_microreactor_step6_explicit_component_chain_2026-07-07.md` | RAW_LOG_BACKED | Backed by `scripts/audit/quantum_coupled_microreactor_step6_explicit_component_chain.py` and `data/quantum_microreactor/step6_explicit_component_chain_seed0_summary.csv`. Explicit component-chain audit; result is classical-effective, not a quantum-specific witness. |
 | `quantum_coupled_microreactor_step5_reactor_like_population_synergy_2026-07-07.md` | RAW_LOG_BACKED | Backed by `scripts/audit/quantum_coupled_microreactor_step5_reactor_like_population_synergy.py` and `data/quantum_microreactor/step5_reactor_like_population_synergy_seed0_summary.csv`. Minimal reactor-like P111 product-population synergy audit only; not full microreactor. |
@@ -56,14 +88,13 @@ QUARANTINED_CLAIM:
 
 ## Current code-backed experiment sources
 
-The code-backed layer currently lives in `scripts/`:
-
 ```text
 scripts/quantum_lattice_core.py
 scripts/history_droplet_core.py
 scripts/negativity_causality_test.py
 scripts/phenomenology/converter_core.py
 scripts/phenomenology/information_microreactor_sandbox.py
+scripts/phenomenology/information_microreactor_backpressure_contamination.py
 scripts/audit/quantum_coupled_microreactor_step1.py
 scripts/audit/quantum_coupled_microreactor_step2_backpressure.py
 scripts/audit/quantum_coupled_microreactor_step2_v2_unitary_population.py
@@ -72,8 +103,6 @@ scripts/audit/quantum_coupled_microreactor_step4_population_synergy.py
 scripts/audit/quantum_coupled_microreactor_step5_reactor_like_population_synergy.py
 scripts/audit/quantum_coupled_microreactor_step6_explicit_component_chain.py
 ```
-
-These should be treated as the current reproducible core until additional result generators are committed.
 
 ## Promotion rule
 
@@ -91,108 +120,55 @@ A phenomenology note can be promoted only when all are present:
 
 `phase-dependent transport on frozen history terrain` is not currently a code-backed surviving result. It should remain quarantined until the history terrain and second droplet overlap correctly and the phase dependence survives controls.
 
-`quantum_coupled_microreactor_step2_backpressure_2026-07-07.md` is also quarantined as a functional claim: its conversion effect was equivalent to a Bell-bond projector and therefore did not provide an independent device observable.
+`quantum_coupled_microreactor_step2_backpressure_2026-07-07.md` is also quarantined as a functional claim: its `conversion_effect` was equivalent to a Bell-bond projector and therefore did not provide an independent device observable.
 
-## New audit-safe findings
+## Latest observation-safe finding
 
-`information_microreactor_sandbox_2026-07-07.md` establishes a classical-effective assembled sandbox:
-
-```text
-source + road/channel + selective membrane + converter + reservoir + sink/release
-B contaminant + C stabilizer + D stress
-stable conversion/release in normal mode
-stress failure without C
-stabilizer rescue under stress
-contaminant poisoning under leaky membrane
-road-fed amplification
-storage-induced backpressure
-```
-
-This is not quantum-specific and not a full biological/autopoietic system.
-
-`quantum_coupled_microreactor_step6_explicit_component_chain_2026-07-07.md` establishes an explicit component-chain audit:
+`information_microreactor_backpressure_contamination_2026-07-08.md` establishes a time-resolved classical-effective observation sandbox:
 
 ```text
-source drive -> membrane/pass flag -> converter/product flag -> reservoir/storage flag
-pairwise M->C and C->R operations produce diagonal P111 product population
-explicit MC->R three-body boost increases product/storage/release population
-computational-basis dephase does not remove the boost
+continuous 1000-step trajectory
+50-step timeseries checkpoints plus final row
+clean finite reactor
+leaky contamination
+storage pressure
+stress collapse
+stabilizer rescue
+summary/event/timeseries-checkpoint raw logs
 ```
 
-This is a classical-effective component-semantics result, not a quantum-specific witness.
-
-`quantum_coupled_microreactor_step5_reactor_like_population_synergy_2026-07-07.md` establishes a minimal reactor-like product-population synergy audit:
+Observed threshold order:
 
 ```text
-P_product_population = P(M=1,C=1,R=1)
-pairwise additive prediction from single-pair controls
-pairwise-product dynamics has zero residual for the P111 product response
-genuine three-body dynamics has nonzero residual for the P111 product response
-computational-basis dephase removes the residual
+quality < 0.7 at t=206
+quality < 0.5 at t=218
+quality < 0.3 at t=259
+backpressure < 0.5 at t=410
+fill > 0.5 at t=420
+backpressure < 0.2 at t=462
+fill > 0.75 at t=510
+integrity < 0.5 at t=648
+integrity < 0.1 at t=708
+rescue integrity > 0.5 after t=800 at t=893
 ```
 
-This is still not a full microreactor or natural device-throughput result.
-
-`quantum_coupled_microreactor_step4_population_synergy_2026-07-07.md` establishes a population-order synergy audit:
+Safe interpretation:
 
 ```text
-diagonal odd-parity population readout after local H rotations
-pairwise additive prediction from single-pair controls
-pairwise-product dynamics has zero residual for the chosen response
-genuine three-body dynamics has nonzero residual for the chosen response
+contamination degrades product quality before flow stops
+reservoir saturation produces upstream backpressure
+stress collapses membrane integrity
+external stabilizer input partially restores membrane integrity
 ```
 
-This is still not a full microreactor or natural device-throughput result.
+This is classical-effective component dynamics, not quantum-specific behavior and not autonomous self-repair.
 
-`quantum_coupled_microreactor_step3_svetlichny_2026-07-07.md` establishes the first three-module M-C-R audit:
+## Last-session handoff
+
+For future agents, read:
 
 ```text
-diagonal parity readout after local basis rotations
-Svetlichny violation exceeds the biseparable bound in the entangled arm
-matched single-module marginals for dephased/product controls
-dephased and product controls do not violate the bound
+docs/LATEST_SESSION.md
 ```
 
-This is not yet a full microreactor or natural device-throughput result.
-
-`quantum_coupled_microreactor_step2_v2_unitary_population_2026-07-07.md` establishes the corrected Step 2 audit:
-
-```text
-explicit C-R unitary conversion dynamics
-diagonal product-population readout after dynamics
-matched module marginals
-N(C:R) > 0 only in entangled_event
-product population differs from N=0 correlated controls
-capacity restriction changes the extra response and backpressure index
-```
-
-This is not yet a full microreactor result.
-
-`quantum_coupled_microreactor_step1_2026-07-07.md` establishes a designed C-R module-bond witness:
-
-```text
-matched module marginals
-N(C:R) > 0 in entangled_event
-N(C:R) = 0 in dephased_correlated
-N=0 controls do not reproduce the Bell-bond analyzer value
-```
-
-The equality `throughput_bonus_vs_dephased = N(C:R)` is an analytic identity for the chosen two-branch state and analyzer, not an independent functional finding. This is not yet a full microreactor result.
-
-`negativity_causality_test_2026-07-07.md` establishes a minimal basis-relative matched-control pattern:
-
-```text
-outcome(coherent) != outcome(dephased, N=0) == outcome(product_marginals, N=0)
-```
-
-with exact one-particle marginal matching. This is audit-chapter inventory, not evidence for component behavior.
-
-`converter_core_2026-07-07.md` establishes the first code-backed phenomenology component:
-
-```text
-converter:
-  identity/meaning transform with throughput, fidelity/promiscuity,
-  gating, poisoning, and bistable hysteresis axes
-```
-
-It is classical phenomenology.
+before extending the microreactor line.
