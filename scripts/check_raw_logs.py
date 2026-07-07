@@ -161,6 +161,24 @@ def main() -> int:
         compare_csv(ROOT / "data/microreactor/information_microreactor_backpressure_contamination_seed20260707_events.csv", obs_tmp_events, rtol=args.rtol, atol=args.atol)
         compare_csv(ROOT / "data/microreactor/information_microreactor_backpressure_contamination_seed20260707_timeseries.csv", obs_tmp_timeseries, rtol=args.rtol, atol=args.atol)
 
+        gamma_tmp_json = tmp / "gamma_validation_seed20260707.json"
+        gamma_tmp_summary = tmp / "gamma_validation_seed20260707_summary.csv"
+        gamma_tmp_comparison = tmp / "gamma_validation_seed20260707_comparison.csv"
+        run([
+            sys.executable,
+            "scripts/audit/quantum_microreactor_gamma_validation.py",
+            "--seed",
+            "20260707",
+            "--out",
+            str(gamma_tmp_json),
+            "--summary-csv",
+            str(gamma_tmp_summary),
+            "--comparison-csv",
+            str(gamma_tmp_comparison),
+        ])
+        compare_csv(ROOT / "data/quantum_microreactor/gamma_validation_seed20260707_summary.csv", gamma_tmp_summary, rtol=args.rtol, atol=args.atol)
+        compare_csv(ROOT / "data/quantum_microreactor/gamma_validation_seed20260707_comparison.csv", gamma_tmp_comparison, rtol=args.rtol, atol=args.atol)
+
         audit_specs = [
             ("scripts/audit/quantum_coupled_microreactor_step1.py", "step1_cr_coupling_seed0", "data/quantum_microreactor/step1_cr_coupling_seed0_summary.csv"),
             ("scripts/audit/quantum_coupled_microreactor_step2_backpressure.py", "step2_backpressure_seed0", "data/quantum_microreactor/step2_backpressure_seed0_summary.csv"),
