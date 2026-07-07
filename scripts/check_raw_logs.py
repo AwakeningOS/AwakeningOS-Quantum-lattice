@@ -20,6 +20,7 @@ Current canonical logs:
   - data/quantum_microreactor/step3_svetlichny_seed0_summary.csv
   - data/quantum_microreactor/step4_population_synergy_seed0_summary.csv
   - data/quantum_microreactor/step5_reactor_like_population_synergy_seed0_summary.csv
+  - data/quantum_microreactor/step6_explicit_component_chain_seed0_summary.csv
 """
 from __future__ import annotations
 
@@ -238,6 +239,20 @@ def main() -> int:
             str(step5_tmp_csv),
         ])
         compare_csv(ROOT / "data/quantum_microreactor/step5_reactor_like_population_synergy_seed0_summary.csv", step5_tmp_csv, rtol=args.rtol, atol=args.atol)
+
+        step6_tmp_json = tmp / "step6_explicit_component_chain_seed0.json"
+        step6_tmp_csv = tmp / "step6_explicit_component_chain_seed0_summary.csv"
+        run([
+            sys.executable,
+            "scripts/audit/quantum_coupled_microreactor_step6_explicit_component_chain.py",
+            "--seed",
+            "0",
+            "--out",
+            str(step6_tmp_json),
+            "--csv",
+            str(step6_tmp_csv),
+        ])
+        compare_csv(ROOT / "data/quantum_microreactor/step6_explicit_component_chain_seed0_summary.csv", step6_tmp_csv, rtol=args.rtol, atol=args.atol)
 
         print("RAW_LOG check PASS")
         return 0
