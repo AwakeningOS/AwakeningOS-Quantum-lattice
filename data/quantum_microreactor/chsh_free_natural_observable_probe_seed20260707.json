@@ -1,0 +1,14 @@
+{
+  "experiment": "quantum_chsh_free_natural_observable_probe",
+  "date": "2026-07-08",
+  "layer": "quantum-audit inverted/adversarial probe",
+  "seed": 20260707,
+  "design": "CHSH/entanglement/negativity are not used in output definitions; reactor gates depend only on local reduced one-body observables.",
+  "verdict": "NEGATIVE_CHSH_FREE_NATURAL_OBSERVABLE_REDUCED_ARM2_REPRODUCES",
+  "positive_rows": 0,
+  "reduced_arm2_max_abs_diff_overall": 0.0,
+  "matched_replay_max_abs_diff_overall": 0.0,
+  "diagonal_control_max_abs_diff_overall": 71.308358583029,
+  "safe_interpretation": "When CHSH/entanglement/negativity are excluded from output definitions and reactor dynamics use only natural local one-body boundary observables, the quantum Arm3 is exactly reproduced by a separable product of its reduced local states across all tested contexts and gamma values. This supports the auditor critique: previous measurement-boundary positives were constructed CHSH-switch studies, not evidence of naturally irreducible quantum microreactor dynamics.",
+  "summary": []
+}
