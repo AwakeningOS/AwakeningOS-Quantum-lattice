@@ -31,6 +31,7 @@ data/quantum_microreactor/transported_branching_arm2_kill_seed20260707_summary.c
 data/quantum_microreactor/chsh_readout_transport_probe_seed20260707_summary.csv
 data/quantum_microreactor/measurement_terrain_feedback_probe_seed20260707_summary.csv
 data/quantum_microreactor/sampled_chsh_terrain_feedback_probe_seed20260707_summary.csv
+data/quantum_microreactor/measurement_terrain_memory_probe_seed20260707_summary.csv
 data/quantum_microreactor/step1_cr_coupling_seed0_summary.csv
 data/quantum_microreactor/step2_backpressure_seed0_summary.csv
 data/quantum_microreactor/step2_v2_unitary_population_seed0_summary.csv
@@ -40,7 +41,25 @@ data/quantum_microreactor/step5_reactor_like_population_synergy_seed0_summary.cs
 data/quantum_microreactor/step6_explicit_component_chain_seed0_summary.csv
 ```
 
-## Latest sampled terrain feedback probe
+## Latest terrain memory probe
+
+```text
+quantum_measurement_terrain_memory_probe
+```
+
+Canonical raw log:
+
+```text
+data/quantum_microreactor/measurement_terrain_memory_probe_seed20260707_summary.csv
+```
+
+Meaning:
+
+```text
+Finite-shot sampled CHSH terrain inscription persists after measurement stops in stress context and weakly affects a later challenge phase. Matched classical replay shows post-write memory itself is classical-effective.
+```
+
+## Previous sampled terrain feedback probe
 
 ```text
 quantum_sampled_chsh_terrain_feedback_probe
@@ -55,43 +74,7 @@ data/quantum_microreactor/sampled_chsh_terrain_feedback_probe_seed20260707_summa
 Meaning:
 
 ```text
-Finite-shot sampled CHSH, after a conservative Bell-bound margin, writes terrain only in the high-violation stress context. This is a model-level positive for sampled measurement-boundary terrain feedback, not for ordinary local population plumbing.
-```
-
-## Previous exact terrain feedback probe
-
-```text
-quantum_measurement_terrain_feedback_probe
-```
-
-Canonical raw log:
-
-```text
-data/quantum_microreactor/measurement_terrain_feedback_probe_seed20260707_summary.csv
-```
-
-Meaning:
-
-```text
-A CHSH measurement-boundary signal is written into terrain and later modulates classical-effective reactor dynamics.
-```
-
-## Previous readout probe
-
-```text
-quantum_microreactor_chsh_readout_transport_probe
-```
-
-Canonical raw log:
-
-```text
-data/quantum_microreactor/chsh_readout_transport_probe_seed20260707_summary.csv
-```
-
-Meaning:
-
-```text
-A joint/noncommutative readout component is coupled to transported P_release.
+Finite-shot sampled CHSH, after a conservative Bell-bound margin, writes terrain only in the high-violation stress context.
 ```
 
 ## Comparison policy
