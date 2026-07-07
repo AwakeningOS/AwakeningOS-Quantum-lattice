@@ -30,6 +30,7 @@ data/quantum_microreactor/branching_converter_probe_seed20260707_summary.csv
 data/quantum_microreactor/transported_branching_arm2_kill_seed20260707_summary.csv
 data/quantum_microreactor/chsh_readout_transport_probe_seed20260707_summary.csv
 data/quantum_microreactor/measurement_terrain_feedback_probe_seed20260707_summary.csv
+data/quantum_microreactor/sampled_chsh_terrain_feedback_probe_seed20260707_summary.csv
 data/quantum_microreactor/step1_cr_coupling_seed0_summary.csv
 data/quantum_microreactor/step2_backpressure_seed0_summary.csv
 data/quantum_microreactor/step2_v2_unitary_population_seed0_summary.csv
@@ -39,7 +40,25 @@ data/quantum_microreactor/step5_reactor_like_population_synergy_seed0_summary.cs
 data/quantum_microreactor/step6_explicit_component_chain_seed0_summary.csv
 ```
 
-## Latest terrain feedback probe
+## Latest sampled terrain feedback probe
+
+```text
+quantum_sampled_chsh_terrain_feedback_probe
+```
+
+Canonical raw log:
+
+```text
+data/quantum_microreactor/sampled_chsh_terrain_feedback_probe_seed20260707_summary.csv
+```
+
+Meaning:
+
+```text
+Finite-shot sampled CHSH, after a conservative Bell-bound margin, writes terrain only in the high-violation stress context. This is a model-level positive for sampled measurement-boundary terrain feedback, not for ordinary local population plumbing.
+```
+
+## Previous exact terrain feedback probe
 
 ```text
 quantum_measurement_terrain_feedback_probe
@@ -54,7 +73,7 @@ data/quantum_microreactor/measurement_terrain_feedback_probe_seed20260707_summar
 Meaning:
 
 ```text
-A CHSH measurement-boundary signal is written into terrain and later modulates classical-effective reactor dynamics. This is a model-level positive for measurement-boundary terrain feedback, not for ordinary local population plumbing.
+A CHSH measurement-boundary signal is written into terrain and later modulates classical-effective reactor dynamics.
 ```
 
 ## Previous readout probe
@@ -73,25 +92,6 @@ Meaning:
 
 ```text
 A joint/noncommutative readout component is coupled to transported P_release.
-This is a model-level positive for the readout component, not for ordinary local population plumbing.
-```
-
-## Previous transported branch probe
-
-```text
-quantum_microreactor_transported_branching_arm2_kill
-```
-
-Canonical raw log:
-
-```text
-data/quantum_microreactor/transported_branching_arm2_kill_seed20260707_summary.csv
-```
-
-Meaning:
-
-```text
-Transported local-population release moves strongly but is reproduced by the reduced Arm2 channel.
 ```
 
 ## Comparison policy
