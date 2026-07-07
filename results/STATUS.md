@@ -20,13 +20,14 @@ PHENOMENOLOGY_NOTE:
   Conceptual or exploratory note. May contain illustrative tables, but not reproducible yet.
 
 QUARANTINED_CLAIM:
-  Previously stated or implied as a result, but not currently reproducible from committed code/logs.
+  Previously stated or implied as a result that failed audit or lacks reproduction support.
 ```
 
 ## Current results/ classification
 
 | file | status | action |
 |---|---|---|
+| `quantum_coupled_microreactor_step1_2026-07-07.md` | RAW_LOG_BACKED | Backed by `scripts/audit/quantum_coupled_microreactor_step1.py` and `data/quantum_microreactor/step1_cr_coupling_seed0_summary.csv`. Quantum-audit Step 1 C-R bond only; not full microreactor. |
 | `converter_core_2026-07-07.md` | RAW_LOG_BACKED | Backed by `scripts/phenomenology/converter_core.py` and `data/converter/converter_core_seed8128_summary.csv`. Classical stochastic phenomenology. |
 | `negativity_causality_test_2026-07-07.md` | RAW_LOG_BACKED | Backed by `scripts/negativity_causality_test.py` and `data/negativity_causality/negativity_causality_test_seed0.json`. Audit inventory only; not component evidence. |
 | `gpt_key_findings.md` | META | Updated to move unverified phase-dependent transport to `QUARANTINED_CLAIM`. |
@@ -55,6 +56,7 @@ scripts/quantum_lattice_core.py
 scripts/history_droplet_core.py
 scripts/negativity_causality_test.py
 scripts/phenomenology/converter_core.py
+scripts/audit/quantum_coupled_microreactor_step1.py
 ```
 
 These should be treated as the current reproducible core until additional result generators are committed.
@@ -76,6 +78,17 @@ A phenomenology note can be promoted only when all are present:
 `phase-dependent transport on frozen history terrain` is not currently a code-backed surviving result. It should remain quarantined until the history terrain and second droplet overlap correctly and the phase dependence survives controls.
 
 ## New audit-safe findings
+
+`quantum_coupled_microreactor_step1_2026-07-07.md` establishes a Step 1 C-R module-bond audit:
+
+```text
+matched module marginals
+N(C:R) > 0 in entangled_event
+N(C:R) = 0 in dephased_correlated
+joint throughput bonus tracks N(C:R)
+```
+
+This is not yet a full microreactor result.
 
 `negativity_causality_test_2026-07-07.md` establishes a minimal basis-relative matched-control pattern:
 
