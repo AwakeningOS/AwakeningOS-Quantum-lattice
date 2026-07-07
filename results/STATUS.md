@@ -27,6 +27,7 @@ QUARANTINED_CLAIM:
 
 | file | status | action |
 |---|---|---|
+| `negativity_causality_test_2026-07-07.md` | RAW_LOG_BACKED | Backed by `scripts/negativity_causality_test.py` and `data/negativity_causality/negativity_causality_test_seed0.json`. Minimal channel test only; not yet lattice/droplet transport. |
 | `gpt_key_findings.md` | META | Updated to move unverified phase-dependent transport to `QUARANTINED_CLAIM`. |
 | `gpt_summary.json` | META | Treat as GPT summary metadata, not experiment data. |
 | `phase_channel_controls_2026-07-07.md` | PHENOMENOLOGY_NOTE | Add generator script and raw logs before promoting. |
@@ -46,11 +47,12 @@ QUARANTINED_CLAIM:
 
 ## Current code-backed experiment sources
 
-The code-backed layer currently lives in `scripts/`, not in `results/`:
+The code-backed layer currently lives in `scripts/`:
 
 ```text
 scripts/quantum_lattice_core.py
 scripts/history_droplet_core.py
+scripts/negativity_causality_test.py
 ```
 
 These should be treated as the current reproducible core until additional result generators are committed.
@@ -70,3 +72,13 @@ A phenomenology note can be promoted only when all are present:
 ## Quarantined finding
 
 `phase-dependent transport on frozen history terrain` is not currently a code-backed surviving result. It should remain quarantined until the history terrain and second droplet overlap correctly and the phase dependence survives controls.
+
+## New audit-safe finding
+
+`negativity_causality_test_2026-07-07.md` establishes a minimal marginal-matched load-bearing negativity pattern:
+
+```text
+outcome(coherent, N>0) != outcome(dephased, N=0) == outcome(product_marginals, N=0)
+```
+
+with exact one-particle marginal matching. This is not yet evidence for negativity-driven lattice transport or information-matter behavior.
