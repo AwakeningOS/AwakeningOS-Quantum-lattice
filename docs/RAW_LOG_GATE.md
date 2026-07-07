@@ -27,6 +27,7 @@ data/quantum_microreactor/gamma_validation_seed20260707_comparison.csv
 data/quantum_microreactor/gamma_sweep_quality_probe_seed20260707_summary.csv
 data/quantum_microreactor/gamma_sweep_quality_probe_seed20260707_detail.csv
 data/quantum_microreactor/branching_converter_probe_seed20260707_summary.csv
+data/quantum_microreactor/transported_branching_arm2_kill_seed20260707_summary.csv
 data/quantum_microreactor/step1_cr_coupling_seed0_summary.csv
 data/quantum_microreactor/step2_backpressure_seed0_summary.csv
 data/quantum_microreactor/step2_v2_unitary_population_seed0_summary.csv
@@ -36,9 +37,25 @@ data/quantum_microreactor/step5_reactor_like_population_synergy_seed0_summary.cs
 data/quantum_microreactor/step6_explicit_component_chain_seed0_summary.csv
 ```
 
-## Latest branching converter probe
+## Latest transported branching Arm2-kill probe
 
 The latest quantum-audit probe is:
+
+```text
+quantum_microreactor_transported_branching_arm2_kill
+```
+
+It adds one canonical raw CSV log:
+
+```text
+data/quantum_microreactor/transported_branching_arm2_kill_seed20260707_summary.csv
+```
+
+This probe checks whether a phase-dependent branching converter can move a quantum-specific effect into transported `P_release`. It finds that transported release changes strongly, but the correct zero-entanglement reduced Arm2 channel reproduces it to numerical precision.
+
+## Previous branching converter probe
+
+The previous quantum-audit probe is:
 
 ```text
 quantum_microreactor_branching_converter_probe
