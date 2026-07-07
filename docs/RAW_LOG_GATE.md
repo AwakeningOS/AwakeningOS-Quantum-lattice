@@ -12,12 +12,15 @@ python scripts/check_raw_logs.py
 
 The script regenerates canonical raw logs into a temporary directory and compares them against the committed raw logs.
 
-Current canonical logs:
+## Current canonical logs
 
 ```text
 data/negativity_causality/negativity_causality_test_seed0.json
 data/converter/converter_core_seed8128_summary.csv
 data/microreactor/information_microreactor_sandbox_seed20260707_summary.csv
+data/microreactor/information_microreactor_backpressure_contamination_seed20260707_summary.csv
+data/microreactor/information_microreactor_backpressure_contamination_seed20260707_events.csv
+data/microreactor/information_microreactor_backpressure_contamination_seed20260707_timeseries.csv
 data/quantum_microreactor/step1_cr_coupling_seed0_summary.csv
 data/quantum_microreactor/step2_backpressure_seed0_summary.csv
 data/quantum_microreactor/step2_v2_unitary_population_seed0_summary.csv
@@ -26,6 +29,29 @@ data/quantum_microreactor/step4_population_synergy_seed0_summary.csv
 data/quantum_microreactor/step5_reactor_like_population_synergy_seed0_summary.csv
 data/quantum_microreactor/step6_explicit_component_chain_seed0_summary.csv
 ```
+
+## Latest observation logs
+
+The latest experiment is:
+
+```text
+information_microreactor_backpressure_contamination
+```
+
+It adds three first-class raw CSV logs:
+
+```text
+summary.csv:
+  phase-level totals and means
+
+events.csv:
+  threshold crossing times for quality, fill, backpressure, integrity, and rescue
+
+timeseries.csv:
+  deterministic 50-step checkpoints plus final row
+```
+
+These logs are required because the result depends on temporal ordering, not only phase averages. Exact threshold times live in events.csv; timeseries.csv keeps compact trajectory checkpoints.
 
 ## Comparison policy
 
