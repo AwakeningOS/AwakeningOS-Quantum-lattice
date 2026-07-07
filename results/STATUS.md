@@ -27,7 +27,8 @@ QUARANTINED_CLAIM:
 
 | file | status | action |
 |---|---|---|
-| `quantum_coupled_microreactor_step2_backpressure_2026-07-07.md` | RAW_LOG_BACKED | Backed by `scripts/audit/quantum_coupled_microreactor_step2_backpressure.py` and `data/quantum_microreactor/step2_backpressure_seed0_summary.csv`. Dynamic C-R backpressure audit only; not full microreactor. |
+| `quantum_coupled_microreactor_step2_v2_unitary_population_2026-07-07.md` | RAW_LOG_BACKED | Backed by `scripts/audit/quantum_coupled_microreactor_step2_v2_unitary_population.py` and `data/quantum_microreactor/step2_v2_unitary_population_seed0_summary.csv`. Corrected Step 2 with unitary dynamics and diagonal population readout. |
+| `quantum_coupled_microreactor_step2_backpressure_2026-07-07.md` | QUARANTINED_CLAIM | Reproducible negative audit case. Its `conversion_effect` was a Bell-bond projector in disguise, so the independent functional claim is invalid. Superseded by Step 2-v2. |
 | `quantum_coupled_microreactor_step1_2026-07-07.md` | RAW_LOG_BACKED | Backed by `scripts/audit/quantum_coupled_microreactor_step1.py` and `data/quantum_microreactor/step1_cr_coupling_seed0_summary.csv`. Designed C-R bond witness only; not full microreactor and not natural device throughput. |
 | `converter_core_2026-07-07.md` | RAW_LOG_BACKED | Backed by `scripts/phenomenology/converter_core.py` and `data/converter/converter_core_seed8128_summary.csv`. Classical stochastic phenomenology. |
 | `negativity_causality_test_2026-07-07.md` | RAW_LOG_BACKED | Backed by `scripts/negativity_causality_test.py` and `data/negativity_causality/negativity_causality_test_seed0.json`. Audit inventory only; not component evidence. |
@@ -59,6 +60,7 @@ scripts/negativity_causality_test.py
 scripts/phenomenology/converter_core.py
 scripts/audit/quantum_coupled_microreactor_step1.py
 scripts/audit/quantum_coupled_microreactor_step2_backpressure.py
+scripts/audit/quantum_coupled_microreactor_step2_v2_unitary_population.py
 ```
 
 These should be treated as the current reproducible core until additional result generators are committed.
@@ -79,16 +81,19 @@ A phenomenology note can be promoted only when all are present:
 
 `phase-dependent transport on frozen history terrain` is not currently a code-backed surviving result. It should remain quarantined until the history terrain and second droplet overlap correctly and the phase dependence survives controls.
 
+`quantum_coupled_microreactor_step2_backpressure_2026-07-07.md` is also quarantined as a functional claim: its conversion effect was equivalent to a Bell-bond projector and therefore did not provide an independent device observable.
+
 ## New audit-safe findings
 
-`quantum_coupled_microreactor_step2_backpressure_2026-07-07.md` establishes a dynamic C-R backpressure audit:
+`quantum_coupled_microreactor_step2_v2_unitary_population_2026-07-07.md` establishes the corrected Step 2 audit:
 
 ```text
-capacity-dependent conversion/release observable
+explicit C-R unitary conversion dynamics
+diagonal product-population readout after dynamics
 matched module marginals
 N(C:R) > 0 only in entangled_event
-conversion response differs from N=0 correlated controls
-capacity restriction changes the entangled bonus and backpressure index
+product population differs from N=0 correlated controls
+capacity restriction changes the extra response and backpressure index
 ```
 
 This is not yet a full microreactor result.
