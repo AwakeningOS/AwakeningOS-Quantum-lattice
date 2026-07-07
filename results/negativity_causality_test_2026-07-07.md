@@ -1,4 +1,4 @@
-# Negativity Causality Test
+# Minimal Basis-relative Causality Test
 
 Date: 2026-07-07
 
@@ -22,18 +22,24 @@ Run command:
 python scripts/negativity_causality_test.py --out data/negativity_causality/negativity_causality_test_seed0.json
 ```
 
+## Correct layer
+
+This file belongs to the audit/witness inventory, not to the current component-development front line.
+
+It should not be used to claim that the converter, membrane, reservoir, or source-sink components are quantum-specific.
+
 ## Question
 
 The audit exposed the key hole in the program:
 
 ```text
-negativity exists, but has not yet been shown to be load-bearing for behavior.
+A witness may be present without being load-bearing for a behavior.
 ```
 
 This test asks a minimal causal question:
 
 ```text
-Can an N>0 arm change a channel outcome when one-particle marginals are exactly matched against N=0 controls?
+Can a coherent arm change a channel outcome when one-particle marginals are exactly matched against controls?
 ```
 
 ## Design
@@ -44,7 +50,6 @@ Three arms are constructed from the same Bell-origin state.
 arm1 coherent:
   rho = |Phi+><Phi+|
   |Phi+> = (|00> + |11>) / sqrt(2)
-  N > 0
 
 arm2 dephased:
   configuration-basis dephase of arm1
@@ -103,50 +108,44 @@ dephased - product P(same)  = 0.0
 ## Verdict
 
 ```text
-PASS_MINIMAL_LOAD_BEARING_NEGATIVITY
+PASS_MINIMAL_LOAD_BEARING_COHERENCE_BASIS_RELATIVE_CLASSICAL_EFFECTIVE
 ```
 
 Pattern:
 
 ```text
-outcome(coherent, N>0) != outcome(dephased, N=0) == outcome(product_marginals, N=0)
+outcome(coherent) != outcome(dephased, N=0) == outcome(product_marginals, N=0)
 ```
 
 with exact one-particle marginal matching.
 
-This is a minimal positive result: Bell coherence/negativity can be load-bearing for a designed channel outcome after marginal differences are eliminated.
+## Correct interpretation
+
+This is a minimal positive result for a basis-relative channel analyzer:
+
+```text
+matched marginals
+coherent arm differs from N=0 controls
+channel outcome changes
+```
+
+It is not a quantum-specific component claim.
 
 ## What this does not prove
 
-This does not yet prove that previous droplet, history-terrain, membrane, or information-matter phenomenology required negativity.
+This does not prove that previous droplet, history-terrain, membrane, converter, reservoir, source-sink, or information-matter phenomenology requires a quantum witness.
 
 Limitations:
 
 ```text
 1. minimal two-qubit channel test
-2. not yet a spatial lattice/droplet transport experiment
-3. contact analyzer is designed to read Bell coherence
-4. next step must embed the same three-arm control discipline into lattice contact or droplet scattering
+2. not a spatial lattice/droplet transport experiment
+3. contact analyzer is designed to read the chosen basis relation
+4. audit-chapter inventory, not component-development evidence
 ```
 
-## Why this matters
+## Current use
 
-The previous repo state had a valid quantum witness, but no causal role for it.
+Use this file only as a guardrail example for matched controls.
 
-This file establishes the first code-backed causal pattern:
-
-```text
-matched marginals
-N>0 vs N=0
-channel outcome changes only in the N>0 arm
-```
-
-The next audit-safe target is:
-
-```text
-lattice negativity causality test:
-  same marginal-matching discipline
-  spatial EXCH/ZZ contact region
-  dephase/product controls
-  channel output or reaction probability
-```
+The component-development front line remains classical-effective phenomenology unless a separate witness chapter promotes a substructure with stronger controls.
