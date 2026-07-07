@@ -15,6 +15,7 @@ Current canonical logs:
   - data/negativity_causality/negativity_causality_test_seed0.json
   - data/converter/converter_core_seed8128_summary.csv
   - data/quantum_microreactor/step1_cr_coupling_seed0_summary.csv
+  - data/quantum_microreactor/step2_backpressure_seed0_summary.csv
 """
 from __future__ import annotations
 
@@ -163,6 +164,20 @@ def main() -> int:
             str(micro_tmp_csv),
         ])
         compare_csv(ROOT / "data/quantum_microreactor/step1_cr_coupling_seed0_summary.csv", micro_tmp_csv, rtol=args.rtol, atol=args.atol)
+
+        step2_tmp_json = tmp / "step2_backpressure_seed0.json"
+        step2_tmp_csv = tmp / "step2_backpressure_seed0_summary.csv"
+        run([
+            sys.executable,
+            "scripts/audit/quantum_coupled_microreactor_step2_backpressure.py",
+            "--seed",
+            "0",
+            "--out",
+            str(step2_tmp_json),
+            "--csv",
+            str(step2_tmp_csv),
+        ])
+        compare_csv(ROOT / "data/quantum_microreactor/step2_backpressure_seed0_summary.csv", step2_tmp_csv, rtol=args.rtol, atol=args.atol)
 
         print("RAW_LOG check PASS")
         return 0
