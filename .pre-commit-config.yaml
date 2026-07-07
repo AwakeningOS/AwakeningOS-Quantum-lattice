@@ -1,0 +1,9 @@
+repos:
+  - repo: local
+    hooks:
+      - id: raw-log-check
+        name: RAW_LOG reproducibility check
+        entry: python scripts/check_raw_logs.py
+        language: system
+        pass_filenames: false
+        always_run: true
