@@ -1,0 +1,25 @@
+{
+  "experiment": "quantum_sampled_chsh_terrain_feedback_probe",
+  "date": "2026-07-08",
+  "layer": "quantum-audit probe",
+  "seed": 20260707,
+  "shots_per_setting_per_step": 32768,
+  "alpha": 0.001,
+  "confidence_margin_S": 0.093683293042,
+  "verdict": "POSITIVE_FOR_MODEL_LEVEL_SAMPLED_CHSH_TERRAIN_FEEDBACK",
+  "positive_rows": 2,
+  "pre_registered_predictions": {
+    "P1_gamma1_null": "PASS: gamma=1 has no conservative sampled excess and no terrain feedback in all scenarios.",
+    "P2_noise_guard": "PASS: normal and storage do not pass after subtracting the conservative margin, including at gamma=0.",
+    "P3_main": "PASS: stress_context at gamma=0 survives sampled CHSH margin and changes next-phase P_release by +19.998558%.",
+    "P4_threshold": "PASS: stress_context gamma=0.25 survives weakly (+1.438596%), while gamma>=0.5 does not."
+  },
+  "safe_interpretation": "A finite-shot sampled CHSH measurement-boundary signal, after subtracting a conservative Bell-bound margin, can still be written into terrain and later modulate classical-effective dynamics in stress context. This is a model-level positive for sampled measurement-boundary terrain feedback, not for ordinary local population plumbing.",
+  "limitations": [
+    "Not a hardware result.",
+    "Not chemical realism or biological metabolism.",
+    "The result still uses simulated quantum states and simulated finite-shot CHSH measurements.",
+    "The positive effect depends on a CHSH/noncommutative readout and terrain feedback component.",
+    "Local population plumbing without measurement-boundary writeback remains reduced-Arm2 reproducible."
+  ]
+}
