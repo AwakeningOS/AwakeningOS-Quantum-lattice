@@ -108,6 +108,25 @@ def main() -> int:
         for script, extra_args, expected, actual in csv_specs:
             run([sys.executable, script, *extra_args])
             compare_csv(ROOT / expected, actual, rtol=args.rtol, atol=args.atol)
+
+        whole_json = tmp / "information_microreactor_whole_state_quantum_sandbox_seed20260707.json"
+        whole_summary = tmp / "information_microreactor_whole_state_quantum_sandbox_seed20260707_summary.csv"
+        whole_events = tmp / "information_microreactor_whole_state_quantum_sandbox_seed20260707_events.csv"
+        run([
+            sys.executable,
+            "scripts/phenomenology/information_microreactor_whole_state_quantum_sandbox.py",
+            "--seed",
+            "20260707",
+            "--out",
+            str(whole_json),
+            "--summary-csv",
+            str(whole_summary),
+            "--events-csv",
+            str(whole_events),
+        ])
+        compare_csv(ROOT / "data/microreactor/information_microreactor_whole_state_quantum_sandbox_seed20260707_summary.csv", whole_summary, rtol=args.rtol, atol=args.atol)
+        compare_csv(ROOT / "data/microreactor/information_microreactor_whole_state_quantum_sandbox_seed20260707_events.csv", whole_events, rtol=args.rtol, atol=args.atol)
+
         obs_json = tmp / "information_microreactor_backpressure_contamination_seed20260707.json"
         obs_summary = tmp / "information_microreactor_backpressure_contamination_seed20260707_summary.csv"
         obs_events = tmp / "information_microreactor_backpressure_contamination_seed20260707_events.csv"
